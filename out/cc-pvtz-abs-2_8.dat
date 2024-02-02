@@ -1,0 +1,11 @@
+BASIS "ao basis" PRINT
+#BASIS SET H
+H   D
+    1.057000000	1.0
+H   S
+    33.870000000	1.0
+H   P
+    0.388000000	1.0
+H   P
+    1.407000000	1.0
+END
