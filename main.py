@@ -128,6 +128,9 @@ for ip in pivk:
     idx_i.append(i)
     idx_j.append(j)
 
+    # For every i we must access the mol.bas_angular ? complicated. Just find
+    # the index of the line in the input file
+
 print("First index")
 print(set(idx_i))
 print("Second index")

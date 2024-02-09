@@ -27,6 +27,20 @@ def read_matrix_from_file(filename):
 
     return mat
 
+def extract_orbitals_to_file(file_in, file_out, idx):
+    '''
+    Extract selected orbitals of GAMESS US file into a new file
+    '''
+
+    # GAMESS US file delimiters
+    start_key = "$DATA"
+    end_key = "$END"
+
+    with open(file_in, 'r') as file: 
+
+        [ t for t in text.split() if t.startswith('s') ]
+        # extract the contraction size to know how many lines to copy
+
 def parse_options():
 
     parser = argparse.ArgumentParser()
