@@ -49,7 +49,7 @@ TODO list
 
 Long term goals
 
-    [*] voir quel pourcentage des orbitales ont a besoin pour créer les produits
+    [*] voir quel pourcentage des orbitales on a besoin pour créer les produits
     [*] H2O molecule : réduire cc-pv5z et atteindre la taille de cc-pvqz avec la
       même précision que cc-pv5z
 
