@@ -226,8 +226,6 @@ def parse_nwchem(basis_dic):
     
     return nw_bases
 
-def pa
-
 def dump(filename, bases):
     '''
     Write string bases to file per atom
@@ -294,6 +292,7 @@ def PCD_atom_wise(M, Nrbas):
         for k in range(nb_aos):
 
             # project all lines to the set of the AOs
+            test = 1
 
 
         #print(m, p[i], np.min(d, axis=0)[p[i]])

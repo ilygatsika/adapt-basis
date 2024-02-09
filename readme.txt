@@ -30,8 +30,8 @@ TODO list
 
     [OK] update H2O geometry from Diata file
     [OK] verify that basis from BSE is the same as Diata file
-    [*] read density matrix data from file
-    [*] initialize atomic orbital basis from GAMESS US file
+    [OK] read density matrix data from file
+    [OK] initialize atomic orbital basis from GAMESS US file
     [*] deactivate the decontraction of orbitals before Cholesky
     [*] recover set(idx_selection) from orbital products
     [*] copy the GAMESS US file to out folder and remove the lines that do not

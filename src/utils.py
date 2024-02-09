@@ -3,11 +3,29 @@ import src.basis as basis
 from pyscf import gto, scf
 import argparse
 import _pickle as cpickle
+import numpy as np
 
 '''
     Various utility functions
     (parsers, option setters, test templates)
 '''
+
+def read_matrix_from_file(filename):
+    '''
+    Read a matrix stored as a column in a text file
+    '''
+
+    with open(filename, 'r') as file:
+    
+        # Read data line by line as string
+        data = file.read().split()
+
+        istart = int(data[0]) + 1
+        ncol, nrow = int(data[1]), int(data[2])
+        mat = np.array([float(line) for line in data[istart:]], dtype=float)
+        mat = mat.reshape(ncol, nrow)
+
+    return mat
 
 def parse_options():
 

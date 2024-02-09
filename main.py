@@ -1,6 +1,8 @@
 import src.basis as basis
 import src.linalg as LA
+import src.utils as utils
 from pyscf import gto
+import numpy as np
 import argparse
 import sys
 
@@ -44,6 +46,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--coord", 
                     help="coordinates of molecular geometry (in Angstrom)", 
                     type=str)
+parser.add_argument("--dm", 
+                    help="density matrix of CBS solution", 
+                    type=str)
 parser.add_argument("--AO", 
                     help="atomic orbital basis set", 
                     type=str)
@@ -57,17 +62,44 @@ args = parser.parse_args()
 
 # Read input
 coord = args.coord
+dm_file = args.dm
 ao_basis = args.AO
 M_target = args.M_target
 option = args.option
 
+# Input filenames
+coord_file = "system/%s.xyz" %coord
+dm_file = "dat/%s.txt" %dm_file
+
 # Output filename
 filename = "out/%s-abs-%i_%i.dat" %(ao_basis,option,M_target)
 
-# Coordinate file
-coord_file = "system/%s.xyz" %coord
 
 print("Reading coord from %s file" %coord_file)
+
+# Read density matrix
+# Important: multiply by 2 for occupation
+print("\nImporting CBS density")
+dm = 2 * utils.read_matrix_from_file(dm_file)
+
+basis = {'H': gto.basis.load('dat/cc-pvdz.nw', 'H')}
+mol = gto.M(atom=coord_file, basis=basis)
+
+# Should be equal to electron number
+nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+nelec = np.sum(mol.nelec)
+print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
+
+# Get Hartree-Fock density matrix
+print("\nRunning Hartree-Fock")
+mf = mol.RHF()
+mf.run()
+dm = mf.make_rdm1()
+nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
+
+exit()
+
 
 # AO basis on fixed geometry
 mol = gto.M(atom=coord_file, basis=ao_basis)
