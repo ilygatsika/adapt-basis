@@ -257,3 +257,64 @@ def format_basis(basis):
         user_basis = join(dirnow, basis+'.dat')
         return user_basis
 
+def PCD_atom_wise(M, Nrbas):
+    """
+    Greedy pivoted Cholesky (PCF ref Schneider et al.)
+    Return subindices of reduced basis
+
+    M       K x Naop x Naop Gram matrices
+    Nrbas   size of reduced basis
+    """
+
+    K, Naop = M.shape[0], M.shape[1]
+    Irbas = np.empty(Nrbas, dtype=int)
+
+    # initialize diagonal, index, lower triangular
+    d = np.empty((K, Naop), dtype=float)
+    for a in range(K):
+        d[a] = np.diag(M[a])
+    p = np.arange(Naop)
+    L = np.zeros((K, Naop, Naop), dtype=float)
+
+    for m in range(Nrbas):
+       
+        # choose next reduced basis index
+        dm = np.zeros((K, Naop), dtype=float)
+        for a in range(K):
+            dm[a,m:] = d[a,p[m:]]
+        i = np.argmax(np.min(dm, axis=0)) # size Naop
+
+        # Find the same AO at different centers
+        aos_i = ao_same_center[i]
+        nb_aos = np.size(aos_i)
+
+        # Use the AO at all centers as pivots
+        for k in range(nb_aos):
+
+            # project all lines to the set of the AOs
+
+
+        #print(m, p[i], np.min(d, axis=0)[p[i]])
+        Irbas[m] = p[i]
+        
+        # swap indices
+        p[i], p[m] = p[m], p[i]
+        assert(i >= m)
+    
+        L[:,m,p[m]] = np.sqrt(d[:,p[m]])
+
+        for i in range(m+1, Naop):
+        
+            for a in range(K):
+                
+                # update lower triangular
+                s = 0
+                for j in range(m):
+                    s += L[a,j,p[m]] * L[a,j,p[i]]
+                nrm = L[a,m,p[m]]
+                L[a,m,p[i]] = (M[a,p[m],p[i]] - s)/nrm
+       
+            # update diagonal
+            d[:,p[i]] -= L[:,m,p[i]]**2
+    
+    return Irbas

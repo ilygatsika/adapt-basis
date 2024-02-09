@@ -1,0 +1,25 @@
+# \int n = N_e pour debogger. 
+# Donc il faut multiplier par deux tous les coeff pour avoir la matrice densité totale, je crois
+
+Basis set (read-only) ::
+  Atom 1
+  S   4
+    1        13.010000          0.019685
+    2         1.962000          0.137977
+    3         0.444600          0.478148
+    4         0.122000          0.501240
+  S   1
+    1         0.122000          1.000000
+  P   1
+    1         0.727000          1.000000
+  Atom 2
+  S   4
+    1        13.010000          0.019685
+    2         1.962000          0.137977
+    3         0.444600          0.478148
+    4         0.122000          0.501240
+  S   1
+    1         0.122000          1.000000
+  P   1
+    1         0.727000          1.000000
+

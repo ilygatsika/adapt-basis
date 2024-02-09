@@ -74,7 +74,7 @@ mol = gto.M(atom=coord_file, basis=ao_basis)
 print("Number of contracted atomic orbitals\t\t", mol.nbas)
 
 # Decontract the basis
-mol, _ = mol.decontract_basis() 
+#mol, _ = mol.decontract_basis() 
 print("Number of decontracted atomic orbitals\t\t", mol.nbas)
 
 if (mol.nbas < M_target):
