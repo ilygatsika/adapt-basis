@@ -226,6 +226,8 @@ def parse_nwchem(basis_dic):
     
     return nw_bases
 
+def pa
+
 def dump(filename, bases):
     '''
     Write string bases to file per atom
