@@ -72,6 +72,18 @@ def intermediary_basis(mol, option=0, debug=False):
 
     return newbas
 
+def get_4c_overlap(mol, metric):
+    """
+    Return four-center matrix of dimension mol.nao by mol.nao
+    """
+    
+    if metric.lower() == 'j':
+        A = mol.intor("int2e_sph")
+    elif metric.lower() == 's':
+        A = mol.intor("int4c1e_sph", comp=1)
+
+    return A
+
 def gto_by_angular(mol):
     """
     Return block-diagonal matrix of dimension mol.nbas by mol.nao,
@@ -92,6 +104,30 @@ def gto_by_angular(mol):
 
     return P
 
+def get_4c_gram(mol, dm, metric):
+    '''
+    Construct 4-index Gram matrix using
+    given metric (j for Coulomb or s for overlap)
+    '''
+
+    if metric.lower() not in ['j','s']:
+        raise ValueError('invalid metric')
+
+    # Gram matrix of uncontracted basis
+    G = get_4c_overlap(mol, metric)
+    
+    # Weight by density matrix
+    G_w = lib.einsum('ij, kl, ijkl->ijkl', dm, dm, G)
+
+    # Block matrix of angular momenta
+    P = gto_by_angular(mol)
+    G_w = lib.einsum('pi, qj, pqrs, kr, ls->ijkl', P.T, P.T, G_w, P, P)
+    norb = mol.nbas**2
+    
+    gram = G_w.reshape(norb, norb)
+
+    return gram
+
 def get_gram(mol):
     """
     Contract matrix blocks per orbital type
@@ -106,6 +142,33 @@ def get_gram(mol):
     B = lib.einsum('qj, qr, kr->jk', P.T, G, P)
 
     return B
+
+def prod_gto_atom_mask(mol):
+    '''
+    Return indices of GTO products centered on atoms
+    '''
+    
+    atm = np.array([mol.bas_atom(i) for i in range(mol.nbas)], dtype=int)
+    atm2c = np.dstack(np.meshgrid(atm,atm)).reshape(-1, 2)
+    idx_atom = np.where( atm2c[:,0] == atm2c[:,1] )[0]
+
+    return idx_atom
+
+def restrict_atoms(mol):
+    '''
+    Return restriction matrix 
+    of primitive GTO products to atomic-centered ones
+    '''
+
+    # Restriction matrix 
+    atom_mask = prod_gto_atom_mask(mol)
+    natp = np.size(atom_mask)
+    norb = mol.nbas
+    R = np.zeros((norb**2, natp), dtype=int)
+    R[atom_mask, np.arange(natp)] = 1
+
+    return R
+
 
 def extract_basis(mol, indices):
     """

@@ -29,13 +29,14 @@ Notes
 TODO list
 
     [OK] update H2O geometry from Diata file
-    [OK] verify that basis from BSE is the same as Diata file
+    [OK] verify that basis from BSE or PySCF is the same as Diata file
     [OK] read density matrix data from file
     [OK] initialize atomic orbital basis from GAMESS US file
-    [*] deactivate the decontraction of orbitals before Cholesky
-    [*] recover set(idx_selection) from orbital products
+    [OK] deactivate the orbital decontraction before Cholesky
+    [OK] perform Cholesky on four-index tensor
+    [OK] recover set(idx_selection) from orbital products
     [*] copy the GAMESS US file to out folder and remove the lines that do not
-      contain selected orbitals
+      contain selected orbitals (for the moment it is manual)
     [*] force atom-wise consistency during the PCD procedure, since it will change the
       pivot order. La proposition de Susi c'est de regarder si le pivot correspond à
       deux fonctions centrées sur différents atomes. Si oui, il faut choisir les

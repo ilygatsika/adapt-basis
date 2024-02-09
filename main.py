@@ -82,8 +82,8 @@ print("Reading coord from %s file" %coord_file)
 print("\nImporting CBS density")
 dm = 2 * utils.read_matrix_from_file(dm_file)
 
-basis = {'H': gto.basis.load('dat/cc-pvdz.nw', 'H')}
-mol = gto.M(atom=coord_file, basis=basis)
+input_basis = {'H': gto.basis.load('dat/cc-pvdz.nw', 'H')}
+mol = gto.M(atom=coord_file, basis=input_basis)
 
 # Should be equal to electron number
 nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
@@ -94,26 +94,48 @@ print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 print("\nRunning Hartree-Fock")
 mf = mol.RHF()
 mf.run()
-dm = mf.make_rdm1()
-nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+dm_hf = mf.make_rdm1()
+nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm_hf) 
 print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
-
-exit()
-
 
 # AO basis on fixed geometry
 mol = gto.M(atom=coord_file, basis=ao_basis)
-print("Number of contracted atomic orbitals\t\t", mol.nbas)
-
-# Decontract the basis
-#mol, _ = mol.decontract_basis() 
-print("Number of decontracted atomic orbitals\t\t", mol.nbas)
+print("Number of atomic orbitals\t\t", mol.nbas)
 
 if (mol.nbas < M_target):
     raise ValueError("target M is too large")
 
-print("** Starting reduction using ABS-%i method with target %i"
-      %(option,M_target)) 
+print("\nStarting reduction with target %i and %i constraint" %(M_target, option)) 
+
+# Assembly Gram matrix of products
+metric = "j"
+G = basis.get_4c_gram(mol, dm, metric)
+R = basis.restrict_atoms(mol)
+A = R.T @ G @ R
+
+# Select products
+L,piv,k = LA.PCD(A)
+pivk = piv[:M_target]
+
+# Recover orbitals in products
+aoi = np.arange(mol.nbas)
+prd_idx = np.dstack(np.meshgrid(aoi,aoi)).reshape(-1, 2)
+atm_idx = basis.prod_gto_atom_mask(mol)
+idx_i, idx_j = [], []
+for ip in pivk:
+
+    i,j = prd_idx[atm_idx[ip]]
+    idx_i.append(i)
+    idx_j.append(j)
+
+print("First index")
+print(set(idx_i))
+print("Second index")
+print(set(idx_j))
+
+print("Final choice")
+print(set(idx_i + idx_j))
+exit()
 
 # Initialize intermediary basis respecting the option
 mol0 = basis.init_adapt(mol, option=option)
