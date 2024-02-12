@@ -17,3 +17,37 @@ cc-pvdz (enlever la p)                      -1.123902 Hartree
 cc-pvdz (enlever la s 0.44 cc-pvdz-abs_0_7) -0.977727 Hartree   
 cc-pvdz (enlever la s 1.96)                 -1.071569 Hartree   
 
+Test 2
+------
+
+Molécule 
+H2 avec 0,0,0 et 0,0,0.8
+
+Ground state énergie    Hartree-Fock | DBCBS     | CIPSI+PT2 | taille
+
+cc-pvdz_2                  -1.096350 | -1.134123 | -1.113721 | 2
+cc-pvdz_4                  -1.122863 | -1.161860 | -1.148108 | 4
+cc-pvdz (ref)              -1.127000 | -1.168574 | -1.162750 | 6 (10)
+
+Correction ordre zéro (sans correction, Full CI)
+CIPSI+PT2 
+
+Correction ordre 1
+DBCBS
+
+*******
+* But *
+*******
+On aimerait entre l'ordre 0 et l'ordre 1 pour cc-pvdz
+soit mieux que l'ordre 1
+
+Test 3
+------
+
+Molécule H2O avec coord h2o.xyz (compatible Diata)
+
+6-31g
+cc-pvtz
+cc-pvqz
+cc-pv5z (ref)
+

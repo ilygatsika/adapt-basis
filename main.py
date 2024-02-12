@@ -72,19 +72,51 @@ coord_file = "system/%s.xyz" %coord
 dm_file = "dat/%s.txt" %dm_file
 
 # Output filename
-filename = "out/%s-abs-%i_%i.dat" %(ao_basis,option,M_target)
-
+filename = "out/test_3/%s-abs-%i_%i.dat" %(ao_basis,option,M_target)
 
 print("Reading coord from %s file" %coord_file)
+
+# Create molecule in PySCF
+input_basis = {
+        'H': gto.basis.load('dat/cc-pvdz.nw', 'H'),
+        'O': gto.basis.load('dat/cc-pvdz.nw', 'O')
+        }
+mol = gto.M(atom=coord_file, basis=input_basis, cart=True)
+
+# AO basis on fixed geometry
+print("Number of atomic orbitals\t\t", mol.nbas)
+print("Number of orbital components\t\t", mol.nao)
+
+if (mol.nbas < M_target):
+    raise ValueError("target M is too large")
 
 # Read density matrix
 # Important: multiply by 2 for occupation
 print("\nImporting CBS density")
 dm = 2 * utils.read_matrix_from_file(dm_file)
 
-input_basis = {'H': gto.basis.load('dat/cc-pvdz.nw', 'H')}
-mol = gto.M(atom=coord_file, basis=input_basis)
+print("\nImporting overlap")
+S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
 
+"""
+print(mol.ao_labels())
+
+for i in range(mol.nbas):
+    print("angular", mol.bas_angular(i))
+    print("exponent", mol.bas_exp(i))
+
+exit()
+"""
+print("Reference", np.trace(S @ dm))
+
+#print(np.diag(S))
+"""
+print(S[0,:])
+print(S[:,0])
+print(mol.intor("int1e_ovlp")[0,:])
+
+exit()
+"""
 # Should be equal to electron number
 nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
 nelec = np.sum(mol.nelec)
@@ -98,12 +130,8 @@ dm_hf = mf.make_rdm1()
 nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm_hf) 
 print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
-# AO basis on fixed geometry
-mol = gto.M(atom=coord_file, basis=ao_basis)
-print("Number of atomic orbitals\t\t", mol.nbas)
-
-if (mol.nbas < M_target):
-    raise ValueError("target M is too large")
+# Temporary fix
+dm = dm_hf
 
 print("\nStarting reduction with target %i and %i constraint" %(M_target, option)) 
 
