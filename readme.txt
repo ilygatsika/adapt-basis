@@ -35,9 +35,10 @@ TODO list
     [OK] deactivate the orbital decontraction before Cholesky
     [OK] perform Cholesky on four-index tensor
     [OK] recover set(idx_selection) from orbital products
-    [*] copy the GAMESS US file to out folder and remove the lines that do not
+    [OK] copy the GAMESS US file to out folder and remove the lines that do not
       contain selected orbitals (for the moment it is manual)
-    [*] force atom-wise consistency during the PCD procedure, since it will change the
+    [*] Create two methods to force atom-wise consistency. 
+      The second method does so during the PCD procedure, since it will change the
       pivot order. La proposition de Susi c'est de regarder si le pivot correspond à
       deux fonctions centrées sur différents atomes. Si oui, il faut choisir les
       deux fonctions comme pivot. Prendre le min ou la somme des deux comme pivot à
@@ -46,6 +47,8 @@ TODO list
       condition qui vérifie si l'indice du AO correspond à deux centres ou pas. Dans
       ce cas il faut stocker pour chaque indice de AO, les indices des AO avec les
       mêmes paramètres centrés aux différents atomes. 
+    [OK] expand contractions from BSE data in NWChem format
+    [OK] automatize different AO basis sets
 
 Long term goals
 

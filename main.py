@@ -33,7 +33,8 @@ import sys
     ========================================================================
     Usage:
 
-        python3 main.py [--coord] h2o [--AO] aug-cc-pvdz [--M] 20 [--option] 0
+        python3 main.py [--coord] h2o [--dm] input_dm [--out_dir]
+        out_dir [--AO] aug-cc-pvdz [--M] 20 [--option] 0
 
     mol       molecular geometry in Angstrom
     AO        atomic orbital basis set
@@ -48,6 +49,9 @@ parser.add_argument("--coord",
                     type=str)
 parser.add_argument("--dm", 
                     help="density matrix of CBS solution", 
+                    type=str, default=None)
+parser.add_argument("--out_dir", 
+                    help="directory of output basis in GAMESS US format", 
                     type=str)
 parser.add_argument("--AO", 
                     help="atomic orbital basis set", 
@@ -56,82 +60,70 @@ parser.add_argument("--M_target",
                     help="target number of selected atomic orbitals",
                     type=int)
 parser.add_argument("--option", 
-                    help="desired orbital type constraint",
-                    type=int)
+                    help="desired orbital type constraint in ABS-<option>",
+                    type=int, default=0)
 args = parser.parse_args()
 
-# Read input
+# Read user input
 coord = args.coord
-dm_file = args.dm
+dm_in = args.dm
+out_dir = args.out_dir
 ao_basis = args.AO
 M_target = args.M_target
 option = args.option
 
 # Input filenames
-coord_file = "system/%s.xyz" %coord
-dm_file = "dat/%s.txt" %dm_file
+coord = 'system/%s.xyz' %coord
+dm_file = 'dat/%s.txt' %dm_in
+ao_nw = 'dat/%s.nw' %ao_basis # NwChem
+ao_bas = 'dat/%s.bas' %ao_basis # GAMESS US
+out_file = out_dir+'/%s-abs_%i_%i.bas' %(ao_basis, M_target, option)
 
-# Output filename
-filename = "out/test_3/%s-abs-%i_%i.dat" %(ao_basis,option,M_target)
-
-print("Reading coord from %s file" %coord_file)
+print("Reading coord from %s file." %coord)
 
 # Create molecule in PySCF
 input_basis = {
-        'H': gto.basis.load('dat/cc-pvdz.nw', 'H'),
-        'O': gto.basis.load('dat/cc-pvdz.nw', 'O')
+        'H': gto.basis.load(ao_nw, 'H'),
+        'O': gto.basis.load(ao_nw, 'O')
         }
-mol = gto.M(atom=coord_file, basis=input_basis, cart=True)
+mol = gto.M(atom=coord, basis=input_basis, cart=True)
+nelec = np.sum(mol.nelec)
 
 # AO basis on fixed geometry
-print("Number of atomic orbitals\t\t", mol.nbas)
-print("Number of orbital components\t\t", mol.nao)
+print("Number of atomic orbitals (M must be smaller)\t\t", mol.nbas)
+print("Number of orbital components\t\t\t\t", mol.nao)
 
 if (mol.nbas < M_target):
     raise ValueError("target M is too large")
 
-# Read density matrix
-# Important: multiply by 2 for occupation
-print("\nImporting CBS density")
-dm = 2 * utils.read_matrix_from_file(dm_file)
+# Get density matrix
+if (dm_in is not None):
 
-print("\nImporting overlap")
-S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
+    # Read density matrix
+    # Important: multiply by 2 for occupation
+    print("\nImporting CBS density")
+    dm = 2 * utils.read_matrix_from_file(dm_file)
 
-"""
-print(mol.ao_labels())
+    print("\nImporting overlap")
+    S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
 
-for i in range(mol.nbas):
-    print("angular", mol.bas_angular(i))
-    print("exponent", mol.bas_exp(i))
+    #print(mol.ao_labels())
+    print("Reference", np.trace(S @ dm))
 
-exit()
-"""
-print("Reference", np.trace(S @ dm))
+    # Should be equal to electron number
+    nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+    print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
-#print(np.diag(S))
-"""
-print(S[0,:])
-print(S[:,0])
-print(mol.intor("int1e_ovlp")[0,:])
+else: 
 
-exit()
-"""
-# Should be equal to electron number
-nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
-nelec = np.sum(mol.nelec)
-print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
+    # Get Hartree-Fock density matrix
+    print("\nRunning Hartree-Fock to get density")
+    mf = mol.RHF()
+    mf.run()
+    dm = mf.make_rdm1()
+    nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+    print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
-# Get Hartree-Fock density matrix
-print("\nRunning Hartree-Fock")
-mf = mol.RHF()
-mf.run()
-dm_hf = mf.make_rdm1()
-nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm_hf) 
-print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
-
-# Temporary fix
-dm = dm_hf
 
 print("\nStarting reduction with target %i and %i constraint" %(M_target, option)) 
 
@@ -156,16 +148,21 @@ for ip in pivk:
     idx_i.append(i)
     idx_j.append(j)
 
-    # For every i we must access the mol.bas_angular ? complicated. Just find
-    # the index of the line in the input file
-
 print("First index")
 print(set(idx_i))
 print("Second index")
 print(set(idx_j))
 
 print("Final choice")
-print(set(idx_i + idx_j))
+idx = set(idx_i + idx_j)
+print(idx)
+
+# Prepare to write to out_file
+basis = utils.read_orbitals(coord, ao_bas)
+utils.extract_orbitals(coord, basis, idx, out_file)
+
+print("Results written in %s." %out_file)
+
 exit()
 
 # Initialize intermediary basis respecting the option
@@ -182,7 +179,7 @@ L, piv, k = LA.PCD(G0)
 # Note that orbitals to be selected are primitives
 basis_M = basis.low_rank_adapt(mol0, piv, M_target)
 
-mol_M = gto.M(atom=coord_file, basis=basis_M)
+mol_M = gto.M(atom=coord, basis=basis_M)
 print("Number of selected orbitals\t\t\t", mol_M.nbas)
 
 # Print to file

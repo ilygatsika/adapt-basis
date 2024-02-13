@@ -10,6 +10,11 @@ import numpy as np
     (parsers, option setters, test templates)
 '''
 
+# Map first letter to elements
+elem_map = {'H': 'HYDROGEN', 
+            'O': 'OXYGEN'
+            }
+
 def read_matrix_from_file(filename):
     '''
     Read a matrix stored as a column in a text file
@@ -17,7 +22,7 @@ def read_matrix_from_file(filename):
 
     with open(filename, 'r') as file:
     
-        # Read data line by line as string
+        # Read data word by word as a list
         data = file.read().split()
 
         istart = int(data[0]) + 1
@@ -27,19 +32,171 @@ def read_matrix_from_file(filename):
 
     return mat
 
-def extract_orbitals_to_file(file_in, file_out, idx):
+def what_elements(geom):
     '''
-    Extract selected orbitals of GAMESS US file into a new file
+    Map element first letters to full names
+    for every atom in a given molecule in xyz format
+    respecting the order of atoms in file
+    '''
+    
+    with open(geom, 'r') as file:
+
+        data = file.read().split()
+        elem = []
+        for word in data:
+            if word.isalpha():
+                word_full = elem_map[word]
+                elem.append(word_full)
+    return elem
+
+def read_orbitals(geom, file_in):
+    '''
+    Read input atomic orbital basis element-wise
+    file is in GAMESS US format
     '''
 
     # GAMESS US file delimiters
-    start_key = "$DATA"
-    end_key = "$END"
+    comment = '!'
+    start = '$DATA'
+    end = '$END'
+    
+    # Find order of elements in molecule
+    elements = what_elements(geom)
+   
+    # Initialize empty orbital basis per element
+    out_basis = {element: {} for element in elements}
 
-    with open(file_in, 'r') as file: 
+    # First pass, extract basis
+    with open(file_in, 'r') as file:
 
-        [ t for t in text.split() if t.startswith('s') ]
-        # extract the contraction size to know how many lines to copy
+        # Read file line by line
+        lines = [data.rstrip() for data in file]
+        
+        # Init line
+        nline = 0
+        orb_index = 0
+        cur_elem = 'NONE'
+
+        # Loop over lines
+        while (lines[nline] != end):
+
+            # Current line
+            line = lines[nline]
+            
+            # Ignore line if it is a comment or delimiter
+            if line.startswith((comment, start)):
+                nline += 1
+                continue
+
+            # or if line is empty
+            if (len(line) == 0): 
+                nline += 1
+                continue
+            
+            # Break line word by word
+            raw_line = line.split()
+
+            # If name of element
+            if (len(raw_line) == 1):
+                cur_elem = raw_line[0]
+                nline += 1
+                continue
+
+            # If contraction begins in this line
+            if raw_line[0].isalpha():
+
+                orb_type, nctr = raw_line
+                nctr = int(nctr)
+                # Define orbital identifier
+                orb = str(orb_index) + " " + line 
+                
+                # Loop over contraction
+                for k in range(nctr):
+
+                    orb_comp = lines[nline + k+1]
+
+                    if (not orb in out_basis[cur_elem].keys()): 
+                        out_basis[cur_elem][orb] = []
+
+                    out_basis[cur_elem][orb].append(orb_comp)
+
+                # Go to next orbital
+                nline += nctr
+                orb_index += 1
+
+            # Go to next line
+            nline += 1
+
+    return out_basis
+
+def extract_orbitals(geom, basis, idx, file_out):
+    '''
+    Extract selected orbitals of read_orbitals output object
+    and store to file_out in GAMESS US format
+
+    idx      orbital indices respecting element order in basis
+             i.e. orbitals are enumerated for the molecule
+    '''
+
+    # Delimiters
+    start = '$DATA\n\n'
+    end = '$END\n'
+
+    # Find order of elements in molecule
+    elements = what_elements(geom)
+    outdata = start
+
+    # init orbital counter
+    orb_count = 0
+    prev_elements = []
+    for element in elements:
+
+        # Recover orbitals of element
+        orbitals = basis[element]
+        norb = len(orbitals)
+
+        # Check if element exists twice in molecule
+        if element not in prev_elements:
+            outdata += element + '\n'
+        else: 
+            outdata = outdata[:-1]
+    
+        for cur_orb in orbitals.keys():
+
+            # Do not double count orbitals across atoms
+            if (element in prev_elements) and \
+                    (orb_count - norb) in idx:
+                continue
+
+            # If the orbital is selected
+            if orb_count in idx:
+
+                # Store orbital params
+                orbital = basis[element][cur_orb]
+
+                nctr = int(cur_orb[-1])
+                orb_param = cur_orb[2:] + '\n'
+                outdata += orb_param
+                    
+                # Write every component to file
+                for k in range(nctr): 
+                    outdata += orbital[k] + '\n'
+    
+            # Go to next orbital
+            orb_count += 1
+
+        # Store in elements already counted
+        prev_elements.append(element)
+        outdata += '\n'
+
+    # End file
+    outdata += end
+
+    # Finally write to file
+    with open(file_out, "w") as file:
+        file.write(outdata)
+
+    return 1
 
 def parse_options():
 
