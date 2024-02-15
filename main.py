@@ -39,19 +39,21 @@ import sys
     mol       molecular geometry in Angstrom
     AO        atomic orbital basis set
     M         target number of selected atomic orbitals
-    option    desired orbital type constraints in ABS-<option>
+    option    desired orbital type constraints for method ABS-<option>
 """
 
 # Input parameters
 parser = argparse.ArgumentParser()
 parser.add_argument("--coord", 
-                    help="coordinates of molecular geometry (in Angstrom)", 
+                    help="molecular geometry (in Angstrom) stored in \
+                            system/<coord>.xyz", 
                     type=str)
 parser.add_argument("--dm", 
-                    help="density matrix of CBS solution", 
+                    help="density matrix of converged CBS solution stored in \
+                            dat/<dm>.txt (optional)", 
                     type=str, default=None)
 parser.add_argument("--out_dir", 
-                    help="directory of output basis in GAMESS US format", 
+                    help="directory for placing output results", 
                     type=str)
 parser.add_argument("--AO", 
                     help="atomic orbital basis set", 
@@ -60,7 +62,7 @@ parser.add_argument("--M_target",
                     help="target number of selected atomic orbitals",
                     type=int)
 parser.add_argument("--option", 
-                    help="desired orbital type constraint in ABS-<option>",
+                    help="orbital type constraint for ABS-<option> method",
                     type=int, default=0)
 args = parser.parse_args()
 
