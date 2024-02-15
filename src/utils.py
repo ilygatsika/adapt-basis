@@ -174,7 +174,7 @@ def extract_orbitals(geom, basis, idx, file_out):
                 # Store orbital params
                 orbital = basis[element][cur_orb]
 
-                nctr = int(cur_orb[-1])
+                nctr = int(cur_orb.split()[-1])
                 orb_param = cur_orb[2:] + '\n'
                 outdata += orb_param
                     
