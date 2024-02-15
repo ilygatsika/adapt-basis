@@ -9,11 +9,10 @@ import sys
 """
     Routine that reduces the size of a given atomic orbital basis set, 
     given a molecular geometry and target size. The result is stored in 
-    out/<AO>-<method>_<M>.dat in NWChem format.
+    out/<AO>-<method>_<M>.dat in GAMESS US format.
 
-    Note: 
-    All output basis sets are made up of *primitive* Gaussian-type orbitals. 
-    We do not generate contracted orbitals.
+    Note:
+    Our code supports contracted AO bases given as input.
 
     Description:
     Our generation method is named Adapted Basis Set (ABS).
@@ -31,15 +30,9 @@ import sys
                     d-type by a full spd channel
 
     ========================================================================
-    Usage:
+    Example usage:
 
-        python3 main.py [--coord] h2o [--dm] input_dm [--out_dir]
-        out_dir [--AO] aug-cc-pvdz [--M] 20 [--option] 0
-
-    mol       molecular geometry in Angstrom
-    AO        atomic orbital basis set
-    M         target number of selected atomic orbitals
-    option    desired orbital type constraints for method ABS-<option>
+        python3 main.py --coord h2 --dm H2_alpha_rdm --AO ccpvdz --M_target 4 
 """
 
 # Input parameters
@@ -52,18 +45,22 @@ parser.add_argument("--dm",
                     help="density matrix of converged CBS solution stored in \
                             dat/<dm>.txt (optional)", 
                     type=str, default=None)
-parser.add_argument("--out_dir", 
-                    help="directory for placing output results", 
-                    type=str)
 parser.add_argument("--AO", 
-                    help="atomic orbital basis set", 
+                    help="atomic orbital basis is stored in dat/<AO>.nw \
+                            (NWChem) and dat/<AO>.bas (GAMESS US)", 
                     type=str)
 parser.add_argument("--M_target", 
                     help="target number of selected atomic orbitals",
                     type=int)
 parser.add_argument("--option", 
-                    help="orbital type constraint for ABS-<option> method",
+                    help="orbital type constraint for ABS-<option> method, \
+                            default is 0",
                     type=int, default=0)
+parser.add_argument("--out_dir", 
+                    help="output basis stored in \
+                            <out_dir>/<AO>-abs-<M_target>_<option>.bas \
+                            (in GAMESS US)", 
+                    type=str)
 args = parser.parse_args()
 
 # Read user input
