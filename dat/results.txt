@@ -29,33 +29,65 @@ cc-pvdz (ref)              -1.127000 | -1.168574 | -1.162750 | 6 (10)
 cc-pvdz_4                  -1.122863 | -1.161860 | -1.148108 | 4
 cc-pvdz_2                  -1.096350 | -1.134123 | -1.113721 | 2
 
+=================================================================
 CIPSI+PT2   correction ordre zéro (sans correction, Full CI)
 DBCBS       correction ordre 1
-
 ***
-But         On aimerait entre l'ordre 0 et l'ordre 1 pour cc-pvdz
-***         soit mieux que l'ordre 1
+But         être * entre l'ordre 0 et l'ordre 1 pour cc-pvdz
+***              * soit mieux que l'ordre 1
+=================================================================
+
 
 Test 3 (PASS)
 ------
 
 Molécule H2O avec coord h2o.xyz
 
-Ground state énergie       Hartree-Fock |   DBCBS    | CIPSI+PT2  | taille
+Results on ground state énergie for adapted basis cc-pvXz_<target_size>
+Note:   target size =\= actual size in general
+        true size obtained with "src.utils.count_orbitals('HHO', 'out/test_3/')"
 
-6-31g (SP incompatible)         -       | -76.28277* |     -      | 9
 ----------------------------------------------------------------------
-cc-pvdz                     -76.026772  | -76.315374 | -76.24165  | 12
-cc-pvdz_abs                 -76.018583  | -76.293709 | -76.172837 | 10
-                            -75.980443  | -76.254928 | -76.116209 | 9   <-
-                            -75.900863  | -76.132679 | -75.959346 | 7
-                            -75.892416  | -76.119296 | -75.936698 | 5
+AO basis     |  Hartree-Fock |   DBCBS    | CIPSI+PT2  | taille (true)
 ----------------------------------------------------------------------
-cc-pvtz                                                     
+6-31g        |       -       | -76.28277* |     -      | 9
 ----------------------------------------------------------------------
-cc-pvqz
+cc-pvdz      |   -76.026772  | -76.315374 | -76.24165  | 12
+++++++++++
+cc-pvdz_10   |   -76.018583  | -76.293709 | -76.172837 | 11
+cc-pvdz_9    |   -75.980443  | -76.254928 | -76.116209 | 9   <-
+cc-pvdz_7    |   -75.900863  | -76.132679 | -75.959346 | 6
+cc-pvdz_5    |   -75.892416  | -76.119296 | -75.936698 | 5
 ----------------------------------------------------------------------
-cc-pv5z (ref)
+cc-pvtz      |               |            |            | 22                                            
+++++++++++
+cc-pvtz_20   |               |            |            | 18
+cc-pvtz_15   |               |            |            | 15
+cc-pvtz_12   |               |            |            | 12
+cc-pvtz_10   |               |            |            | 9
+cc-pvtz_9    |               |            |            | 9
+cc-pvtz_8    |               |            |            | 8
+----------------------------------------------------------------------
+cc-pvqz      |               |            |            | 35
+++++++++++
+cc-pvqz_32   |               |            |            | 27
+cc-pvqz_30   |               |            |            | 27
+cc-pvqz_25   |               |            |            | 22
+cc-pvqz_22   |               |            |            | 19
+cc-pvqz_12   |               |            |            | 14
+cc-pvqz_9    |               |            |            | 9
+----------------------------------------------------------------------
+cc-pv5z      |               |            |            | 51
+++++++++++
+cc-pv5z_48   |               |            |            | 41
+cc-pv5z_40   |               |            |            | 36
+cc-pv5z_38   |               |            |            | 32
+cc-pv5z_35   |               |            |            | 31
+cc-pv5z_22   |               |            |            | 21
+cc-pv5z_13   |               |            |            | 11
+cc-pv5z_12   |               |            |            | 12
+cc-pv5z_9    |               |            |            | 9
+----------------------------------------------------------------------
 
 (*) moins bon que le vrai DBCBS en mini Hartree (1 milliHartree = 1e-3 Hartree)
 

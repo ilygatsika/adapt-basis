@@ -78,9 +78,9 @@ def get_4c_overlap(mol, metric):
     """
     
     if metric.lower() == 'j':
-        A = mol.intor("int2e_cart")
+        A = mol.intor("int2e")
     elif metric.lower() == 's':
-        A = mol.intor("int4c1e_cart", comp=1)
+        A = mol.intor("int4c1e", comp=1)
 
     return A
 
@@ -96,9 +96,8 @@ def gto_by_angular(mol):
 
         l = mol.bas_angular(i)
         nc = mol.bas_nctr(i)
-        # if mol.cart: 
-        ncomp = ((l+1) * (l+2) // 2) * nc
-        #else: ncomp = (2 * l + 1) * nc
+        if mol.cart: ncomp = ((l+1) * (l+2) // 2) * nc
+        else: ncomp = (2 * l + 1) * nc
         p_angm.append(np.ones(ncomp))
 
     P = scipy.linalg.block_diag(*p_angm)

@@ -85,7 +85,7 @@ input_basis = {
         'H': gto.basis.load(ao_nw, 'H'),
         'O': gto.basis.load(ao_nw, 'O')
         }
-mol = gto.M(atom=coord, basis=input_basis, cart=True)
+mol = gto.M(atom=coord, basis=input_basis)
 nelec = np.sum(mol.nelec)
 
 # AO basis on fixed geometry

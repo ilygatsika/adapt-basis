@@ -21,7 +21,7 @@ do
 done
 
 AO=cc-pvtz
-M_TARGETS="20 15 12 10 9"
+M_TARGETS="20 15 12 10 9 8"
 for M_TARGET in $M_TARGETS;
 do
     python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
@@ -35,7 +35,7 @@ do
 done
 
 AO=cc-pv5z
-M_TARGETS="48 40 38 35 22 12 9"
+M_TARGETS="48 40 38 35 22 13 12 9"
 for M_TARGET in $M_TARGETS;
 do
     python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET

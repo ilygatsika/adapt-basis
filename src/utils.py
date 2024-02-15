@@ -2,12 +2,14 @@ import matplotlib as mpl
 import src.basis as basis
 from pyscf import gto, scf
 import _pickle as cpickle
+from os import listdir
+from os.path import isfile, join
 import numpy as np
 import re
 
 '''
     Various utility functions
-    (parsers, option setters, test templates)
+    (parsers, option setters, orbital formats)
 '''
 
 # Map first letter to elements
@@ -199,6 +201,60 @@ def extract_orbitals(geom, basis, idx, file_out):
         file.write(outdata)
 
     return 1
+
+def count_orbitals(molecule, path):
+    '''
+    Count number of orbitals on a given molecule
+    for all bases in a folder (GAMESS US format)
+
+    molecule is string, eg 'HHO' for water
+    '''
+
+    filenames = [f for f in listdir(path) if isfile(join(path, f))]
+    # loop bases in directory
+    for filename in filenames:
+        
+        if not (filename[-3:] == 'bas'):
+            continue
+
+        with open(path + filename, 'r') as file:
+
+            # Read file line by line
+            lines = [data.rstrip() for data in file]
+    
+        # loop elements
+        count = 0
+        for element in molecule:
+        
+            elem_id = elem_map[element]
+            iline = 0
+            line = lines[iline]
+            # loop lines
+            while True:
+               
+                if (line == '$END'): break
+                elif (line == elem_id):
+                    
+                    nctr = 1
+                    line = lines[iline + nctr]
+                    while (len(line)):
+
+                        # Split orbital name respecting spaces
+                        list_cur = re.split(r'(\s+)', line)
+                        nctr += int(list_cur[-1]) + 1
+                        count += 1
+                        line = lines[iline + nctr]
+
+                    break
+                else: 
+                    iline += 1
+
+                # go to next line
+                line = lines[iline]
+
+        print(filename, "\t", count)
+
+    return 1     
 
 def init_visu():
     '''
