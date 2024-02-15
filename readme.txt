@@ -61,8 +61,4 @@ TODO simulations
     [*] H2O molecule : réduire cc-pv5z et atteindre la taille de cc-pvqz avec la
         même précision que cc-pv5z
 
-git stash
-git pull
-git stash pop
-
 
