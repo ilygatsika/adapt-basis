@@ -1,7 +1,7 @@
 Résultats avec le code de Diata
 ===============================
 
-Test 1
+Test 1 (KO)
 ------
 
 Molécule
@@ -17,37 +17,69 @@ cc-pvdz (enlever la p)                      -1.123902 Hartree
 cc-pvdz (enlever la s 0.44 cc-pvdz-abs_0_7) -0.977727 Hartree   
 cc-pvdz (enlever la s 1.96)                 -1.071569 Hartree   
 
-Test 2
+Test 2 (KO)
 ------
 
 Molécule 
 H2 avec 0,0,0 et 0,0,0.8
 
-Ground state énergie    Hartree-Fock | DBCBS     | CIPSI+PT2 | taille
+Ground state énergie    Hartree-Fock |   DBCBS   | CIPSI+PT2 | taille
 
-cc-pvdz_2                  -1.096350 | -1.134123 | -1.113721 | 2
-cc-pvdz_4                  -1.122863 | -1.161860 | -1.148108 | 4
 cc-pvdz (ref)              -1.127000 | -1.168574 | -1.162750 | 6 (10)
+cc-pvdz_4                  -1.122863 | -1.161860 | -1.148108 | 4
+cc-pvdz_2                  -1.096350 | -1.134123 | -1.113721 | 2
 
-Correction ordre zéro (sans correction, Full CI)
-CIPSI+PT2 
+CIPSI+PT2   correction ordre zéro (sans correction, Full CI)
+DBCBS       correction ordre 1
 
-Correction ordre 1
-DBCBS
+***
+But         On aimerait entre l'ordre 0 et l'ordre 1 pour cc-pvdz
+***         soit mieux que l'ordre 1
 
-*******
-* But *
-*******
-On aimerait entre l'ordre 0 et l'ordre 1 pour cc-pvdz
-soit mieux que l'ordre 1
-
-Test 3
+Test 3 (PASS)
 ------
 
-Molécule H2O avec coord h2o.xyz (compatible Diata)
+Molécule H2O avec coord h2o.xyz
 
-6-31g
-cc-pvtz
+Ground state énergie       Hartree-Fock |   DBCBS    | CIPSI+PT2  | taille
+
+6-31g (SP incompatible)         -       | -76.28277* |     -      | 9
+----------------------------------------------------------------------
+cc-pvdz                     -76.026772  | -76.315374 | -76.24165  | 12
+cc-pvdz_abs                 -76.018583  | -76.293709 | -76.172837 | 10
+                            -75.980443  | -76.254928 | -76.116209 | 9   <-
+                            -75.900863  | -76.132679 | -75.959346 | 7
+                            -75.892416  | -76.119296 | -75.936698 | 5
+----------------------------------------------------------------------
+cc-pvtz                                                     
+----------------------------------------------------------------------
 cc-pvqz
+----------------------------------------------------------------------
 cc-pv5z (ref)
+
+* moins bon que le vrai DBCBS en mini Hartree
+
+Note: pour passer à 12 MOs on a besoin du GPU alors que pour 9 ou 10 on fait que CPU
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
