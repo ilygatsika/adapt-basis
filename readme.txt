@@ -50,6 +50,8 @@ TODO list
         mêmes paramètres centrés aux différents atomes.
     [OK] expand contractions from BSE data in NWChem format
     [OK] automatize different AO basis sets
+    [*] target M is not equal to actual basis size. Sometimes it is smaller. 
+        Store true basis sizes
 
 TODO simulations
 
