@@ -57,9 +57,11 @@ cc-pvqz
 ----------------------------------------------------------------------
 cc-pv5z (ref)
 
-* moins bon que le vrai DBCBS en mini Hartree
+(*) moins bon que le vrai DBCBS en mini Hartree (1 milliHartree = 1e-3 Hartree)
 
-Note: pour passer à 12 MOs on a besoin du GPU alors que pour 9 ou 10 on fait que CPU
+Note: 
+pour passer à 12 MOs on a besoin du GPU alors que pour 9 ou 10 on fait que CPU,
+d'où l'intérêt de créer des bases de taille 9 - 10
 
 
 

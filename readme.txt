@@ -35,26 +35,29 @@ TODO list
     [OK] deactivate the orbital decontraction before Cholesky
     [OK] perform Cholesky on four-index tensor
     [OK] recover set(idx_selection) from orbital products
+    [OK] voir quel pourcentage des orbitales on a besoin pour créer les produits
     [OK] copy the GAMESS US file to out folder and remove the lines that do not
-      contain selected orbitals (for the moment it is manual)
+        contain selected orbitals (for the moment it is manual)
     [*] Create two methods to force atom-wise consistency. 
-      The second method does so during the PCD procedure, since it will change the
-      pivot order. La proposition de Susi c'est de regarder si le pivot correspond à
-      deux fonctions centrées sur différents atomes. Si oui, il faut choisir les
-      deux fonctions comme pivot. Prendre le min ou la somme des deux comme pivot à
-      ordonner. Dans ce cas deux fonctions vont entre choisi à l'itération actuelle.
-      Sinon une fonction est choisi. Pour implémenter cela, il faut ajouter une
-      condition qui vérifie si l'indice du AO correspond à deux centres ou pas. Dans
-      ce cas il faut stocker pour chaque indice de AO, les indices des AO avec les
-      mêmes paramètres centrés aux différents atomes. 
+        The second method does so during the PCD procedure, since it will change the
+        pivot order. La proposition de Susi c'est de regarder si le pivot correspond à
+        deux fonctions centrées sur différents atomes. Si oui, il faut choisir les
+        deux fonctions comme pivot. Prendre le min ou la somme des deux comme pivot à
+        ordonner. Dans ce cas deux fonctions vont entre choisi à l'itération actuelle.
+        Sinon une fonction est choisi. Pour implémenter cela, il faut ajouter une
+        condition qui vérifie si l'indice du AO correspond à deux centres ou pas. Dans
+        ce cas il faut stocker pour chaque indice de AO, les indices des AO avec les
+        mêmes paramètres centrés aux différents atomes.
     [OK] expand contractions from BSE data in NWChem format
     [OK] automatize different AO basis sets
 
-Long term goals
+TODO simulations
 
-    [*] voir quel pourcentage des orbitales on a besoin pour créer les produits
+    [*] H2O molecule : voir si toutes les bases adaptées à partir de cc-pvXz,
+        X=D,T,Q,5, de taille cible égale à 9 sont meilleures en précision que 6-31Gs 
+        de taille 9 en énergie DBCBS
     [*] H2O molecule : réduire cc-pv5z et atteindre la taille de cc-pvqz avec la
-      même précision que cc-pv5z
+        même précision que cc-pv5z
 
 git stash
 git pull
