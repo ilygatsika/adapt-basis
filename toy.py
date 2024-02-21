@@ -6,10 +6,10 @@ from pyscf import gto
 
 coord = 'system/h2o.xyz'
 
-print('cc-pv5z')
+print('cc-pvdz')
 input_basis = {
-        'H': gto.basis.load('dat/cc-pv5z.nw', 'H'),
-        'O': gto.basis.load('dat/cc-pv5z.nw', 'O')
+        'H': gto.basis.load('dat/cc-pvdz.nw', 'H'),
+        'O': gto.basis.load('dat/cc-pvdz.nw', 'O')
         }
 mol = gto.M(atom=coord, basis=input_basis, unit='A')
 print(mol.nbas)

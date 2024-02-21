@@ -116,9 +116,9 @@ if (dm_in is not None):
 else: 
 
     # Get Hartree-Fock density matrix
-    print("\nRunning Hartree-Fock to get density")
-    mf = mol.RHF()
-    mf.run()
+    print("\nRunning CISD to get density")
+    mf_hf = mol.RHF().run() # Hartree-Fock
+    mf = mf_hf.CISD().run() # Single, double excitation
     dm = mf.make_rdm1()
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
