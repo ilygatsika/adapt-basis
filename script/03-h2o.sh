@@ -13,6 +13,13 @@ do
     python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
 done
 
+AO=6-31g_st
+M_TARGETS="9 8 7"
+for M_TARGET in $M_TARGETS;
+do
+    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
+done
+
 AO=cc-pvdz
 M_TARGETS="10 9 7 5"
 for M_TARGET in $M_TARGETS;
