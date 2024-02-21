@@ -51,12 +51,15 @@ TODO list
     [OK] expand contractions from BSE data in NWChem format
     [OK] automatize different AO basis sets
     [OK] target M is not equal to actual basis size. Store true basis sizes
+    [*] fix empty Hydrogen basis set
+    [*] optimize contraction coefficients using a linear dependence criterion on
+    the density 
 
 TODO simulations
 
     [OK] toy simulation shows that 9 orbitals extracted from cc-pv5z
         give better HF energy (-75.8211) than 9 orbitals of 6-31g (-75.7947)
-    [*] is the -75 normal?
+    [OK] is the -75 normal?
     [*] H2O molecule : voir si toutes les bases adaptées à partir de cc-pvXz,
         X=D,T,Q,5, de taille cible égale à 9 sont meilleures en précision que 6-31Gs 
         de taille 9 en énergie DBCBS
