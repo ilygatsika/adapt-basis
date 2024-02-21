@@ -93,7 +93,7 @@ print("Number of atomic orbitals (M must be smaller)\t\t", mol.nbas)
 print("Number of orbital components\t\t\t\t", mol.nao)
 
 if (mol.nbas < M_target):
-    raise ValueError("target M is too large")
+    raise ValueError("target size is too large")
 
 # Get density matrix
 if (dm_in is not None):
@@ -118,8 +118,9 @@ else:
     # Get Hartree-Fock density matrix
     print("\nRunning Hartree-Fock+CISD to get density")
     myhf = mol.RHF().run() # Hartree-Fock
-    mf = myhf.CISD().run() # Single, double excitation
-    dm = mf.make_rdm1()
+    #mf = myhf.CISD().run() # Single, double excitation
+    #dm = mf.make_rdm1()
+    dm = myhf.make_rdm1()
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
@@ -130,38 +131,39 @@ print("\nStarting reduction with target %i and %i constraint" %(M_target, option
 metric = "j"
 G = basis.get_4c_gram(mol, dm, metric)
 R = basis.restrict_atoms(mol)
-A = R.T @ G @ R
+#A = G; mask = False
+A = R.T @ G @ R; mask = True
 
 # Select products
 L,piv,k = LA.PCD(A)
 pivk = piv[:M_target]
-
-# Recover orbitals in products
-aoi = np.arange(mol.nbas)
-prd_idx = np.dstack(np.meshgrid(aoi,aoi)).reshape(-1, 2)
-atm_idx = basis.prod_gto_atom_mask(mol)
-idx_i, idx_j = [], []
-for ip in pivk:
-
-    i,j = prd_idx[atm_idx[ip]]
-    idx_i.append(i)
-    idx_j.append(j)
-
-print("First index")
-print(set(idx_i))
-print("Second index")
-print(set(idx_j))
-
-print("Final choice")
-idx = set(idx_i + idx_j)
+idx = basis.orbitals_in_products(mol, pivk, mask=mask)
 print(idx)
 
+print('DEBUG')
+
+# Select products
+pivk = basis.PCD_2pivot(A, M_target)
+basis.map_orb_products(mol)
+idx = basis.orbitals_in_products(mol, pivk, mask=mask)
+print(idx)
+
+"""
 # Prepare to write to out_file
 basis = utils.read_orbitals(coord, ao_bas)
 utils.extract_orbitals(coord, basis, idx, out_file)
 
 print("Results written in %s." %out_file)
 
+print("Hartree-Fock energy")
+input_basis = {
+        'H': gto.basis.load(out_file, 'H'),
+        'O': gto.basis.load(out_file, 'O')
+        }
+mol = gto.M(atom=coord, basis=input_basis, unit='A')
+mf = mol.HF()
+mf.kernel()
+"""
 exit()
 
 # Initialize intermediary basis respecting the option

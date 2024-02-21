@@ -104,6 +104,49 @@ def gto_by_angular(mol):
 
     return P
 
+def map_orb_products(mol):
+    '''
+    Return array of orbital product size
+    with entry the same product centered on other elements
+    '''
+
+    # For each product create a pair of atoms
+    atm = np.array([mol.bas_atom(i) for i in range(mol.nbas)], dtype=int)
+    atm2c = np.dstack(np.meshgrid(atm,atm)).reshape(-1, 2)
+    
+    # Find identical atoms
+    atomtypes = gto.mole.atom_types(mol._atom)
+    nelem = max([len(natom) for natom in atomtypes.values()]) - 1
+    orbs = - np.ones((mol.nbas, nelem), dtype=int)
+    # loop shells per atom
+    for atom in atomtypes:
+        # get nuclei of this element
+        atom_id = atomtypes[atom]
+        if (len(atom_id) == 1):
+            continue
+        # loop on identical nuclei
+        for i in atom_id:
+            # get orbitals on nucleus
+            shell_i = mol.atom_shell_ids(i)
+            for n in range(nelem):
+                for j in atom_id:
+                    if (i==j): continue
+                    shell_j = mol.atom_shell_ids(j)
+                    orbs[shell_i,n] = shell_j
+                    orbs[shell_j,n] = shell_i
+
+    # should give [OK]
+    # [-1, -1, -1, -1, -1, 9, 10, 11, 6, 7, 8]
+    # then same atom orbitals are indexed by
+    # j = orb_same_atom[i]
+
+    # Shift indices from orbital to orbital product
+    idx_2c = np.dstack(np.meshgrid(orbs, orbs)).reshape(-1,2)
+
+    print(idx_2c)
+
+    return idx_2c
+
 def get_4c_gram(mol, dm, metric):
     '''
     Construct 4-index Gram matrix using
@@ -320,33 +363,66 @@ def format_basis(basis):
         user_basis = join(dirnow, basis+'.dat')
         return user_basis
 
-def PCD_atom_wise(M, Nrbas):
-    """
-    Greedy pivoted Cholesky (PCF ref Schneider et al.)
-    Return subindices of reduced basis
+def orbitals_in_products(mol, index_selection, mask=False):
+    '''
+    Recover orbitals in products
+    mask controls whether to discard atomic products
+    '''
 
-    M       K x Naop x Naop Gram matrices
-    Nrbas   size of reduced basis
+    aoi = np.arange(mol.nbas)
+    prd_idx = np.dstack(np.meshgrid(aoi,aoi)).reshape(-1, 2)
+    atm_idx = prod_gto_atom_mask(mol)
+    idx_i, idx_j = [], []
+    for ip in index_selection:
+
+        if (mask):
+            i,j = prd_idx[atm_idx[ip]]
+        else: 
+            i,j = prd_idx[ip]
+        idx_i.append(i)
+        idx_j.append(j)
+
+    idx = set(idx_i + idx_j)
+
+    return idx
+
+def PCD_2pivot(A, Mbas):
+    """
+    Pivoted Cholesky algorithm (ref Schneider et al.)
+    The present variation allows to choose 2 pivots at a time, 
+    in order to force element-wise consistency.
+
+    Return index array of orbital products of size Mbas
+
+    La proposition de Susi est de regarder si le pivot 
+    correspond à deux fonctions centrées sur différents atomes. 
+    Si oui, il faut choisir les deux fonctions comme pivot. 
+    Prendre le min ou la somme des deux comme pivot à
+    ordonner. Dans ce cas deux fonctions vont entre choisi à 
+    l'itération actuelle. Sinon une fonction est choisi. 
+    
+    A      Naop x Naop Gram matrix
+    Mbas   target size of adapted basis
     """
 
-    K, Naop = M.shape[0], M.shape[1]
-    Irbas = np.empty(Nrbas, dtype=int)
+    # TODO
+    # map every AO index to the index of the same AO on another atom
+
+    nbas = A.shape[0]
+    index_selection = np.empty(Mbas, dtype=int)
 
     # initialize diagonal, index, lower triangular
-    d = np.empty((K, Naop), dtype=float)
-    for a in range(K):
-        d[a] = np.diag(M[a])
-    p = np.arange(Naop)
-    L = np.zeros((K, Naop, Naop), dtype=float)
+    d = np.array(np.diag(A))
+    p = np.arange(nbas)
+    L = np.zeros((nbas, nbas), dtype=float)
 
-    for m in range(Nrbas):
+    for m in range(Mbas):
        
-        # choose next reduced basis index
-        dm = np.zeros((K, Naop), dtype=float)
-        for a in range(K):
-            dm[a,m:] = d[a,p[m:]]
-        i = np.argmax(np.min(dm, axis=0)) # size Naop
+        # choose next pivot of maximal module
+        i = np.argmax(d[p[m:]])
+        i += m
 
+        """
         # Find the same AO at different centers
         aos_i = ao_same_center[i]
         nb_aos = np.size(aos_i)
@@ -356,29 +432,26 @@ def PCD_atom_wise(M, Nrbas):
 
             # project all lines to the set of the AOs
             test = 1
+        """
 
-
-        #print(m, p[i], np.min(d, axis=0)[p[i]])
-        Irbas[m] = p[i]
+        index_selection[m] = p[i]
         
         # swap indices
         p[i], p[m] = p[m], p[i]
         assert(i >= m)
     
-        L[:,m,p[m]] = np.sqrt(d[:,p[m]])
+        L[m,p[m]] = np.sqrt(d[p[m]])
+        nrm = L[m,p[m]]
 
-        for i in range(m+1, Naop):
+        for i in range(m+1, nbas):
         
-            for a in range(K):
-                
-                # update lower triangular
-                s = 0
-                for j in range(m):
-                    s += L[a,j,p[m]] * L[a,j,p[i]]
-                nrm = L[a,m,p[m]]
-                L[a,m,p[i]] = (M[a,p[m],p[i]] - s)/nrm
+            # update lower triangular
+            s = L[:m,p[m]] @ L[:m,p[i]]
+            L[m,p[i]] = (A[p[m],p[i]] - s)/nrm
        
             # update diagonal
-            d[:,p[i]] -= L[:,m,p[i]]**2
-    
-    return Irbas
+            d[p[i]] -= L[m,p[i]]**2
+
+    return index_selection
+
+

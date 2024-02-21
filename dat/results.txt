@@ -123,13 +123,9 @@ cc-pv5z_10   | -76.016189    | -76.276365 | -76.126268 | 10            | 13
 -------------------------------------------------------------------------------------
 
 
-
-DBBSC(
-
 énergie corrigée
 Delta_HF = E_HF(CBS) - E_HF(B), B = 'cc-pv5z_9'
-
-E_HF(CBS) = 
+E_HF(CBS) = formule d'extrapolation 
 
 
 
