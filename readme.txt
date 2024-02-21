@@ -65,5 +65,5 @@ TODO simulations
         de taille 9 en énergie DBCBS
     [*] H2O molecule : réduire cc-pv5z et atteindre la taille de cc-pvqz avec la
         même précision que cc-pv5z
-
+    [*] H2, FH, dipoles, sto-3g
 
