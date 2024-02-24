@@ -1,0 +1,161 @@
+\documentclass[a4paper,11pt]{article}
+
+% Formatting
+\usepackage[hmargin=2.5cm,top=2cm,bottom=3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% Math 
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\DeclareMathOperator{\MO}{MO}
+\usepackage{cleveref}
+\usepackage{bm}
+
+% Discussion
+\usepackage{xcolor}
+\newcommand{\question}[1]{\textcolor{blue}{Question: #1}}
+
+% Title
+\title{Adaptive basis sets for molecular orbitals}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Theory}
+
+\subsection{Problem formulation}
+
+\question{What is the relation between $N_e$ and $N_{\MO}$?}
+
+Let us consider a system of $N_e$ electrons.
+We solve the electronic structure problem
+\begin{equation}
+    \label{eq:pb_gs}
+    H\Psi = E\Psi
+\end{equation}
+using post Hartree-Fock methods, such as Full Configuration Interaction (FCI)
+and Coupled Cluster (CC). The Hamiltonian under the second quantisation reads
+\begin{equation}
+    \label{eq:H_sq}
+    \hat H = \sum_{\sigma}\sum_{ij}^{N_{\MO}} h_{ij} \hat a^\dagger_{i\sigma} \hat
+    a_{j\sigma} + \sum_{ijkl}^{N_{\MO}} h_{ijkl} \hat a^\dagger_{i\sigma} \hat
+    a^\dagger_{k\sigma} \hat a_{j\sigma}\hat a_{l\sigma},
+\end{equation}
+where $N_{\MO}$ is the number of basis functions used to discretize the
+molecular orbitals. The main idea is to first run a standard Hartree-Fock calculation using a
+discretization of the molecular orbitals based on $N_b$ given atomic orbitals, 
+yielding the coefficient matrix $C\in\mathbb R^{N_e\times N_b}$ in the
+decomposition
+\[
+    \forall 1\leq i\leq N_e, \quad \phi_i = \sum_{\mu=1}^{N_b} C_{i\mu}
+    \chi_{\mu}.
+\]
+Then problem of \cref{eq:pb_gs} is solved by expanding the wave function $\Psi$
+on a basis of $N_{\MO}$ molecular orbitals, as
+\[
+    \Psi = \sum_{i=1}^{N_{\MO}} a_i \phi_i.
+\]
+The coefficients $(a_i)_{1\leq i\leq N_{\MO}}$ are defined based on quantities
+related to the Hamiltonian of \cref{eq:H_sq}.
+
+\subsection{Overview of methods}
+
+\subsubsection{Existing work}
+
+\paragraph{Density fitting}
+
+Density fitting has been used in order to compress the molecular orbital integrals 
+of the post-Hartree-Fock equations (DFT correction method) using empirical auxiliary basis
+sets \cite{julien_df}. The difference of this applications when compared to conventional 
+density fitting applications is that one compresses the molecular orbitals instead of
+the atomic orbitals (?).
+
+\subsubsection{Present work}
+
+\paragraph{Adaptive basis set}
+
+The tensor $h_{ijkl}$ is expensive to store in a quantum simulator, in terms of
+memory requirements. In order to solve this issue, we propose a new method that 
+allows to reduce the number of basis functions used to discretize
+molecular orbitals, from a given atomic orbital basis set and a molecular
+geometry.
+
+\paragraph{Tensor compression}
+
+The main idea of this method is to compress the four-index tensor $h_{ijkl}$,
+where $i,j,k,l$ are indices of molecular orbitals. The compression is based on
+the fact that this tensor can be precomputed as it is independent of the density
+matrix, which is updated during the iterative procedure. Therefore we can perform tensor 
+compression entirely offline. This compression can be interpreted as a density fitting
+method performed on an auxiliary basis set that is generated on-the-fly. The
+difference of this method when compared to existing density fitting methods
+\cite{julien_df} is that the empirical auxiliary basis set of conventional
+density fitting is replaced by an auxiliary basis set generated on-the-fly based
+on the pivoted Cholesky decomposition.
+
+\subsection{Algorithms}
+
+\subsubsection{Adaptive basis set generation}
+
+Our first attempt consists in proposing methods that reduce the size of a given 
+atomic orbital basis set. Let $\{\chi_{\mu}\}_{1\leq\mu\leq N_b}$ denote a given atomic 
+orbital basis set, with fixed atomic centers on the atomic positions of a given
+molecule. Note that the interatomic distances are fixed in this molecule. The
+first step is to assembly the Gram matrix (i.e. the overlap matrix) of this
+basis set under a user-defined inner product $\langle\cdot,\cdot\rangle$,
+denoted by $\bm G$ with entries defined as
+\[
+    1\leq \mu,\nu\leq N_b, \quad G_{\mu\nu} = \langle \chi_{\mu},\chi_{\nu}\rangle.
+\]
+The pivoted Cholesky decomposition under a given tolerance value
+$\varepsilon>0$, performed on the matrix $\bm G$, yields an approximate rank
+$M\leq N_b$ of $\bm G$ and a selection of $M$ rows (and columns) that 
+approximately span the full row space under the tolerance value. We propose to
+use the atomic orbitals corresponding to the selected indices to build the set
+of adaptive basis functions. This strategy leads to our algorithm named ABS-0,
+for Adaptive Basis Set generation.
+
+Additionally, it may be of interest to impose maximal orbital type constraints
+to the adaptive basis set, in favour of computational efficiency within the
+integral evaluation procedure. The preliminary treatment of the Gram matrix $\bm G$ 
+that enables this constraint can be presented as follows. The main idea is to
+construct an intermediary atomic orbital basis respecting orbital type
+constraints. We propose two possible
+methods. For each $1\leq \mu\leq N_b$, if the atomic orbital $\chi_{\mu}$ has orbital 
+type strictly higher than $d$-type, then
+\begin{enumerate}[label=(\alph*)]
+    \item ABS-1: discard $\chi_{\mu}$.
+    \item ABS-2: for each orbital type $t\in\{s,p,d\}$, create a new atomic orbital
+    having the orbital exponent and atomic center of $\chi_{\mu}$, but orbital
+    type $t$.
+\end{enumerate}
+It is assumed that all atomic basis functions are normalized, so that the
+diagonal of $\bm G$ consists of one entries.
+
+\section{Numerical experiments}
+
+The first experiment allows to compare the results obtained from a DFT/B3LYP
+calculation on the water molecule at equilibrium geometry, using
+state-of-the-art auxiliary basis sets (RI and JKFIT) and our adaptive basis
+sets, obtained with methods ABS-$x$ for $x=0,1,2$. 
+The aim of this comparison is to study which method achieves better
+accuracy with less basis functions. The approximation error is measured on
+ground state energies using the full atomic orbital basis set as a reference
+calculation. We are also interested in assessing the convergence of the
+approximation error of our method for varying tolerance values in the Cholesky
+decomposition.
+
+\bibliography{references}
+\bibliographystyle{plain}
+
+\end{document}
+
+
+

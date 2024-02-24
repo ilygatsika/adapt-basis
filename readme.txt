@@ -40,18 +40,20 @@ TODO list
     [OK] expand contractions from BSE data in NWChem format
     [OK] automatize different AO basis sets
     [OK] target M is not equal to actual basis size. Store true basis sizes
+    [OK] fix -75 Hartree-Fock energy bug
     [*] debug the modified PCD algorithm with conventional pivot selection
     [*] incorporate atom-wise forcing during the pivot selection
     [*] implement NWChem output of our adapted basis
     [*] fix size inconsistency after atom-wise forcing
     [*] optimize contraction coefficients using a linear dependence criterion on
         the density 
+    [*] scripts that automatize tests on basis generation
+    [*] write theoretical report on tex
 
 TODO simulations
 
-    [OK] toy simulation shows that 9 orbitals extracted from cc-pv5z
+    [OK] H2O (wrong geom) shows that 9 orbitals extracted from cc-pv5z
         give better HF energy (-75.8211) than 9 orbitals of 6-31g (-75.7947)
-    [OK] is the -75 normal?
     [OK] H2O molecule : voir si toutes les bases adaptées à partir de cc-pvXz,
         X=D,T,Q,5, de taille cible égale à 9 sont meilleures en précision que 6-31Gs 
         de taille 9 en énergie DBCBS
@@ -60,12 +62,13 @@ TODO simulations
     [*] produce ABS results for densities (HF or CISD), for atom restrictions, 
         for manual forcing and pivot forcing
     [*] disable atom restriction in Gram matrix assembly
-    [*] tester d'autres molécules: H2, FH 
-    [*] propriétés: dipoles
-    [*] utiliser la metrique L2
-    [*] utiliser sto-3g comme taille cible
     [*] matrice de densité CIPSI
-    [*] H2O de la base minimale (STO-3G) jusqu'à 14 MOs - 15-16
+    [*] H2O de la base minimale (STO-3G) jusqu'à 14-(15-16) MOs
     [*] H2 même chose
 
+TODO long term
+    
+    [*] FH molecule
+    [*] test properties: dipoles
+    [*] use other metrics such as L2
 
