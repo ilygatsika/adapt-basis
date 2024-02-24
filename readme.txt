@@ -64,5 +64,8 @@ TODO simulations
     [*] propriétés: dipoles
     [*] utiliser la metrique L2
     [*] utiliser sto-3g comme taille cible
+    [*] matrice de densité CIPSI
+    [*] H2O de la base minimale (STO-3G) jusqu'à 14 MOs - 15-16
+    [*] H2 même chose
 
 
