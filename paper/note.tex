@@ -11,16 +11,19 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
-\DeclareMathOperator{\MO}{MO}
-\usepackage{cleveref}
+\usepackage[capitalise]{cleveref}
 \usepackage{bm}
+
+% Operators
+\DeclareMathOperator{\MO}{MO}
+\DeclareMathOperator{\Span}{Span}
 
 % Discussion
 \usepackage{xcolor}
-\newcommand{\question}[1]{\textcolor{blue}{Question: #1}}
+\newcommand{\question}[1]{\textcolor{blue}{[#1]}}
 
 % Title
-\title{Adaptive basis sets for molecular orbitals}
+\title{Adaptive basis set generation methods}
 \author{}
 \date{\today}
 
@@ -28,92 +31,231 @@
 
 \maketitle
 
+\section{Introduction}
+
+The Density-Based Basis-Set Correction (DBBSC) method \cite{diata_phd}
+is an electronic structure theory method based on the 
+one-electron density. This method introduces a functional that corrects 
+electron correlation and allows to achieve convergence to the
+complete basis set limit. The high accuracy of DBCBS makes it interesting for 
+use in solving electronic structure theory problems on quantum simulators, 
+for future quantum computer benchmarking purposes. We study numerical tools that
+make the implementation of this method possible on quantum simulators with a 
+number of available qubits up to 28. This corresponds to a number of doubly 
+occupied molecular orbitals equal to 14.
+
+Existing molecular orbital discretisation methods include wavelets
+\cite{genovese2022flexibilities} and linear combinations of atomic orbitals,
+for instance Gaussian-type orbitals. We focus on the
+latter. Existing methods for compressing molecular orbitals, such as the active space
+method \cite{wang2023basis}, do not easily allow to reduce the number of MOs to
+minimal sizes while respecting chemical accuracy. Other existing methods based on 
+the Cholesky decomposition \cite{hummel2017low} of the Hamiltonian operator
+employ low rank approximations to improve storage requirements and operation count. 
+Such class of methods is based on matrix or tensor compression 
+from a linear algebra point of view. Here, we investigate alternative 
+density-based solutions, that achieve low computational and storage cost by 
+approximating the electronic density function using smaller basis sets. 
+The advantage of this approach is that the resulting smaller basis set 
+can be used for multiple purposes. Namely, it can directly be used as a 
+discretisation basis for minimizing any given energy functional, since it is 
+Hamiltonian-independent. 
+
+The main motivation behind our approach is the presence of linear dependencies,
+which are intrinsic to any given atomic orbital basis set of Gaussian-type orbitals. 
+Inspired by density fitting methods \cite{julien_df}, our strategy
+aims at detecting linear dependencies. This technique produces a smaller basis set using a 
+density-based criterion, which is the approximation of a given target electron density under 
+any given norm. In the present work, we propose new adaptive basis set 
+generation methods based on density fitting. We divide the computation time into
+an \textit{offline phase}, performed on a classical computer, and an
+\textit{online phase}, performed on a quantum simulator. The calculation of the
+target electron density, used as a reference, and the adapted basis generation
+are both performed during the offline phase.
+
+The present manuscript is organized as follows. The first parts describes the
+mathematical background of our adapted basis set generation methods and the
+second part contains numerical results. The performance of 
+our method is numerically assessed on small molecules.
+
 \section{Theory}
+
+We briefly describe the theory of the DBBSC method, 
+originally proposed in \cite{giner2018curing}. 
+Let us consider a system of $N$ electrons and the electronic Hamiltonian
+\[
+    H = T + W_{ee} + V_{ne},
+\]
+where $T$ is the kinetic operator, $W_{ee}$ is the
+electron repulsion operator, given by $\sum_{i<j}^Nr_{ij}^{-1}$, and $V_{ne}$ 
+is the nuclei-electron attraction operator. The exact electronic ground state
+energy problem reads
+\begin{equation}
+    \label{eq:pb_exact}
+    E_0 = \min_{\Psi\in W}\,\langle \Psi,H\Psi\rangle,
+\end{equation}
+where the exact wave function lives in the space defined as
+\[
+    W := \{\Psi\in\wedge^N H^1(\mathbb R^3,\mathbb C)\colon \langle
+    \Psi,\Psi\rangle=1\}.
+\]
+We discretise problem of \cref{eq:pb_exact} by introducing a given finite basis
+set, denoted by $B\subset H^1(\mathbb R^3,\mathbb C)$, and the discretised wave
+function space
+\[
+    W^B := \{\Psi\in\wedge^N \Span(B)\colon \langle\Psi,\Psi\rangle=1\}.
+\]
+The discretised ground state problem then reads
+\begin{equation}
+    \label{eq:pb_discrete}
+    E_*^B = \min_{\Psi\in W^B}\,\langle \Psi, H\Psi\rangle.
+\end{equation}
+The limitation of estimating the exact ground state energy by solving 
+the discretised problem of \cref{eq:pb_discrete} is that the 
+error on the energy converges as $\mathcal O(|B|^{-1})$, due to the cusp of the
+exact electron wave function. In order to improve the error convergence, the DBBSC method 
+proposes to approximate the ground state energy by solving the following discretised problem
+\begin{equation}
+    \label{eq:pb_cbs}
+    E_0^B = \min_{\Psi\in W^B}\, \left(\langle\Psi, H\Psi\rangle +
+    \bar E^B[n_{\Psi}]\right),
+\end{equation}
+with $\bar E^B[n_{\Psi}]$ the basis set correction functional, we refer 
+to the original work for its explicit definition.  
+The one-electron density $n_{\Psi}$, for any given wave 
+function $\Psi\in W^B$, lives in the space
+\[
+    D^B := \{n\in D\colon \exists \Psi\in W^B, \quad n_{\Psi}=n\},
+\]
+with 
+\[
+    D= \{n\in L^1(\mathbb R^3)\colon n\geq 0, \quad \int_{\mathbb R^3} 
+    n=N, \quad \sqrt{n}\in H^1(\mathbb R^3)\}.
+\]
+The problem of \cref{eq:pb_cbs} is solved self-consistently 
+\cite{giner2021self}.
+
+\subsection{Slater determinants}
+
+In Hartree-Fock and post Hartree-Fock methods, a special form of wave function
+is considered, known as a \textit{Slater determinant}, defined as
+\begin{equation}
+    \label{eq:slater}
+    \Psi(\bm r_1,\ldots,\bm r_N) = \frac{1}{\sqrt{N!}}
+    \det\left(\phi_i(\bm r_j)\right)_{1\leq i,j\leq N}
+\end{equation}
+where each $\phi_i$ is a normalised one-electron function of $H^1(\mathbb
+R^3,\mathbb C)$ referred to as Molecular Orbital (MO). It can be easily verified
+that $\Psi$ in the form of \cref{eq:slater} is indeed an element of $W$.
+For any given Slater determinant $\Psi\in W$, the one-electron density is 
+given in terms of the Molecular Orbitals (MOs) as
+\begin{equation}
+    \label{eq:den_mo}
+    n_{\Psi} = \sum_{i=1}^N |\phi_i|^2.
+\end{equation}
+
+\subsection{Approximating the density}
+
+Under the Linear Combination of Atomic Orbitals (LCAO) 
+approximation, the discretisation basis $B$ is denoted by
+$B=\{\chi_{\mu}\}_{1\leq \mu\leq N_b}$, where each $\chi_{\mu}$ is an atomic
+orbital basis function. Such discretisation yields an approximation of the 
+exact MOs on the basis of AOs. The problem unknown is the 
+coefficient matrix $\bm C\in\mathbb R^{N\times N_b}$ in the
+decomposition
+\[
+    \forall 1\leq i\leq N, \quad \phi_i = \sum_{\mu=1}^{N_b} \bm C_{i\mu}
+    \chi_{\mu}.
+\]
+Substituting this MO expression in the one-electron density of \cref{eq:den_mo},
+one obtains the following expansion of the density on the AOs:
+\begin{equation}
+    \label{eq:n_prod}
+    n_{\Psi} = \sum_{\mu=1}^{N_b}\sum_{\nu=1}^{N_b} D_{\mu\nu} \chi_\mu\chi_\nu,
+\end{equation}
+where $\bm D = \bm C^\top \bm C$ is the so-called \textit{density matrix}, of
+dimension $N_b\times N_b$.
 
 \subsection{Problem formulation}
 
-\question{What is the relation between $N_e$ and $N_{\MO}$?}
-
-Let us consider a system of $N_e$ electrons.
-We solve the electronic structure problem
-\begin{equation}
-    \label{eq:pb_gs}
-    H\Psi = E\Psi
-\end{equation}
-using post Hartree-Fock methods, such as Full Configuration Interaction (FCI)
-and Coupled Cluster (CC). The Hamiltonian under the second quantisation reads
-\begin{equation}
-    \label{eq:H_sq}
-    \hat H = \sum_{\sigma}\sum_{ij}^{N_{\MO}} h_{ij} \hat a^\dagger_{i\sigma} \hat
-    a_{j\sigma} + \sum_{ijkl}^{N_{\MO}} h_{ijkl} \hat a^\dagger_{i\sigma} \hat
-    a^\dagger_{k\sigma} \hat a_{j\sigma}\hat a_{l\sigma},
-\end{equation}
-where $N_{\MO}$ is the number of basis functions used to discretize the
-molecular orbitals. The main idea is to first run a standard Hartree-Fock calculation using a
-discretization of the molecular orbitals based on $N_b$ given atomic orbitals, 
-yielding the coefficient matrix $C\in\mathbb R^{N_e\times N_b}$ in the
-decomposition
+The problem consists in constructing a subset $I\subseteq\{1,\ldots,N_b\}$ of
+any given size $M$ such that if the restricted basis 
+$B_I:=\{\chi_{\mu}\}_{\mu \in I}$ is used to discretise the problem of
+\cref{eq:pb_cbs}, i.e. if the minimisation space is $W^{B_I}$ instead of $W^B$, 
+then the accuracy loss on the estimated ground state energy with respect to 
+using the full basis $B$, i.e. the error
 \[
-    \forall 1\leq i\leq N_e, \quad \phi_i = \sum_{\mu=1}^{N_b} C_{i\mu}
-    \chi_{\mu}.
+    |E_0^B - E_0^{B_I}|,
 \]
-Then problem of \cref{eq:pb_gs} is solved by expanding the wave function $\Psi$
-on a basis of $N_{\MO}$ molecular orbitals, as
+remains small.
+
+Our main idea for solving this problem can be described as follows. 
+Let us denote by $\Psi_0\in W^B$ the minimiser of problem of \cref{eq:pb_cbs} 
+and by $n_{\Psi_0}\in D^B$ the associated electron density. Given a target size
+$M$, we seek the optimal subset of $B$ of the form $B_I$ with
+$|I|=M$, obtained by solving the following optimisation problem
 \[
-    \Psi = \sum_{i=1}^{N_{\MO}} a_i \phi_i.
+    \min_{\substack{I\subseteq\{1,\ldots,N_b\} \\ |I|=M}}\,
+    \min_{m\in D^{B_I}}\,\|n_{\Psi_0} - m\|,
 \]
-The coefficients $(a_i)_{1\leq i\leq N_{\MO}}$ are defined based on quantities
-related to the Hamiltonian of \cref{eq:H_sq}.
+where $\|\cdot\|$ is any given norm. Note that the optimisation criterion 
+we used is the orthogonal projection error (also known as best approximation
+error) with respect to the reference electron density. 
+In other words, the problem boils down to selecting the index subset of size
+$M$ such that the best approximation error is minimised.
 
-\subsection{Overview of methods}
-
-\subsubsection{Existing work}
-
-\paragraph{Density fitting}
-
-Density fitting has been used in order to compress the molecular orbital integrals 
-of the post-Hartree-Fock equations (DFT correction method) using empirical auxiliary basis
-sets \cite{julien_df}. The difference of this applications when compared to conventional 
-density fitting applications is that one compresses the molecular orbitals instead of
-the atomic orbitals (?).
-
-\subsubsection{Present work}
-
-\paragraph{Adaptive basis set}
-
-The tensor $h_{ijkl}$ is expensive to store in a quantum simulator, in terms of
-memory requirements. In order to solve this issue, we propose a new method that 
-allows to reduce the number of basis functions used to discretize
-molecular orbitals, from a given atomic orbital basis set and a molecular
-geometry.
-
-\paragraph{Tensor compression}
-
-The main idea of this method is to compress the four-index tensor $h_{ijkl}$,
-where $i,j,k,l$ are indices of molecular orbitals. The compression is based on
-the fact that this tensor can be precomputed as it is independent of the density
-matrix, which is updated during the iterative procedure. Therefore we can perform tensor 
-compression entirely offline. This compression can be interpreted as a density fitting
-method performed on an auxiliary basis set that is generated on-the-fly. The
-difference of this method when compared to existing density fitting methods
-\cite{julien_df} is that the empirical auxiliary basis set of conventional
-density fitting is replaced by an auxiliary basis set generated on-the-fly based
-on the pivoted Cholesky decomposition.
+Due to the expression of the density given by \cref{eq:n_prod}, any function
+$m\in D^{B_I}$ is of the form
+\[
+    m = \sum_{\mu\in I}\sum_{\nu\in I}C_{\mu\nu} \chi_{\mu}\chi_{\nu}.
+\]
 
 \subsection{Algorithms}
 
-\subsubsection{Adaptive basis set generation}
+To summarize, the main ingredients given as an input to our algorithm is 
+\begin{itemize}
+    \item given molecular geometry,
+    \item atomic orbital basis set,
+    \item a starting density matrix.
+\end{itemize}
+We studied three different choices of density matrices: Hartree-Fock (HF),
+Configuration Interaction Singles and Doubles (CISD) and
+Configuration Interaction Perturbatively Selected Iteratively (CIPSI).
 
-Our first attempt consists in proposing methods that reduce the size of a given 
-atomic orbital basis set. Let $\{\chi_{\mu}\}_{1\leq\mu\leq N_b}$ denote a given atomic 
-orbital basis set, with fixed atomic centers on the atomic positions of a given
-molecule. Note that the interatomic distances are fixed in this molecule. The
-first step is to assembly the Gram matrix (i.e. the overlap matrix) of this
-basis set under a user-defined inner product $\langle\cdot,\cdot\rangle$,
-denoted by $\bm G$ with entries defined as
+\subsubsection{Assembly of the Gram matrix}
+
+The first step is the assembly of the Gram matrix (i.e. the overlap matrix) of
+the orbital products, given a user-defined inner product
+$\langle\cdot,\cdot\rangle$. Let us denote by $\bm T$ the tensor of dimension
+$N_b\times N_b\times N_b\times N_b$, with entries 
+defined as
 \[
-    1\leq \mu,\nu\leq N_b, \quad G_{\mu\nu} = \langle \chi_{\mu},\chi_{\nu}\rangle.
+    T_{\mu\nu\kappa\lambda} = D_{\mu\nu}D_{\kappa\lambda} 
+    \langle \chi_{\mu}\chi_{\nu},\chi_{\kappa}\chi_{\lambda}\rangle.
 \]
+The Gram matrix $\bm G$, of dimension $N_b^2\times N_b^2$ is then formed by
+folding pairwise the first two and the last two dimensions of the tensor 
+$\bm T$. Then we also regroup by orbital types.
+Another option for initialising the Gram matrix consists in $\bm
+R^\top \bm G\bm R$, where $\bm R$ is the atomic restriction matrix that discards
+orbital products centered on midbonds.
+
+\subsubsection{Selecting orbital products}
+
+We seek a selection of orbital products of target size $M_*\ll N_b^2$ 
+that best approximate the one-electron density. This selection can be performed
+using a criterion based on minimizing the orthogonal projection error with
+respect to the full space spanned by orbital products, in which the density 
+belongs to. Orbital products are discarded using a pivoted Cholesky 
+decomposition performed on the Gram matrix $\bm G$, 
+also known as Gram-Schmidt procedure with pivoting. The orthonormalization
+procedure terminates when the orthogonal projection error is smaller than a
+given threshold. Note that the entries of the Gram matrix are weighted by the
+density matrix. Therefore, at the first iteration of the pivoted Cholesky 
+decomposition, the selected pivot is influenced by the value of the density
+matrix. 
+
+
 The pivoted Cholesky decomposition under a given tolerance value
 $\varepsilon>0$, performed on the matrix $\bm G$, yields an approximate rank
 $M\leq N_b$ of $\bm G$ and a selection of $M$ rows (and columns) that 
@@ -139,7 +281,24 @@ type strictly higher than $d$-type, then
 It is assumed that all atomic basis functions are normalized, so that the
 diagonal of $\bm G$ consists of one entries.
 
+
 \section{Numerical experiments}
+
+\subsection{Implementation details}
+
+The quantum simulator uses the Hamiltonian in the second quantisation
+formulation, that reads
+\begin{equation}
+    \label{eq:H_sq}
+    \hat H = \sum_{\sigma}\sum_{ij}^{N_{\MO}} h_{ij} \hat a^\dagger_{i\sigma} \hat
+    a_{j\sigma} + \sum_{ijkl}^{N_{\MO}} h_{ijkl} \hat a^\dagger_{i\sigma} \hat
+    a^\dagger_{k\sigma} \hat a_{j\sigma}\hat a_{l\sigma},
+\end{equation}
+where $N_{\MO}$ is the number of basis functions used to discretise the
+molecular orbitals. Note that our method allows to reduce the number of MOs in this
+expression.
+
+\subsection{Results}
 
 The first experiment allows to compare the results obtained from a DFT/B3LYP
 calculation on the water molecule at equilibrium geometry, using
@@ -151,6 +310,15 @@ ground state energies using the full atomic orbital basis set as a reference
 calculation. We are also interested in assessing the convergence of the
 approximation error of our method for varying tolerance values in the Cholesky
 decomposition.
+
+\section{Perspectives}
+
+Our method can be combined with orbital exponent and contraction coefficient
+optimization methods, namely with the one proposed in \cite{wang2023basis}. A
+possible direction that allows to combine both methods is to first apply our
+method for basis set size reduction, then apply their method on our resulting 
+adapted basis set for further optimization, in the goal of increasing the 
+accuracy using a fixed number of MOs.
 
 \bibliography{references}
 \bibliographystyle{plain}
