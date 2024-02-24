@@ -48,7 +48,8 @@ TODO list
     [*] optimize contraction coefficients using a linear dependence criterion on
         the density 
     [*] scripts that automatize tests on basis generation
-    [*] write theoretical report on tex
+    [OK] initialise report on tex
+    [OK] load minimal basis sets
 
 TODO simulations
 
@@ -63,12 +64,15 @@ TODO simulations
         for manual forcing and pivot forcing
     [*] disable atom restriction in Gram matrix assembly
     [*] matrice de densité CIPSI
-    [*] H2O de la base minimale (STO-3G) jusqu'à 14-(15-16) MOs
-    [*] H2 même chose
+    [*] générer des bases de la taille minimal (STO-3G) jusqu'à 14-(15-16) MOs
+    [*] faire des tableaux de comparaison contre STO-3G et 6-31g
+    [*] comprendre l'histoire avec les 6-311g et 6-31g* quoi apporte
+    [*] molécules H2O et H2
 
 TODO long term
     
     [*] FH molecule
     [*] test properties: dipoles
     [*] use other metrics such as L2
+
 

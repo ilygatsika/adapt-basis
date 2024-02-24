@@ -34,36 +34,58 @@ def read_matrix_from_file(filename):
 
     return mat
 
-def what_elements(geom):
+def what_elements(geom, option):
     '''
     Map element first letters to full names
     for every atom in a given molecule in xyz format
     respecting the order of atoms in file
     '''
     
+    gamess = False
+    if (option.lower() == 'gamess'):
+        gamess = True
+
     with open(geom, 'r') as file:
 
         data = file.read().split()
         elem = []
         for word in data:
             if word.isalpha():
-                word_full = elem_map[word]
+                if (gamess):
+                    # full word
+                    word_full = elem_map[word]
+                else: 
+                    # first letter only for NWChem
+                    word_full = word
                 elem.append(word_full)
     return elem
 
-def read_orbitals(geom, file_in):
+def read_orbitals(geom, file_in, option='GAMESS'):
     '''
     Read input atomic orbital basis element-wise
-    file is in GAMESS US format
+    file is in GAMESS US (default) or NWChem format
     '''
 
-    # GAMESS US file delimiters
-    comment = '!'
-    start = '$DATA'
-    end = '$END'
+    # set flag on format
+    gamess, nwchem = False, False
+    if (option.lower() == 'gamess'):
+        gamess = True
+    elif (option.lower() == 'nwchem'):
+        nwchem = True
+
+    if (gamess):
+        # GAMESS US file delimiters and conventions
+        comment = '!'
+        start = '$DATA'
+        end = '$END'
+    elif (nwchem):
+        # same for nwchem
+        comment = '#'
+        start = 'BASIS "ao basis" SPHERICAL PRINT'
+        end = 'END'
     
     # Find order of elements in molecule
-    elements = what_elements(geom)
+    elements = what_elements(geom, option=option)
    
     # Initialize empty orbital basis per element
     out_basis = {element: {} for element in elements}
@@ -84,6 +106,7 @@ def read_orbitals(geom, file_in):
 
             # Current line
             line = lines[nline]
+            print(line)
             
             # Ignore line if it is a comment or delimiter
             if line.startswith((comment, start)):
@@ -97,9 +120,9 @@ def read_orbitals(geom, file_in):
             
             # Break line word by word
             raw_line = line.split()
-
-            # If name of element
-            if (len(raw_line) == 1):
+        
+            # If fall on name of element
+            if (gamess) and (len(raw_line) == 1):
                 cur_elem = raw_line[0]
                 nline += 1
                 continue
@@ -107,21 +130,47 @@ def read_orbitals(geom, file_in):
             # If contraction begins in this line
             if raw_line[0].isalpha():
 
-                orb_type, nctr = raw_line
-                nctr = int(nctr)
+                if (gamess):
+                    orb_type, nctr = raw_line
+                    nctr = int(nctr)
+                elif (nwchem):
+                    cur_elem, orb_type = raw_line
+                    nctr = 1
 
                 # Define orbital identifier
                 orb = str(orb_index) + " " + line 
-                
-                # Loop over contraction
-                for k in range(nctr):
+               
+                if (gamess):
+                    # Loop over contraction
+                    for k in range(nctr):
 
-                    orb_comp = lines[nline + k+1]
+                        orb_comp = lines[nline + k+1]
 
-                    if (not orb in out_basis[cur_elem].keys()): 
-                        out_basis[cur_elem][orb] = []
+                        # initialize if empty
+                        if (not orb in out_basis[cur_elem].keys()): 
+                            out_basis[cur_elem][orb] = []
 
-                    out_basis[cur_elem][orb].append(orb_comp)
+                        # store
+                        out_basis[cur_elem][orb].append(orb_comp)
+
+                elif (nwchem):
+                    # Loop over contraction
+                    while (True):
+                        
+                        orb_comp = lines[nline + nctr]
+                        
+                        # found another orbital
+                        if (orb_comp[0].isalpha()):
+                            break
+                        
+                        nctr += 1
+
+                        # initialize if empty
+                        if (not orb in out_basis[cur_elem].keys()): 
+                            out_basis[cur_elem][orb] = []
+                        
+                        # store
+                        out_basis[cur_elem][orb].append(orb_comp)
 
                 # Go to next orbital
                 nline += nctr
@@ -132,10 +181,10 @@ def read_orbitals(geom, file_in):
 
     return out_basis
 
-def extract_orbitals(geom, basis, idx, file_out):
+def extract_orbitals(geom, basis, idx, file_out, option='GAMESS'):
     '''
     Extract selected orbitals of read_orbitals output object
-    and store to file_out in GAMESS US format
+    and store to file_out in GAMESS US (default) or NWChem format
 
     idx      orbital indices respecting element order in basis
              i.e. orbitals are enumerated for the molecule
@@ -146,7 +195,7 @@ def extract_orbitals(geom, basis, idx, file_out):
     end = '$END\n'
 
     # Find order of elements in molecule
-    elements = what_elements(geom)
+    elements = what_elements(geom, option=option)
     outdata = start
 
     # init orbital counter
