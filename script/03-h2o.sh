@@ -27,6 +27,7 @@ do
     python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
 done
 
+exit
 AO=cc-pvtz
 M_TARGETS="20 15 12 10 9 8"
 for M_TARGET in $M_TARGETS;

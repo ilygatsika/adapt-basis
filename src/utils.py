@@ -60,19 +60,15 @@ def what_elements(geom, option):
                 elem.append(word_full)
     return elem
 
-def read_orbitals(geom, file_in, option='GAMESS'):
-    '''
-    Read input atomic orbital basis element-wise
-    file is in GAMESS US (default) or NWChem format
-    '''
+def load_format(option):
 
     # set flag on format
     gamess, nwchem = False, False
     if (option.lower() == 'gamess'):
         gamess = True
+
     elif (option.lower() == 'nwchem'):
         nwchem = True
-
     if (gamess):
         # GAMESS US file delimiters and conventions
         comment = '!'
@@ -83,7 +79,19 @@ def read_orbitals(geom, file_in, option='GAMESS'):
         comment = '#'
         start = 'BASIS "ao basis" SPHERICAL PRINT'
         end = 'END'
-    
+
+    return (gamess, nwchem, start, end, comment)
+
+
+def read_orbitals(geom, file_in, option='GAMESS'):
+    '''
+    Read input atomic orbital basis element-wise
+    file is in GAMESS US (default) or NWChem format
+    '''
+
+    # Load format conventions
+    gamess, nwchem, start, end, comment = load_format(option)
+ 
     # Find order of elements in molecule
     elements = what_elements(geom, option=option)
    
@@ -106,7 +114,6 @@ def read_orbitals(geom, file_in, option='GAMESS'):
 
             # Current line
             line = lines[nline]
-            print(line)
             
             # Ignore line if it is a comment or delimiter
             if line.startswith((comment, start)):
@@ -160,18 +167,21 @@ def read_orbitals(geom, file_in, option='GAMESS'):
                         orb_comp = lines[nline + nctr]
                         
                         # found another orbital
-                        if (orb_comp[0].isalpha()):
-                            break
-                        
-                        nctr += 1
+                        fchar = orb_comp[0]
+                        if (fchar.isalpha() or fchar == comment):
+                            nctr -= 1 # fix
+                            # exit if end reached
+                            if (orb_comp == end): return out_basis
+                            break 
 
+                        nctr += 1
                         # initialize if empty
                         if (not orb in out_basis[cur_elem].keys()): 
                             out_basis[cur_elem][orb] = []
-                        
+                       
                         # store
                         out_basis[cur_elem][orb].append(orb_comp)
-
+                        
                 # Go to next orbital
                 nline += nctr
                 orb_index += 1
@@ -190,9 +200,8 @@ def extract_orbitals(geom, basis, idx, file_out, option='GAMESS'):
              i.e. orbitals are enumerated for the molecule
     '''
 
-    # Delimiters
-    start = '$DATA\n\n'
-    end = '$END\n'
+    # Load format conventions
+    gamess, nwchem, start, end, comment = load_format(option)
 
     # Find order of elements in molecule
     elements = what_elements(geom, option=option)
@@ -209,7 +218,10 @@ def extract_orbitals(geom, basis, idx, file_out, option='GAMESS'):
 
         # Check if element exists twice in molecule
         if element not in prev_elements:
-            outdata += element + '\n'
+            if (gamess):
+                outdata += element + '\n'
+            elif (nwchem):
+                outdata += '\n#BASIS SET\n'
         else: 
             outdata = outdata[:-1]
     
@@ -228,9 +240,14 @@ def extract_orbitals(geom, basis, idx, file_out, option='GAMESS'):
 
                 # Split orbital name respecting spaces
                 list_cur = re.split(r'(\s+)', cur_orb)
-                nctr = int(list_cur[-1])
                 outdata += list_cur[2] + list_cur[3] + list_cur[4] + '\n'
-                 
+                
+                # Get contraction length
+                if (gamess):
+                    nctr = int(list_cur[-1])
+                elif (nwchem):
+                    nctr = len(orbital)
+
                 # Write every component to file
                 for k in range(nctr): 
                     outdata += orbital[k] + '\n'
