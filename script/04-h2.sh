@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# run in background with
+#   >>> nohop ./script/04-h2.sh > out/test_4/out.log &
+ 
+COORD=h2
+OUT_DIR=out/test_4
+
+DMS="HF CISD"
+IS_ATOM="0 1"
+M_TARGETS="2 3 4 5"
+AOS='6-31g cc-pvdz cc-pvtz cc-pvqz cc-pv5z cc-pv6z'
+
+for AO in $AOS;
+do
+    for M_TARGET in $M_TARGETS;
+    do
+        for OPTION in $IS_ATOM;
+        do
+            for DM in $DMS;
+            do
+                python3 main.py --coord $COORD --dm $DM --out $OUT_DIR --AO $AO --M_target $M_TARGET --gram_atom $OPTION
+            done
+        done
+    done
+done
+

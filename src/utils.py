@@ -60,6 +60,16 @@ def what_elements(geom, option):
                 elem.append(word_full)
     return elem
 
+def create_nw_basis(coord, file_nw):
+    '''
+    Create orbital basis from file in NWChem format
+    '''
+    elems = what_elements(coord, 'nwchem')
+    ao_basis = {}
+    for elem in set(elems):
+        ao_basis[elem] = gto.basis.load(file_nw, elem)
+    return ao_basis
+
 def load_format(option):
 
     # set flag on format
@@ -131,6 +141,7 @@ def read_orbitals(geom, file_in, option='GAMESS'):
             # If fall on name of element
             if (gamess) and (len(raw_line) == 1):
                 cur_elem = raw_line[0]
+                skip = not (cur_elem in elements)
                 nline += 1
                 continue
 
@@ -142,6 +153,7 @@ def read_orbitals(geom, file_in, option='GAMESS'):
                     nctr = int(nctr)
                 elif (nwchem):
                     cur_elem, orb_type = raw_line
+                    skip = not (cur_elem in elements)
                     nctr = 1
 
                 # Define orbital identifier
@@ -154,11 +166,12 @@ def read_orbitals(geom, file_in, option='GAMESS'):
                         orb_comp = lines[nline + k+1]
 
                         # initialize if empty
-                        if (not orb in out_basis[cur_elem].keys()): 
+                        if (not skip) and (not orb in out_basis[cur_elem].keys()): 
                             out_basis[cur_elem][orb] = []
 
                         # store
-                        out_basis[cur_elem][orb].append(orb_comp)
+                        if (not skip):
+                            out_basis[cur_elem][orb].append(orb_comp)
 
                 elif (nwchem):
                     # Loop over contraction
@@ -176,11 +189,12 @@ def read_orbitals(geom, file_in, option='GAMESS'):
 
                         nctr += 1
                         # initialize if empty
-                        if (not orb in out_basis[cur_elem].keys()): 
+                        if (not skip) and (not orb in out_basis[cur_elem].keys()): 
                             out_basis[cur_elem][orb] = []
                        
                         # store
-                        out_basis[cur_elem][orb].append(orb_comp)
+                        if (not skip):
+                            out_basis[cur_elem][orb].append(orb_comp)
                         
                 # Go to next orbital
                 nline += nctr

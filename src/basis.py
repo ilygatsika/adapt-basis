@@ -122,8 +122,11 @@ def map_orb_products(mol):
     for atom in atomtypes:
         # get nuclei of this element
         atom_id = atomtypes[atom]
+        # there is no other identical atom
         if (len(atom_id) == 1):
-            continue
+            shell = mol.atom_shell_ids(atom_id[0])
+            for s in shell:
+                orbs[s,:] = s
         # loop on identical nuclei
         for i in atom_id:
             # get orbitals on nucleus
@@ -135,17 +138,41 @@ def map_orb_products(mol):
                     orbs[shell_i,n] = shell_j
                     orbs[shell_j,n] = shell_i
 
-    # should give [OK]
-    # [-1, -1, -1, -1, -1, 9, 10, 11, 6, 7, 8]
     # then same atom orbitals are indexed by
-    # j = orb_same_atom[i]
+    # j = orbs[i]
+    
+    # map product indices to pairs of orbital indices
+    norb = orbs.shape[0]
+    orb = np.arange(norb)
+    pairs = np.dstack(np.meshgrid(orb, orb)).reshape(-1,2)
 
-    # Shift indices from orbital to orbital product
-    idx_2c = np.dstack(np.meshgrid(orbs, orbs)).reshape(-1,2)
+    # the inverse: map pairs to product indices
+    nprod = norb**2
+    product = np.arange(nprod).reshape(norb, norb).T
+    #print(orbs)
 
-    print(idx_2c)
+    # Turn indices from orbital to orbital product
+    equiv_class = {k: [] for k in range(nprod)}
+    for k in range(nprod):
+        i,j = pairs[k] 
+        p = [i,j]; p.sort()
 
-    return idx_2c
+        # find all equiv orbs centered on different atom
+        #print("Equiv class of %i,%i->%i is " %(i,j,k))
+        for ii in orbs[i]:
+            for jj in orbs[j]:
+
+                # ignore same products up to permutation
+                pp = [ii,jj]; pp.sort()
+                if (p[0] == pp[0] and p[1] == pp[1]):
+                    continue
+
+                #ii, jj = pp
+                kk = product[ii,jj]
+                equiv_class[k].append(kk)
+                #print(ii,jj,'->',kk)
+
+    return equiv_class
 
 def get_4c_gram(mol, dm, metric):
     '''
@@ -211,7 +238,6 @@ def restrict_atoms(mol):
     R[atom_mask, np.arange(natp)] = 1
 
     return R
-
 
 def extract_basis(mol, indices):
     """
@@ -386,27 +412,13 @@ def orbitals_in_products(mol, index_selection, mask=False):
 
     return idx
 
-def PCD_2pivot(A, Mbas):
+def PCD_pivot(A, Mbas):
     """
     Pivoted Cholesky algorithm (ref Schneider et al.)
-    The present variation allows to choose 2 pivots at a time, 
-    in order to force element-wise consistency.
-
-    Return index array of orbital products of size Mbas
-
-    La proposition de Susi est de regarder si le pivot 
-    correspond à deux fonctions centrées sur différents atomes. 
-    Si oui, il faut choisir les deux fonctions comme pivot. 
-    Prendre le min ou la somme des deux comme pivot à
-    ordonner. Dans ce cas deux fonctions vont entre choisi à 
-    l'itération actuelle. Sinon une fonction est choisi. 
     
     A      Naop x Naop Gram matrix
     Mbas   target size of adapted basis
     """
-
-    # TODO
-    # map every AO index to the index of the same AO on another atom
 
     nbas = A.shape[0]
     index_selection = np.empty(Mbas, dtype=int)
@@ -421,18 +433,6 @@ def PCD_2pivot(A, Mbas):
         # choose next pivot of maximal module
         i = np.argmax(d[p[m:]])
         i += m
-
-        """
-        # Find the same AO at different centers
-        aos_i = ao_same_center[i]
-        nb_aos = np.size(aos_i)
-
-        # Use the AO at all centers as pivots
-        for k in range(nb_aos):
-
-            # project all lines to the set of the AOs
-            test = 1
-        """
 
         index_selection[m] = p[i]
         
@@ -453,5 +453,84 @@ def PCD_2pivot(A, Mbas):
             d[p[i]] -= L[m,p[i]]**2
 
     return index_selection
+
+def PCD_2pivot(mol, A, Mbas):
+    """
+    Pivoted Cholesky algorithm (ref Schneider et al.)
+    The present variation allows to choose 2 pivots at a time, 
+    in order to force element-wise consistency.
+
+    Return index array of orbital products of size Mbas
+
+    Pour chaque orbital, il faut trouver tous les orbitaux    
+    des mêmes paramètres centrés sur différents atoms. 
+    Si oui, il faut choisir les deux fonctions comme pivot. 
+    Prendre le min ou la somme des deux comme pivot à
+    ordonner. Dans ce cas deux fonctions vont entre choisi à 
+    l'itération actuelle. 
+    
+    A      Naop x Naop Gram matrix
+    Mbas   target size of adapted basis
+    """
+
+    # map every AO index to the index of the same AO on another atom
+    equiv_class = map_orb_products(mol)
+
+    nbas = A.shape[0]
+    index_selection = []
+
+    # initialize diagonal, index, lower triangular
+    d = np.array(np.diag(A))
+    p = np.arange(nbas)
+    L = np.zeros((nbas, nbas), dtype=float)
+    
+    # init counter
+    m = 0
+    while (m <= Mbas):
+       
+        # choose next pivot of maximal module
+        # minimum of equivalence class
+        d_class = np.array(d, dtype=float)
+        for j in range(nbas):
+            idx = equiv_class[j]
+            if (not len(idx)): continue
+            d_class[j] += np.min(d[idx])
+
+        i = np.argmax(d_class[p[m:]])
+        i += m
+
+        # Recover selected indices
+        i_class = equiv_class[i] + [i]
+
+        # store to output array
+        index_selection += i_class
+       
+        # Update trailing matrix
+        # swap indices
+        npiv = len(i_class)
+        for m_step in range(npiv):
+            
+            i = i_class[m_step] 
+            mj = m + m_step
+            p[i], p[mj] = p[mj], p[i]
+
+        for m_step in range(npiv):
+            
+            mj = m + m_step
+            L[mj,p[mj]] = np.sqrt(d[p[mj]])
+            nrm = L[mj,p[mj]]
+
+            for i in range(mj+1, nbas):
+        
+                # update lower triangular
+                s = L[:mj,p[mj]] @ L[:mj,p[i]]
+                L[mj,p[i]] = (A[p[mj],p[i]] - s)/nrm
+       
+                # update diagonal
+                d[p[i]] -= L[mj,p[i]]**2
+        
+        m += npiv
+    
+    return list(index_selection)
 
 

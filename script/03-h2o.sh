@@ -1,51 +1,29 @@
 #!/bin/bash
 
-# run in background with ./script/03-h2o.sh &
-# Attention should be run in a cluster (150 GB allocated memory)
+# run in background with 
+#   >>> nohop ./script/03-h2o.sh > out/test_3/out.log &
+#
+# Execution on server recommended (150 GB allocated memory)
 
 COORD=h2o
 OUT_DIR=out/test_3
 
-AO=6-31g
-M_TARGETS="8 7 5"
-for M_TARGET in $M_TARGETS;
-do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
-done
+DMS="HF CISD"
+IS_ATOM="0 1"
+M_TARGETS="7 8 9 10 11 12 13"
+AOS='6-31g cc-pvdz cc-pvtz cc-pvqz cc-pv5z cc-pv6z'
 
-AO=6-31g_st
-M_TARGETS="9 8 7"
-for M_TARGET in $M_TARGETS;
+for AO in $AOS;
 do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
-done
-
-AO=cc-pvdz
-M_TARGETS="10 9 7 5"
-for M_TARGET in $M_TARGETS;
-do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
-done
-
-exit
-AO=cc-pvtz
-M_TARGETS="20 15 12 10 9 8"
-for M_TARGET in $M_TARGETS;
-do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
-done
-
-AO=cc-pvqz
-M_TARGETS="32 30 25 22 12 9"
-for M_TARGET in $M_TARGETS;
-do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
-done
-
-AO=cc-pv5z
-M_TARGETS="48 40 38 35 22 13 12 9"
-for M_TARGET in $M_TARGETS;
-do
-    python3 main.py --coord $COORD --out $OUT_DIR --AO $AO --M_target $M_TARGET
+    for M_TARGET in $M_TARGETS;
+    do
+        for OPTION in $IS_ATOM;
+        do
+            for DM in $DMS;
+            do
+                python3 main.py --coord $COORD --dm $DM --out $OUT_DIR --AO $AO --M_target $M_TARGET --gram_atom $OPTION
+            done
+        done
+    done
 done
 

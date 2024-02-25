@@ -41,15 +41,13 @@ TODO list
     [OK] automatize different AO basis sets
     [OK] target M is not equal to actual basis size. Store true basis sizes
     [OK] fix -75 Hartree-Fock energy bug
-    [*] debug the modified PCD algorithm with conventional pivot selection
-    [*] incorporate atom-wise forcing during the pivot selection
-    [*] implement NWChem output of our adapted basis
-    [*] fix size inconsistency after atom-wise forcing
-    [*] optimize contraction coefficients using a linear dependence criterion on
-        the density 
-    [*] scripts that automatize tests on basis generation
+    [OK] implement NWChem output of our adapted basis
     [OK] initialise report on tex
     [OK] load minimal basis sets
+    [OK] on-off atom restriction in Gram matrix assembly
+    [OK] debug the modified PCD algorithm with conventional pivot selection
+    [OK] incorporate atom-wise forcing during the pivot selection
+    [OK] scripts that automatize tests on basis generation
 
 TODO simulations
 
@@ -62,11 +60,9 @@ TODO simulations
         cc-pvqz avec la même précision que cc-pv5z
     [*] produce ABS results for densities (HF or CISD), for atom restrictions, 
         for manual forcing and pivot forcing
-    [*] disable atom restriction in Gram matrix assembly
     [*] matrice de densité CIPSI
     [*] générer des bases de la taille minimal (STO-3G) jusqu'à 14-(15-16) MOs
     [*] faire des tableaux de comparaison contre STO-3G et 6-31g
-    [*] comprendre l'histoire avec les 6-311g et 6-31g* quoi apporte
     [*] molécules H2O et H2
 
 TODO long term
@@ -74,5 +70,7 @@ TODO long term
     [*] FH molecule
     [*] test properties: dipoles
     [*] use other metrics such as L2
+    [*] optimize contraction coefficients using a linear dependence criterion on
+        the density 
 
 

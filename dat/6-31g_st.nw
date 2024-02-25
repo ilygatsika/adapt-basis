@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------
 
 
-BASIS "ao basis" CARTESIAN PRINT
+BASIS "ao basis" SPHERICAL PRINT
 #BASIS SET: (4s) -> [2s]
 H    S
       0.1873113696E+02       0.3349460434E-01

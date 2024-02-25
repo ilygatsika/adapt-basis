@@ -42,9 +42,9 @@ parser.add_argument("--coord",
                             system/<coord>.xyz", 
                     type=str)
 parser.add_argument("--dm", 
-                    help="density matrix of converged CBS solution stored in \
-                            dat/<dm>.txt (optional)", 
-                    type=str, default=None)
+                    help="density matrix used as reference: \
+                            dat/<dm>.txt, HF, CISD", 
+                    type=str)
 parser.add_argument("--AO", 
                     help="atomic orbital basis is stored in dat/<AO>.nw \
                             (NWChem) and dat/<AO>.bas (GAMESS US)", 
@@ -52,13 +52,16 @@ parser.add_argument("--AO",
 parser.add_argument("--M_target", 
                     help="target number of selected atomic orbitals",
                     type=int)
+parser.add_argument("--gram_atom", 
+                    help="use of atomic (1) or full (0) Gram matrix",
+                    type=int, default=0)
 parser.add_argument("--option", 
                     help="orbital type constraint for ABS-<option> method, \
                             default is 0",
                     type=int, default=0)
 parser.add_argument("--out_dir", 
                     help="output basis stored in \
-                            <out_dir>/<AO>-abs-<M_target>_<option>.bas \
+                            <out_dir>/<AO>-<M_target>_g<is_atom>_<dm>.bas \
                             (in GAMESS US)", 
                     type=str)
 args = parser.parse_args()
@@ -70,40 +73,50 @@ out_dir = args.out_dir
 ao_basis = args.AO
 M_target = args.M_target
 option = args.option
+gram_atom = args.gram_atom
 
-# Input filenames
+# Filenames
 coord = 'system/%s.xyz' %coord
-dm_file = 'dat/%s.txt' %dm_in
-ao_nw = 'dat/%s.nw' %ao_basis # NwChem
+dm_file = None
+if (dm_in not in ['HF','CISD']): 
+    dm_file = 'dat/%s.txt' %dm_in
+# Input basis files
+ao_nw = 'dat/%s.nw' %ao_basis # NWChem
 ao_bas = 'dat/%s.bas' %ao_basis # GAMESS US
-out_file = out_dir+'/%s-abs_%i_%i.bas' %(ao_basis, M_target, option)
+# Output basis files
+key = (ao_basis, M_target, gram_atom, dm_in.lower())
+out_file_nw = out_dir+'/%s-%i_g%i_%s.nw' %key # NWChem
+out_file    = out_dir+'/%s-%i_g%i_%s.bas' %key # GAMESS US
 
-print("Reading coord from %s file." %coord)
+print("\nReading coord from %s file." %coord)
 
 # Create molecule in PySCF
+input_basis = utils.create_nw_basis(coord, ao_nw)
+'''
 input_basis = {
         'H': gto.basis.load(ao_nw, 'H'),
         'O': gto.basis.load(ao_nw, 'O')
         }
+'''
 mol = gto.M(atom=coord, basis=input_basis)
 nelec = np.sum(mol.nelec)
 
 # AO basis on fixed geometry
-print("Number of atomic orbitals (M must be smaller)\t\t", mol.nbas)
-print("Number of orbital components\t\t\t\t", mol.nao)
+print("Number of atomic orbitals (M must be smaller)\t\t%i MOs %i" \
+        %(mol.nbas, mol.nao))
 
 if (mol.nbas < M_target):
     raise ValueError("target size is too large")
 
 # Get density matrix
-if (dm_in is not None):
+if (dm_file is not None):
 
     # Read density matrix
     # Important: multiply by 2 for occupation
-    print("\nImporting CBS density")
+    print("Importing CBS density")
     dm = 2 * utils.read_matrix_from_file(dm_file)
 
-    print("\nImporting overlap")
+    print("Importing overlap")
     S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
 
     #print(mol.ao_labels())
@@ -113,58 +126,70 @@ if (dm_in is not None):
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
-else: 
+elif (dm_in == 'HF'): 
 
     # Get Hartree-Fock density matrix
-    print("\nRunning Hartree-Fock+CISD to get density")
+    print("Running Hartree-Fock to get density:")
     myhf = mol.RHF().run() # Hartree-Fock
-    #mf = myhf.CISD().run() # Single, double excitation
-    #dm = mf.make_rdm1()
     dm = myhf.make_rdm1()
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
+elif (dm_in == 'CISD'): 
 
-print("\nStarting reduction with target %i and %i constraint" %(M_target, option)) 
+    # Get Hartree-Fock density matrix
+    print("Running Hartree-Fock+CISD to get density:")
+    myhf = mol.RHF().run() # Hartree-Fock
+    mf = myhf.CISD().run() # Single, double excitation
+    dm = mf.make_rdm1()
+    nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
+    print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
+
+print("Starting reduction with target %i and %i constraint ..." %(M_target, option)) 
 
 # Assembly Gram matrix of products
 metric = "j"
 G = basis.get_4c_gram(mol, dm, metric)
 R = basis.restrict_atoms(mol)
-#A = G; mask = False
-A = R.T @ G @ R; mask = True
+
+if (gram_atom):
+    A = R.T @ G @ R; mask = True
+else: 
+    A = G; mask = False
 
 # Select products
 L,piv,k = LA.PCD(A)
 pivk = piv[:M_target]
 idx = basis.orbitals_in_products(mol, pivk, mask=mask)
-print(idx)
 
+# Here we try the multiple pivot strategy
+'''
 print('DEBUG')
-
-# Select products
-pivk = basis.PCD_2pivot(A, M_target)
-basis.map_orb_products(mol)
+A = G; mask = False
+pivk = basis.PCD_2pivot(mol, A, M_target)
 idx = basis.orbitals_in_products(mol, pivk, mask=mask)
-print(idx)
+'''
 
-"""
-# Prepare to write to out_file
-basis = utils.read_orbitals(coord, ao_bas)
-utils.extract_orbitals(coord, basis, idx, out_file)
+# Prepare to write to out_file in GAMESS
+res = utils.read_orbitals(coord, ao_bas, option='gamess')
+utils.extract_orbitals(coord, res, idx, out_file, option='gamess')
 
 print("Results written in %s." %out_file)
 
-print("Hartree-Fock energy")
-input_basis = {
-        'H': gto.basis.load(out_file, 'H'),
-        'O': gto.basis.load(out_file, 'O')
-        }
+# Read basis in NWChem format
+res = utils.read_orbitals(coord, ao_nw, option='nwchem')
+utils.extract_orbitals(coord, res, idx, out_file_nw, option='nwchem')
+input_basis = utils.create_nw_basis(coord, out_file_nw)
+
+# Compute Hartree-Fock energy with PySCF (needs NWChem)
 mol = gto.M(atom=coord, basis=input_basis, unit='A')
-mf = mol.HF()
+mf = mol.RHF()
+print("Number of adapted atomic orbitals\t\t\t%i MOs %i" %(mol.nbas, mol.nao))
 mf.kernel()
+
+
+# Below is the orbital type constraint, not useful for the moment
 """
-exit()
 
 # Initialize intermediary basis respecting the option
 mol0 = basis.init_adapt(mol, option=option)
@@ -187,4 +212,5 @@ print("Number of selected orbitals\t\t\t", mol_M.nbas)
 basis.dump(filename, basis_M)
 
 print("Write adapted basis to %s done." %filename)
+"""
 
