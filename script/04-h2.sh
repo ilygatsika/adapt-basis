@@ -19,7 +19,6 @@ do
         python3 main.py --coord $COORD --dm $DM --out $OUT_DIR --AO $AO --M_target $M_TARGET --gram_atom $OPTION
     done
 done
-exit
 
 DMS="HF CISD"
 IS_ATOM="0 1"
