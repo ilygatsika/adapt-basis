@@ -14,3 +14,4 @@ for molecule in molecules:
         mol = gto.M(atom=coord, basis=input_basis)
         print('%s\t\t%i' %(basis, mol.nao))
 
+# add Hartree-Fock energies

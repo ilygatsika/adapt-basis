@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # run in background with 
-#   >>> nohop ./script/03-h2o.sh > out/test_3/out.log &
+#   >>> nohup ./script/03-h2o.sh > out/test_3/out.log &
 #
 # Execution on server recommended (150 GB allocated memory)
 
@@ -11,7 +11,7 @@ OUT_DIR=out/test_3
 DMS="HF CISD"
 IS_ATOM="0 1"
 M_TARGETS="7 8 9 10 11 12 13"
-AOS='6-31g cc-pvdz cc-pvtz cc-pvqz cc-pv5z cc-pv6z'
+AOS='cc-pvdz cc-pvtz cc-pvqz cc-pv5z cc-pv6z'
 
 for AO in $AOS;
 do

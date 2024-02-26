@@ -233,7 +233,7 @@ def extract_orbitals(geom, basis, idx, file_out, option='GAMESS'):
         # Check if element exists twice in molecule
         if element not in prev_elements:
             if (gamess):
-                outdata += '\n' + element + '\n'
+                outdata += '\n\n' + element + '\n'
             elif (nwchem):
                 outdata += '\n#BASIS SET\n'
         else: 
