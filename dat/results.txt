@@ -128,4 +128,27 @@ Delta_HF = E_HF(CBS) - E_HF(B), B = 'cc-pv5z_9'
 E_HF(CBS) = formule d'extrapolation 
 
 
+Summary of reference bases
+==========================
+
+h2 =========== nb of MOs ========== Hartree-Fock
+sto-3g          2                   -1.110850
+6-31g           4                   -1.123713
+cc-pvdz         10                  -1.127001
+cc-pvtz         28                  -1.130292
+cc-pvqz         60                  -1.130749
+cc-pv5z         110                 -1.130886
+cc-pv6z         182                 -1.130903
+h2o =========== nb of MOs ========== Hartree-Fock
+sto-3g          7                   -74.963023
+6-31g           13                  -75.983974
+cc-pvdz         24                  -76.026772
+cc-pvtz         58                  -76.057127
+cc-pvqz         115                 -76.064792
+cc-pv5z         201                 -76.067047
+cc-pv6z         322                 -76.067363
+
+
+
+
 

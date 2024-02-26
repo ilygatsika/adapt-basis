@@ -1,0 +1,913 @@
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g0_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g1_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g0_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g1_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g0_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g1_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g0_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Importing CBS density
+Number of electrons (should be 2) = 1.999997
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g1_h2_alpha_rdm.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021583  E_corr = -0.03575004213738265
+Number of electrons (should be 2) = 2.015313
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g0_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -1.10675852105624
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021582  E_corr = -0.03575004213738267
+Number of electrons (should be 2) = 2.013934
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-2_g1_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -1.10675852105624
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021583  E_corr = -0.0357500421373827
+Number of electrons (should be 2) = 2.013934
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021583  E_corr = -0.03575004213738265
+Number of electrons (should be 2) = 2.015313
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-3_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09635008990401
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021582  E_corr = -0.03575004213738268
+Number of electrons (should be 2) = 2.013934
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021581  E_corr = -0.03575004213738265
+Number of electrons (should be 2) = 2.015313
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-4_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021583  E_corr = -0.03575004213738276
+Number of electrons (should be 2) = 2.013934
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1270007208842
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12286375581226
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		6 MOs 10
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1270007208842
+E(RCISD) = -1.162750763021583  E_corr = -0.03575004213738264
+Number of electrons (should be 2) = 2.013934
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvdz-5_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.1270007208842
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-2_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09723113817402
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712444  E_corr = -0.04011382231621778
+Number of electrons (should be 2) = 1.982539
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-2_g0_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -0.97923263427898
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-2_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09723113817402
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712452  E_corr = -0.04011382231622265
+Number of electrons (should be 2) = 1.982280
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-2_g1_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -0.97923263427898
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-3_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09723113817402
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.17040626471245  E_corr = -0.04011382231621966
+Number of electrons (should be 2) = 1.982268
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-3_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.10393291208844
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-3_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09723113817402
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712448  E_corr = -0.04011382231622023
+Number of electrons (should be 2) = 1.982458
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-3_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.10393291208844
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-4_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09723113817402
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.17040626471245  E_corr = -0.0401138223162212
+Number of electrons (should be 2) = 1.982426
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-4_g0_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 20
+converged SCF energy = -1.10484850912366
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-4_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12226962250392
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712444  E_corr = -0.04011382231621594
+Number of electrons (should be 2) = 1.982013
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-4_g1_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 20
+converged SCF energy = -1.10484850912366
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-5_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12226962250392
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712448  E_corr = -0.04011382231621884
+Number of electrons (should be 2) = 1.982480
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-5_g0_cisd.bas.
+Number of adapted atomic orbitals			10 MOs 26
+converged SCF energy = -1.1127510205048
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13029244239623
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-5_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12226962250392
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		12 MOs 28
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13029244239623
+E(RCISD) = -1.170406264712448  E_corr = -0.04011382231622106
+Number of electrons (should be 2) = 1.982493
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvtz-5_g1_cisd.bas.
+Number of adapted atomic orbitals			10 MOs 26
+converged SCF energy = -1.1127510205048
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-2_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09751949384595
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508377  E_corr = -0.04107187731298139
+Number of electrons (should be 2) = 1.992306
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-2_g0_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.04867535602042
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-2_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09751949384595
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508371  E_corr = -0.04107187731297315
+Number of electrons (should be 2) = 1.959249
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-2_g1_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.04867535602042
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-3_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09751949384595
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508392  E_corr = -0.04107187731299505
+Number of electrons (should be 2) = 1.959149
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-3_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.04958177635715
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-3_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12096695013414
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13074921619539
+E(RCISD) = -1.171821093508364  E_corr = -0.04107187731296887
+Number of electrons (should be 2) = 1.991992
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-3_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.04958177635715
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-4_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09751949384595
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508388  E_corr = -0.04107187731299099
+Number of electrons (should be 2) = 1.991967
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-4_g0_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.0561234888947
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.1307492161954
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-4_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12096695013414
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508373  E_corr = -0.04107187731297603
+Number of electrons (should be 2) = 1.959157
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-4_g1_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.0561234888947
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13074921619539
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-5_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12096695013414
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13074921619539
+E(RCISD) = -1.171821093508378  E_corr = -0.04107187731298242
+Number of electrons (should be 2) = 1.992148
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-5_g0_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.0561234888947
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13074921619539
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-5_g1_hf.bas.
+Number of adapted atomic orbitals			6 MOs 6
+converged SCF energy = -1.12552972706286
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		20 MOs 60
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.1307492161954
+E(RCISD) = -1.171821093508379  E_corr = -0.04107187731298
+Number of electrons (should be 2) = 1.959165
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pvqz-5_g1_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.0561234888947
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-2_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09759455477383
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.17222612538976  E_corr = -0.04134009836290754
+Number of electrons (should be 2) = 1.967872
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-2_g0_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -0.126310667687012
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-2_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09759455477383
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389749  E_corr = -0.04134009836290045
+Number of electrons (should be 2) = 1.995117
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-2_g1_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = -0.126310667687012
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-3_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09759455477383
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389699  E_corr = -0.04134009836284851
+Number of electrons (should be 2) = 1.996379
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-3_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.09284378143363
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-3_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12106555169081
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389761  E_corr = -0.0413400983629128
+Number of electrons (should be 2) = 1.968637
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-3_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.09284378143363
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-4_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12106555169081
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389701  E_corr = -0.04134009836285148
+Number of electrons (should be 2) = 1.996318
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-4_g0_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.09285518558916
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-4_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12106555169081
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389745  E_corr = -0.04134009836289521
+Number of electrons (should be 2) = 1.996129
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-4_g1_cisd.bas.
+Number of adapted atomic orbitals			8 MOs 16
+converged SCF energy = -1.09285518558916
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-5_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12106555169081
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.172226125389711  E_corr = -0.04134009836286313
+Number of electrons (should be 2) = 1.996417
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-5_g0_cisd.bas.
+Number of adapted atomic orbitals			10 MOs 22
+converged SCF energy = -1.09621256981778
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13088602702685
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-5_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12106555169081
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		30 MOs 110
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13088602702685
+E(RCISD) = -1.17222612538972  E_corr = -0.04134009836287134
+Number of electrons (should be 2) = 1.968348
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv5z-5_g1_cisd.bas.
+Number of adapted atomic orbitals			10 MOs 22
+converged SCF energy = -1.09621256981778
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-2_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09760425426988
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094461  E_corr = -0.0414423623062958
+Number of electrons (should be 2) = 2.026543
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-2_g0_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = 0.737587410320871
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-2_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09760425426988
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094419  E_corr = -0.0414423623062617
+Number of electrons (should be 2) = 2.026797
+Starting reduction with target 2 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-2_g1_cisd.bas.
+Number of adapted atomic orbitals			4 MOs 8
+converged SCF energy = 0.737587410320871
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-3_g0_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09760425426988
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094453  E_corr = -0.04144236230629258
+Number of electrons (should be 2) = 2.026788
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-3_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-3_g1_hf.bas.
+Number of adapted atomic orbitals			2 MOs 2
+converged SCF energy = -1.09760425426988
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094397  E_corr = -0.04144236230623303
+Number of electrons (should be 2) = 2.004379
+Starting reduction with target 3 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-3_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-4_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12438652511065
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094414  E_corr = -0.04144236230625279
+Number of electrons (should be 2) = 2.004395
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-4_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-4_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12438652511065
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094443  E_corr = -0.04144236230627737
+Number of electrons (should be 2) = 2.026557
+Starting reduction with target 4 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-4_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-5_g0_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12438652511065
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.17234491509448  E_corr = -0.04144236230631829
+Number of electrons (should be 2) = 2.026550
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-5_g0_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock to get density:
+converged SCF energy = -1.13090255278816
+Number of electrons (should be 2) = 2.000000
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-5_g1_hf.bas.
+Number of adapted atomic orbitals			4 MOs 4
+converged SCF energy = -1.12438652511065
+
+Reading coord from system/h2.xyz file.
+Number of atomic orbitals (M must be smaller)		42 MOs 182
+Running Hartree-Fock+CISD to get density:
+converged SCF energy = -1.13090255278816
+E(RCISD) = -1.172344915094423  E_corr = -0.04144236230626139
+Number of electrons (should be 2) = 2.026789
+Starting reduction with target 5 and 0 constraint ...
+Results written in out/test_4/cc-pv6z-5_g1_cisd.bas.
+Number of adapted atomic orbitals			6 MOs 10
+converged SCF energy = -1.11824774112731

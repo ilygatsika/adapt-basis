@@ -116,11 +116,11 @@ if (dm_file is not None):
     print("Importing CBS density")
     dm = 2 * utils.read_matrix_from_file(dm_file)
 
-    print("Importing overlap")
-    S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
+    #print("Importing overlap")
+    #S = utils.read_matrix_from_file("dat/H2O_ao_overlap.txt")
 
     #print(mol.ao_labels())
-    print("Reference", np.trace(S @ dm))
+    #print("Reference", np.trace(S @ dm))
 
     # Should be equal to electron number
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 

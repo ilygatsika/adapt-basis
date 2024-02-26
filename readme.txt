@@ -64,6 +64,7 @@ TODO simulations
     [*] générer des bases de la taille minimal (STO-3G) jusqu'à 14-(15-16) MOs
     [*] faire des tableaux de comparaison contre STO-3G et 6-31g
     [*] molécules H2O et H2
+    [*] compare H2 density matrix true vs HF vs CISD
 
 TODO long term
     
