@@ -1,7 +1,7 @@
 import src.basis as basis
 import src.linalg as LA
 import src.utils as utils
-from pyscf import gto
+from pyscf import gto, ci
 import numpy as np
 import argparse
 import sys
@@ -140,8 +140,10 @@ elif (dm_in == 'CISD'):
     # Get Hartree-Fock density matrix
     print("Running Hartree-Fock+CISD to get density:")
     myhf = mol.RHF().run() # Hartree-Fock
-    mf = myhf.CISD().run() # Single, double excitation
-    dm = mf.make_rdm1()
+    mf = ci.CISD(myhf).run() # Single, double excitation
+    dm_mo = mf.make_rdm1() # this is dm on MOs
+    c = mf.mo_coeff 
+    dm = c @ dm_mo @ c.T # convert dm on MOs to AOs
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 

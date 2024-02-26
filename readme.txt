@@ -48,6 +48,7 @@ TODO list
     [OK] debug the modified PCD algorithm with conventional pivot selection
     [OK] incorporate atom-wise forcing during the pivot selection
     [OK] scripts that automatize tests on basis generation
+    [OK] fix CISD error on electrons
 
 TODO simulations
 
