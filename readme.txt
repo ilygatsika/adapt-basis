@@ -59,13 +59,12 @@ TODO simulations
         de taille 9 en énergie DBCBS
     [OK] H2O molecule : réduire cc-pv5z et voir si on peut atteindre la taille de 
         cc-pvqz avec la même précision que cc-pv5z
-    [*] produce ABS results for densities (HF or CISD), for atom restrictions, 
-        for manual forcing and pivot forcing
+    [OK] générer des bases de la taille minimal (STO-3G) jusqu'à 14-(15-16) MOs
+    [OK] faire des tableaux de comparaison contre STO-3G et 6-31g
+    [OK] molécules H2O et H2
+    [OK] compare H2 density HF vs CISD
+    [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
-    [*] générer des bases de la taille minimal (STO-3G) jusqu'à 14-(15-16) MOs
-    [*] faire des tableaux de comparaison contre STO-3G et 6-31g
-    [*] molécules H2O et H2
-    [*] compare H2 density matrix true vs HF vs CISD
 
 TODO long term
     
