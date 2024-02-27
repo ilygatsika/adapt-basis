@@ -40,7 +40,7 @@ TODO simulations
     [OK] compare H2 density HF vs CISD
     [OK] frozen core
     [OK] H2 molecule generate size 6 adapted basis
-    [*] FH molecule
+    [OK] FH molecule
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
 
