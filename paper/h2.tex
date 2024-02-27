@@ -1,0 +1,157 @@
+\documentclass[crop]{standalone}
+
+% Tabular
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{hhline}
+
+% Color
+\usepackage[table]{xcolor}
+
+% Tikz frame
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,calc,fit}
+
+\newcommand{\bC}{\cellcolor{blue!15}}
+\newcommand{\gC}{\cellcolor{green!15}}
+\newcommand{\oC}{\cellcolor{orange!25}}
+\newcommand{\rC}[1]{\color{gray!45}{#1}}
+\newcommand{\rrC}[1]{\color{red!40!black}{#1}}
+
+\newcommand{\D}{{\bf d}}
+\newcommand{\T}{{\bf t}}
+\newcommand{\Q}{{\bf q}}
+\newcommand{\C}{{\bf 5}}
+\newcommand{\Si}{{\bf 6}}
+
+\begin{document}
+
+
+\begin{tabular}{ | c | >{\columncolor[gray]{0.9}}r | c | c | c | c |} 
+    \toprule
+            &          & \multicolumn{3}{c|}{Energy [Hartree]} & \\
+    \hhline{~~|---|~}
+    ref. dm & AO basis & HF & DBBCS & CIPSI+PT2 & \# MO 
+    \\ 
+    \midrule
+& \tikzmarknode{B1} sto-3g & \bC{-1.110850} & \bC{-1.155899} & \bC{-1.134147} &  \bC{2} \\
+& 6-31g  & \gC{-1.123713} & \gC{-1.161955} & \gC{-1.150027} & 
+\tikzmarknode{B2} \gC{4}
+    \\ \midrule
+    \multirow{2}{*}{DBBSC} &
+cc-pv\D z-2 & \bC{-1.096350} & \bC{-1.134123} & \bC{-1.113721} & \bC{2} \\
+& cc-pv\D z-4 & \gC{-1.122863} & \gC{-1.161860} & \gC{-1.148108} & \gC{4} 
+    \\ \hline
+    \multirow{20}{*}{HF} &
+cc-pv\D z-2    &   \bC{-1.096350}    &   \bC -1.134123 &  \bC{-1.113721} &
+\bC{2} \\
+&cc-pv\D z-3    &   \gC{-1.122863}    &  \gC{-1.161860} &  \gC{-1.148108} &
+\gC{4}  \\
+&cc-pv\D z-4    &   \rC{-1.122863} &   \rC{-1.161860} & \rC{-1.148108} &  \rC{4} \\
+&cc-pv\D z-5    &   \rC{-1.122863} &   \rC{-1.161860} & \rC{-1.148108} &  \rC{4}
+    \\ \hhline{~|-----}
+&cc-pv\T z-2    &   \bC{-1.097231}    &  \bC{-1.134989} & \bC{-1.114619} &
+\bC{2} \\
+&cc-pv\T z-3    &   \rC{-1.097231}    &  \rC{-1.134989} &  \rC{-1.114619} & \rC{2} \\
+&cc-pv\T z-4    &   \gC{-1.122269}    &  \gC{-1.161341} &  \gC{-1.146397} &
+\gC{4} \\
+&cc-pv\T z-5    &   \rC{-1.122269}    &  \rC{-1.161341} &  \rC{-1.146397} &
+\rC{4}
+    \\ \hhline{~|-----}
+&cc-pv\Q z-2    &   \bC{-1.097519}    &  \bC{-1.135279} &  \bC{-1.114917} &
+\bC{2} \\
+&cc-pv\Q z-3    &   \gC{-1.120966}    &  \gC{-1.160025} &  \gC{-1.144218} &
+\gC{4} \\
+&cc-pv\Q z-4    &   \rC{-1.120966}    &  \rC{-1.160025} &  \rC{-1.144218} &
+\rC{4} \\
+&cc-pv\Q z-5    &   \oC{-1.125529}    &  \oC{-1.163568} &  \oC{-1.152376} &
+\oC{6}
+    \\ \hhline{~|-----}
+&cc-pv\C z-2    &  \bC -1.097594   & \bC -1.135355 & \bC -1.114994 & \bC 2 \\
+&cc-pv\C z-3    &  \gC -1.121065   & \gC -1.157799 & \gC -1.145720 & \gC 4 \\
+&cc-pv\C z-4    &   \rC{-1.121065}   &  \rC{-1.157799} &  \rC{-1.145720} &
+\rC{4} \\
+&cc-pv\C z-5    &   \rC{-1.121065}   &  \rC{-1.157799} &  \rC{-1.145720} &
+\rC{4}
+    \\ \hhline{~|-----}
+&cc-pv\Si z-2    &   \tikzmarknode{A9}\bC -1.097604   &  \tikzmarknode{A4} \bC
+-1.135364 & \tikzmarknode{A10} \bC -1.115004 &  \bC 2 \\
+&cc-pv\Si z-3    &   \rC{-1.097604}   &  \rC{-1.135364} &  \rC{-1.115004} &
+\rC{2} \\
+&cc-pv\Si z-4    &   \tikzmarknode{A11}\gC -1.124386   &  \tikzmarknode{A2} \gC
+-1.163119 &  \tikzmarknode{A12}\gC -1.150201 & \gC 4 \\
+&cc-pv\Si z-5    &   \rC{-1.124386}   &  \rC{-1.163119} &  \rC{-1.150201} &
+\rC{4}
+    \\ \midrule
+    \multirow{20}{*}{CISD} 
+&cc-pv\D z-2    &   \bC -1.096350   &  \bC -1.134123 &  \bC -1.113721 & \bC  2 \\
+&cc-pv\D z-3    &   \rC{-1.096350}   &  \rC{-1.134123} &  \rC{-1.113721} &
+\rC{2} \\
+&cc-pv\D z-4    &  \gC -1.122863   &  \gC -1.161860 & \gC -1.148108 & \gC 4 \\
+&cc-pv\D z-5    &  \oC -1.127000   & \oC -1.168575 & \oC -1.162750 & \oC 10
+    \\ \hhline{~|-----}
+&cc-pv\T z-2    &  \bC -1.097231   & \bC -1.134989 & \bC -1.114619 & \bC 2 \\
+&cc-pv\T z-3    &   \rC{-1.097231}   &  \rC{-1.134989} &  \rC{-1.114619} &
+\rC{2} \\
+&cc-pv\T z-4    &  \gC -1.122269   & \gC -1.161341 & \gC -1.146397 & \gC 4 \\
+&cc-pv\T z-5    &  \oC -1.125134   & \oC -1.162937 &  \oC -1.151918 & \oC  6
+    \\ \hhline{~|-----}
+&cc-pv\Q z-2    &  \bC -1.097519   & \bC -1.135279 & \bC -1.114917 & \bC  2 \\
+&cc-pv\Q z-3    &   \rC{-1.097519}   &  \rC{-1.135279} &  \rC{-1.114917} &
+\rC{2} \\
+&cc-pv\Q z-4    &  \gC -1.120966   & \gC -1.160025 & \gC -1.144218 & \gC 4 \\
+&cc-pv\Q z-5    &  \oC -1.125529   & \oC -1.163568 & \oC -1.152376 & \oC 6
+    \\ \hhline{~|-----}
+&cc-pv\C z-2    &  \bC -1.097594   & \bC -1.135355 & \bC -1.114994 & \bC 2 \\
+&cc-pv\C z-3    &  \gC -1.121065   & \gC -1.157799 & \gC -1.145720 & \gC 4 \\
+&cc-pv\C z-4    &   \rC{-1.121065}   &  \rC{-1.157799} &  \rC{-1.145720} &
+\rC{4} \\
+&cc-pv\C z-5    &   \rC{-1.121065}   &  \rC{-1.157799} &  \rC{-1.145720} &
+\rC{4}
+    \\ \hhline{~|-----}
+&cc-pv\Si z-2    &  \tikzmarknode{A6}\bC -1.097604  & \tikzmarknode{A3} \bC
+-1.135364 & \tikzmarknode{A7}\bC -1.115004 & \bC 2 \\
+&cc-pv\Si z-3    &  \tikzmarknode{A5}\gC -1.124386   & \tikzmarknode{A1} \gC
+-1.163119 & \tikzmarknode{A8} \gC -1.150201 & \gC 4 \\
+&cc-pv\Si z-4    &   \rC{-1.124386}   &  \rC{-1.163119} &  \rC{-1.150201} &
+\rC{4} \\
+&cc-pv\Si z-5    &  \oC -1.127915   & \oC -1.170720 & \oC -1.163913 & \oC 10
+    \\ \bottomrule
+\end{tabular}
+
+\begin{tikzpicture}[overlay,remember picture]
+\node[ draw=blue,line width=2pt,fit={(B1)(B2)($(B1.north
+west)+(-18pt,+1pt)$)($(B2.south east)+(19pt,-0.5pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A1.north
+west)+(-2.1pt,+3.6pt)$)($(A1.south east)+(43pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A2.north
+west)+(-2.1pt,+3.6pt)$)($(A2.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A3.north
+%west)+(-2.1pt,+3.6pt)$)($(A3.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A4.north
+%west)+(-2.1pt,+3.6pt)$)($(A4.south east)+(43pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A5.north
+west)+(-2.1pt,+3.6pt)$)($(A5.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A6.north
+%west)+(-2.1pt,+3.6pt)$)($(A6.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A7.north
+%west)+(-2.1pt,+3.6pt)$)($(A7.south east)+(43pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A8.north
+west)+(-2.1pt,+3.6pt)$)($(A8.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A9.north
+%west)+(-2.1pt,+3.6pt)$)($(A9.south east)+(43pt,1pt)$)}]{};
+%\node[ draw=red,line width=1.5pt,fit={($(A10.north
+%west)+(-2.1pt,+3.6pt)$)($(A10.south east)+(43pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A11.north
+west)+(-2.1pt,+3.6pt)$)($(A11.south east)+(43pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A12.north
+west)+(-2.1pt,+3.6pt)$)($(A12.south east)+(43pt,1pt)$)}]{};
+\end{tikzpicture}
+
+\end{document}
+
+

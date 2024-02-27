@@ -1,0 +1,148 @@
+\documentclass[crop]{standalone}
+
+% Tabular
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{hhline}
+
+% Color
+\usepackage[table]{xcolor}
+
+% Tikz frame
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,calc,fit}
+
+\newcommand{\bC}{\cellcolor{blue!15}}
+\newcommand{\gC}{\cellcolor{green!15}}
+\newcommand{\oC}{\cellcolor{orange!25}}
+\newcommand{\rC}[1]{\color{gray!45}{#1}}
+\newcommand{\rrC}[1]{\color{red!40!black}{#1}}
+
+\newcommand{\D}{{\bf d}}
+\newcommand{\T}{{\bf t}}
+\newcommand{\Q}{{\bf q}}
+\newcommand{\C}{{\bf 5}}
+\newcommand{\Si}{{\bf 6}}
+
+\begin{document}
+
+
+\begin{tabular}{ | c | >{\columncolor[gray]{0.9}}r | c | c | c | c |} 
+    \toprule
+            &          & \multicolumn{3}{c|}{Energy [Hartree]} & \\
+    \hhline{~~|---|~}
+    ref. dm & AO basis & HF & DBBCS & CIPSI+PT2 & \# MO 
+    \\ 
+    \midrule
+    &   \tikzmarknode{B1} sto-3g       & \bC -74.963023   & \bC -75.239390 &
+    \bC -75.012578 & \bC 7 \\
+    &  6-31g        & \gC  -75.983974   & \gC -76.298004 & \gC -76.120870 &
+    \gC 13 \\
+    &   6-31g*       & \oC -76.009108   & \oC -76.340138 & \oC -76.206753 & \oC 18 \\
+    &   6-311g       & \oC -76.009361   & \oC -76.325604 & \oC -76.174732 &
+    \oC \tikzmarknode{B2} 19
+    \\ \midrule
+    \multirow{35}{*}{HF}
+  &    cc-pv\D z-7      &  \gC  -75.966233   & \gC   -76.234518   & \gC
+    -76.030016    & \gC 10 \\
+  &    cc-pv\D z-8      &  \rC  -75.966233   & \rC   -76.234590   & \rC -76.030016
+    & \rC  10 \\
+  &    cc-pv\D z-9      &  \gC  -75.980443   & \gC   -76.296048   & \gC -76.117176
+    & \gC  13 \\
+  &    cc-pv\D z-10     & \rC -75.980443   & \rC -76.296048   & \rC  -76.117181 &
+    \rC 13 \\
+  &    cc-pv\D z-11     &  \oC  -76.018582   & \oC   -76.334979   & \oC -76.174052    &
+  \oC  19 \\
+  &    cc-pv\D z-12     &  \rC  -76.018582   & \rC   -76.334979   & \rC -76.174046
+    &  \rC 19
+    \\ \hhline{~|-----}
+  &    cc-pv\T z-7      &  \gC  -75.976357   & \gC   -76.240511   & \gC  -76.027022    &
+    \gC 9 \\
+  &    cc-pv\T z-8      &  \rC  -75.976357   & \rC   -76.240570   &  \rC
+    -76.027022    & \rC  9 \\
+  &    cc-pv\T z-9      &  \gC  -75.996939   & \gC   -76.304258   & \gC -76.115203    &
+   \gC 12 \\
+  &    cc-pv\T z-10     & \gC  -76.001819   &  \gC  -76.316611   & \gC -76.133702
+    & \gC 13 \\
+  &    cc-pv\T z-11     & \rC   -76.001819   & \rC   -76.316611   & \rC
+    -76.133702    & \rC 13 \\
+  &    cc-pv\T z-12     & \rC   -76.033060   &  \rC  -76.352732   & \rC -76.180762    &
+   \rC 19 \\
+  &    cc-pv\T z-13     & \rC   -76.034620   & \rC   -76.355290   & \rC
+    -76.186261    & \rC  21
+    \\ \hhline{~|-----}
+  &    cc-pv\Q z-7      & \bC   -75.912754   &  \bC  -76.175528   & \bC -75.957900
+    & \bC 7 \\
+  &    cc-pv\Q z-8      & \gC   -75.976266   & \gC   -76.240610   & \gC -76.026489    &
+    \gC 9 \\
+  &    cc-pv\Q z-9      &  \gC  -75.998558   & \gC   -76.302718   & \gC  -76.111086    &
+   \gC  12 \\
+  &    cc-pv\Q z-10     &  \gC  -76.005708   &  \gC  -76.316153   & \gC -76.129969    &
+   \gC 13 \\
+  &    cc-pv\Q z-11     &  \oC  -76.021380   & \oC   -76.329560   & \oC -76.147931    &
+   \oC 15 \\
+  &    cc-pv\Q z-12     &  \rC  -76.021380   & \rC -76.329560   & \rC -76.147933
+    & \rC 15 \\
+  &    cc-pv\Q z-13     &  \rC  -76.021380   & \rC -76.329525   & \rC -76.147933
+    & \rC  15
+    \\ \hhline{~|-----}
+  &    cc-pv\C z-7      &  \gC  -75.993843   & \gC   -76.255913   & \gC  -76.046158    &
+   \gC  9 \\
+  &    cc-pv\C z-8      &  \rC  -75.993843   &  \rC  -76.255913   & \rC -76.046158
+  & \rC 9 \\
+  &    cc-pv\C z-9      & \gC   -76.004226   &  \gC  -76.275744   & \gC -76.075321    &
+  \gC 10 \\
+  &    cc-pv\C z-10     &  \gC  -76.016189   & \gC   -76.314173   & \gC -76.126618    &
+  \gC 13 \\
+  &    cc-pv\C z-11     &  \oC  -76.017564   &  \oC  -76.334186   & \oC -76.160145    &
+  \oC 16 \\
+  &    cc-pv\C z-12     & \rC   -76.017564   & \rC   -76.334141   & \rC
+    -76.160145    & \rC 16 \\ 
+  &    cc-pv\C z-13     & \oC   -76.021376   & \oC   -76.339136   & \oC -76.165705    &
+  \oC 18
+    \\ \hhline{~|-----}
+  &    cc-pv\Si z-7      & \tikzmarknode{A4} \bC   -75.913900   &
+  \tikzmarknode{A5} \bC   -76.176685   & \tikzmarknode{A6} \bC
+    -75.959107    & \bC  7 \\
+  &    cc-pv\Si z-8      &  \gC  -75.995999   & \gC   -76.259458   & \gC -76.048036    &
+  \gC 9 \\
+  &    cc-pv\Si z-9      & \gC   -76.005021   &  \gC  -76.277122   & \gC  -76.074156    &
+  \gC 10 \\
+  &    cc-pv\Si z-10     &  \tikzmarknode{A1}\gC  -76.016650   &
+  \tikzmarknode{A2} \gC  -76.330452   & \tikzmarknode{A3}\gC -76.148321    &
+  \gC 13 \\
+  &    cc-pv\Si z-11     &  \oC  -76.043044   & \oC   -76.361526   & \oC -76.193246    &
+  \oC 19 \\
+  &    cc-pv\Si z-12     & \rC   -76.043044   & \rC   -76.361526   & \rC
+    -76.193246    & \rC 19 \\
+  &    cc-pv\Si z-13     & \oC   -76.044827   &  \oC  -76.365315   & \oC -76.199708    &
+  \oC 22
+    \\ \midrule
+    \multirow{35}{*}{CISD} 
+    \\ \bottomrule
+\end{tabular}
+
+\begin{tikzpicture}[overlay,remember picture]
+\node[ draw=blue,line width=2pt,fit={(B1)(B2)($(B1.north
+west)+(-23pt,+1pt)$)($(B2.south east)+(17pt,-0.1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A1.north
+west)+(-2.1pt,+3.6pt)$)($(A1.south east)+(48pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A2.north
+west)+(-2.1pt,+3.6pt)$)($(A2.south east)+(48pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A3.north
+west)+(-2.1pt,+3.6pt)$)($(A3.south east)+(48pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A4.north
+west)+(-2.1pt,+3.6pt)$)($(A4.south east)+(48pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A5.north
+west)+(-2.1pt,+3.6pt)$)($(A5.south east)+(48pt,1pt)$)}]{};
+\node[ draw=red,line width=1.5pt,fit={($(A6.north
+west)+(-2.1pt,+3.6pt)$)($(A6.south east)+(48pt,1pt)$)}]{};
+\end{tikzpicture}
+
+\end{document}
+
+
