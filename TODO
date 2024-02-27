@@ -39,10 +39,10 @@ TODO simulations
     [OK] molécules H2O et H2
     [OK] compare H2 density HF vs CISD
     [OK] frozen core
+    [OK] H2 molecule generate size 6 adapted basis
     [*] FH molecule
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
-    [*] H2 molecule generate size 6 adapted basis, add line in h2.pdf with *-6
 
 TODO long term
     
