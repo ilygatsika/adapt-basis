@@ -49,6 +49,7 @@ TODO list
     [OK] incorporate atom-wise forcing during the pivot selection
     [OK] scripts that automatize tests on basis generation
     [OK] fix CISD error on electrons
+    [*] add F element to all basis sets in dat folder
 
 TODO simulations
 

@@ -3,7 +3,7 @@ from src import utils
 
 bases = ['sto-3g', '6-31g', '6-31g_st', '6-311g', 'cc-pvdz', 'cc-pvtz', 'cc-pvqz']
          #'cc-pv5z', 'cc-pv6z'] 
-molecules = ['h2', 'h2o']
+molecules = ['fh', 'h2', 'h2o']
 
 for molecule in molecules:
     print('%s =========== nb of MOs ========== Hartree-Fock' %molecule)
