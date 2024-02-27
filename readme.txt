@@ -64,11 +64,11 @@ TODO simulations
     [OK] faire des tableaux de comparaison contre STO-3G et 6-31g
     [OK] molécules H2O et H2
     [OK] compare H2 density HF vs CISD
+    [OK] frozen core
     [*] FH molecule
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
     [*] H2 molecule generate size 6 adapted basis, add line in h2.pdf with *-6
-    [*] FH et frozen core
 
 TODO long term
     
