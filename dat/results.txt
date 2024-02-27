@@ -339,9 +339,10 @@ Note : On doit rester dans l'approximation frozen core.
 C'est l'approximation dans laquelle on s'est placés dans l'article
 
 6-31g, 6-311g et 6-31g*, valeurs de références dans l'approximation frozen-core
-6-31g   | -75.983974 | -76.257294 | -76.119949
-6-311g  | -76.009360 | -76.281399 | -76.157932
-6-31g*  | -76.009108 | -76.298276 | -76.205338
+sto-3g  | -74.963023 | -75.197880 | -75.012500 | 6
+6-31g   | -75.983974 | -76.257294 | -76.119949 | 12 
+6-311g  | -76.009360 | -76.281399 | -76.157932 | 18
+6-31g*  | -76.009108 | -76.298276 | -76.205338 | 17
 
 H2O (hf density, DBBSC et CIPSI+PT2 avec l'approximation frozen core):
 cc-pvdz_7      |    -75.966233  |    -76.198111  |  -76.029694  |  10
