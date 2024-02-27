@@ -335,6 +335,9 @@ cc-pv6z_13     |    -76.044827  |    -76.365277  |  -76.199738 |  22
 
 Frozen core
 ===========
+Note : On doit rester dans l'approximation frozen core. 
+C'est l'approximation dans laquelle on s'est placés dans l'article
+
 6-31g, 6-311g et 6-31g*, valeurs de références dans l'approximation frozen-core
 6-31g   | -75.983974 | -76.257294 | -76.119949
 6-311g  | -76.009360 | -76.281399 | -76.157932
