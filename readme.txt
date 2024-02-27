@@ -1,26 +1,24 @@
-Usage
-        
+Setup
+
         make setup
-        python3 main.py [--coord] h2o [--AO] aug-cc-pvdz [--M] 20 [--option] 0
- 
-    Output is atomic orbital basis parameter file in GAMESS US format placed in 
-    the out folder.
 
 Help
-    
+
         python3 main.py --help
 
 Example
     
-    Reduce H2 molecule cc-pVDZ basis.
+    Generate basis sets for the H2 molecule.
         
-        ./script/01-h2_cc-pvdz.sh 
+        ./script/h2.sh 
+
+    Output is atomic orbital basis parameter file in GAMESS US format placed in 
+    the out/h2 folder.
 
 Notes
 
-    Tuning of the M value should be decided by trial and error. Try different
-    values and evaluate the error on a desired quantity. There is no general rule,
-    as the tuning depends on the target desired quantity (energy, density, etc).
+    The target M value should be smaller than the total number of molecular
+    orbitals in the reference basis. 
 
     Molecular geometries for tests are placed in the system folder (coordinates in 
     Angstrom).
@@ -50,6 +48,8 @@ TODO list
     [OK] scripts that automatize tests on basis generation
     [OK] fix CISD error on electrons
     [OK] add F element to all basis sets in dat folder
+    [*] clean main program and create hidden routines for compact calls
+    [*] remove abs-x constraints in options and source because not used
 
 TODO simulations
 
@@ -64,18 +64,16 @@ TODO simulations
     [OK] faire des tableaux de comparaison contre STO-3G et 6-31g
     [OK] molécules H2O et H2
     [OK] compare H2 density HF vs CISD
+    [*] FH molecule
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
     [*] H2 molecule generate size 6 adapted basis, add line in h2.pdf with *-6
     [*] FH et frozen core
-    [*] try orbitals mixing atoms and types, i/o compatiblity and typed bases
 
 TODO long term
     
-    [*] FH molecule
     [*] test properties: dipoles
     [*] use other metrics such as L2
-    [*] optimize contraction coefficients using a linear dependence criterion on
-        the density 
+    [*] try orbitals mixing atoms and types, i/o compatiblity and typed bases
 
 
