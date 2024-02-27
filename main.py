@@ -79,10 +79,10 @@ gram_atom = args.gram_atom
 coord = 'system/%s.xyz' %coord
 dm_file = None
 if (dm_in not in ['HF','CISD']): 
-    dm_file = 'dat/%s.txt' %dm_in
+    dm_file = 'dat/ref/%s.txt' %dm_in
 # Input basis files
-ao_nw = 'dat/%s.nw' %ao_basis # NWChem
-ao_bas = 'dat/%s.bas' %ao_basis # GAMESS US
+ao_nw = 'dat/gto/%s.nw' %ao_basis # NWChem
+ao_bas = 'dat/gto/%s.bas' %ao_basis # GAMESS US
 # Output basis files
 key = (ao_basis, M_target, gram_atom, dm_in.lower())
 out_file_nw = out_dir+'/%s-%i_g%i_%s.nw' %key # NWChem
@@ -92,12 +92,6 @@ print("\nReading coord from %s file." %coord)
 
 # Create molecule in PySCF
 input_basis = utils.create_nw_basis(coord, ao_nw)
-'''
-input_basis = {
-        'H': gto.basis.load(ao_nw, 'H'),
-        'O': gto.basis.load(ao_nw, 'O')
-        }
-'''
 mol = gto.M(atom=coord, basis=input_basis)
 nelec = np.sum(mol.nelec)
 

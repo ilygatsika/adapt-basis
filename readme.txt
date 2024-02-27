@@ -49,7 +49,7 @@ TODO list
     [OK] incorporate atom-wise forcing during the pivot selection
     [OK] scripts that automatize tests on basis generation
     [OK] fix CISD error on electrons
-    [*] add F element to all basis sets in dat folder
+    [OK] add F element to all basis sets in dat folder
 
 TODO simulations
 
@@ -66,7 +66,7 @@ TODO simulations
     [OK] compare H2 density HF vs CISD
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
-    [*] H2 molecule generate size 6 adapted basis
+    [*] H2 molecule generate size 6 adapted basis, add line in h2.pdf with *-6
     [*] FH et frozen core
     [*] try orbitals mixing atoms and types, i/o compatiblity and typed bases
 

@@ -14,7 +14,8 @@ import re
 
 # Map first letter to elements
 elem_map = {'H': 'HYDROGEN', 
-            'O': 'OXYGEN'
+            'O': 'OXYGEN',
+            'F': 'FLUORINE'
             }
 
 def read_matrix_from_file(filename):
