@@ -24,6 +24,9 @@ TODO list
     [OK] add F element to all basis sets in dat folder
     [*] clean main program and create hidden routines for compact calls
     [*] remove abs-x constraints in options and source because not used
+    [OK] separate orbital type components during selection
+    [*] verify that the custom hamiltonian in the dump file gives the same
+    results. Test for removing an entire orbital s or p.
 
 TODO simulations
 
@@ -43,6 +46,8 @@ TODO simulations
     [OK] FH molecule
     [*] matrice de densité alternatives gcisd, ucisd, qcisd, full ci
     [*] matrice de densité CIPSI
+    [*] H2 molecule, ccpvtz: compare sssp (12 MO) and ssspz (8 MO)
+    [*] target up to 80 qubits, in order to see constant then convergence
 
 TODO long term
     
