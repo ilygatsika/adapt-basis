@@ -1,0 +1,25 @@
+You can reload an EZFIO DATABASE and continue working with it with
+
+EZFIO_DATABASE=my_ezfio.ezfio # Name of the ezfio folder
+qp set_file ${EZFIO_DATABASE} 
+qp run cisd | tee cisd.out
+
+################################################################################
+
+
+
+
+
+density_based basis-set correction code is available here : 
+cd qp2/plugins
+cloner : https://github.com/dtraore97/qp_plugins_lct
+
+Here is a script to launch a dbbsc calculation:
+######################################################################
+qp create_ezfio -b ${basis} -m ${multiplicity} -o ${system}_${basis}.ezfio ${geom}
+
+qp run scf | tee scf_${system}_${basis}.out
+
+#Help qp_sc_basis_corr -h
+qp_sc_basis_corr -m hf -f pbe_ueg ${system}_${basis}.ezfio
+#####################################################################
