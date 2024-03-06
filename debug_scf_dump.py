@@ -18,49 +18,89 @@ Note you will see warning message on the screen:
 from pyscf import gto, scf, ao2mo
 from pyscf.tools import fcidump
 import numpy as np
+import trexio
 
-def select_components(coord, basis, idx, filename):
-    
+def select_components(coord, basis, idx, outfile):
+
     mol = gto.M(atom=coord, basis=basis)
     mf = scf.RHF(mol).run()
     print('should be', mol.nelectron, np.trace(mf.get_ovlp() @ mf.make_rdm1()))
     print('original MOs', mol.nao)
 
     # SCF for the custom Hamiltonian
-    mol_custom = gto.M(atom=coord)                                                                                                                                                                                                    
-    mol_custom.incore_anyway = True                                                                                                                                                                                                   
-    mol_custom.nelectron = mol.nelectron                                                                                                                                                                                              
-    mf_custom = scf.RHF(mol_custom)                                                                                                                                                                                                   
-                                                                                                                                                                                                                                      
-    # selected indices                                                                                                                                                                                                                
-    nao = len(idx)                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                      
-    # Overwrite three attributes of SCF object                                                                                                                                                                                        
-    mf_custom.get_hcore = lambda *args: mf.get_hcore()[np.ix_(idx, idx)]                                                                                                                                                              
-    mf_custom.get_ovlp = lambda *args: mf.get_ovlp()[np.ix_(idx,idx)]                                                                                                                                                                 
-                                                                                                                                                                                                                                      
-    # Two equivalent ways to recover eri as four-index                                                                                                                                                                                
-    eri = ao2mo.restore(1, mf._eri, mol.nao)                                                                                                                                                                                          
-    mf_custom._eri = ao2mo.restore(8, eri[np.ix_(idx,idx,idx,idx)], nao)                                                                                                                                                              
-                                                                                                                                                                                                                                      
-    mf_custom.init_guess = mf.make_rdm1()[np.ix_(idx,idx)]                                                                                                                                                                            
-    mf_custom.kernel()                                                                                                                                                                                                                
-                                                                                                                                                                                                                                      
-    print('should be', mol.nelectron, np.trace(mf_custom.get_ovlp() @ mf_custom.make_rdm1()))                                                                                                                                         
-                                                                                                                                                                                                                                      
-    # Call the second order SCF solver in case converging the DIIS-driven HF method                                                                                                                                                   
-    # without a proper initial guess is difficult.                                                                                                                                                                                    
-    #print(mf_custom.newton().run())                                                                                                                                                                                                  
-    assert(mf_custom.converged)                                                                                                                                                                                                       
-    #mf_custom.stability()                                                                                                                                                                                                            
-                                                                                                                                                                                                                                      
-    print('final MOs', mf_custom.make_rdm1().shape[0])                                                                                                                                                                                
-                                                                                                                                                                                                                                      
-    # Use the given SCF object to transform the 1-electron and 2-electron integrals then dump them to FCIDUMP.                                                                                                                        
-    # Convert an SCF object to FCIDUMP                                                                                                                                                                                                
-    fcidump.from_scf(mf_custom, filename)                                                                                                                                                                                             
-    print('Result print to %s\n' %filename)                                                                                                                                                                                           
-                                                                                                                                                                                                                                      
+    mol_custom = gto.M(atom=coord)
+    mol_custom.incore_anyway = True
+    mol_custom.nelectron = mol.nelectron
+    mf_custom = scf.RHF(mol_custom)
+
+    # selected indices
+    nao = len(idx)
+
+    # Overwrite three attributes of SCF object
+    mf_custom.get_hcore = lambda *args: mf.get_hcore()[np.ix_(idx, idx)]
+    mf_custom.get_ovlp = lambda *args: mf.get_ovlp()[np.ix_(idx,idx)]
+
+    # Two equivalent ways to recover eri as four-index
+    eri = ao2mo.restore(1, mf._eri, mol.nao)
+    mf_custom._eri = ao2mo.restore(8, eri[np.ix_(idx,idx,idx,idx)], nao)
+    mf_custom.init_guess = mf.make_rdm1()[np.ix_(idx,idx)]
+    mf_custom.kernel()
+
+    print('should be', mol.nelectron, np.trace(mf_custom.get_ovlp() @ mf_custom.make_rdm1()))
+
+    # Call the second order SCF solver in case converging the DIIS-driven HF method
+    # without a proper initial guess is difficult.
+    #print(mf_custom.newton().run())
+    assert(mf_custom.converged)
+    #mf_custom.stability()
+
+    custom_nao = mf_custom.make_rdm1().shape[0]
+    print('final MOs', custom_nao)
+
+    # Use the given SCF object to transform the 1-electron and 2-electron integrals then dump them to FCIDUMP.
+    # Convert an SCF object to FCIDUMP
+    #fcidump.from_scf(mf_custom, outfile)
+
+    # Prepare output with TREXIO
+    mo_coeff_custom = mf_custom.mo_coeff
+    n_mo = mo_coeff_custom.shape[1]
+    buffsize=n_mo**4
+    buff_index=np.array([(i,j,k,l) for i in range(n_mo) \
+            for j in range(n_mo) for k in range(n_mo) for l in  range(n_mo)])
+    print("Shape buff_index= ", buff_index.shape)
+
+    # Prepare quantities associated to custom object
+    ovlp_custom = mol.intor('int1e_ovlp')[np.ix_(idx,idx)]
+    kin_custom = mol.intor_symmetric('int1e_kin')[np.ix_(idx,idx)]
+    nuc_custom = mol.intor_symmetric('int1e_nuc')[np.ix_(idx,idx)]
+    hcore_ao = kin_custom + nuc_custom
+    hcore_mo = np.einsum('pi,pq,qj->ij', mo_coeff_custom, hcore_ao, mo_coeff_custom)
+
+    # Write infos in trexio file
+    with trexio.File(f"{outfile}.trexio", 'w', back_end=1) as f:
+        # Nucleus group
+        trexio.write_nucleus_num(f, mol.natm)
+        trexio.write_nucleus_coord(f, mol.atom_coords())
+        # Basis group
+        trexio.write_basis_type(f, "Gaussian")
+        # ao group
+        trexio.write_ao_num(f, int(custom_nao))
+        # MO group
+        trexio.write_mo_num(f, mo_coeff_custom.shape[1])
+        trexio.write_mo_coefficient(f, mo_coeff_custom)
+        # mo_1e_int group
+        trexio.write_mo_1e_int_overlap(f, ovlp_custom)        
+        trexio.write_mo_1e_int_kinetic(f, kin_custom)
+        trexio.write_mo_1e_int_potential_n_e(f, nuc_custom)        
+        trexio.write_mo_1e_int_core_hamiltonian(f, hcore_mo)        
+        # mo_2e_int group
+        trexio.write_rdm_1e(f, mf_custom.make_rdm1())
+        vals = mf_custom.make_rdm2().flatten()
+        trexio.write_rdm_2e(f, 0, buffsize, buff_index.flatten(), vals)
+        print(vals)
+
+    print('Result print to %s folder\n' %outfile)
+
 
 basis = {'O': gto.parse('''
 O    S
@@ -118,11 +158,10 @@ H   0.000000    0.757200  -0.4692000'''
 h2_idx = [0,1,4,5,6,9]
 h2o_idx = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23]
 
-filename_h2 = 'dat/h2.example'
-filename_h2o = 'dat/h2o.example'
-
-select_components(h2, basis, h2_idx, filename_h2)
-select_components(h2o, basis, h2o_idx, filename_h2o)
+outfile = 'dat/h2'
+select_components(h2, basis, h2_idx, outfile)
+outfile = 'dat/h2o'
+select_components(h2o, basis, h2o_idx, outfile)
 
 '''
 cc-pvdz basis for Hydrogen
@@ -165,3 +204,4 @@ cc-pvdz basis for H2O
 22 Hpy
 23 Hpz
 '''
+

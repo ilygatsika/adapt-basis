@@ -298,6 +298,90 @@ where $N_{\MO}$ is the number of basis functions used to discretise the
 molecular orbitals. Note that our method allows to reduce the number of MOs in this
 expression.
 
+\subsection{Preprint}
+
+The task of constructing basis sets of minimal size that achieve 
+a target level of accuracy is treated as follows. In the present work, we propose to
+formulate our goal in terms of a constraint optimisation problem. Let us denote
+by $\Psi_0\in W^B$ the wave function corresponding to the ground state energy,
+equal to a normalised Slater determinant associated to molecular orbitals that
+are approximated on a basis of Gaussian-type atomic orbitals (GTOs), denoted by
+$\mathcal B=\{\chi_{\mu}\}_{1\leq \mu\leq N_b}$. We assume 
+that the coefficients on the GTOs are obtained by a converged minimisation
+procedure. Let us denote the one-electron density associated to the ground state by
+$n_0^{\mathcal B}$. Given a target basis size $M$, we seek the optimal subset
+of $B$, of the form $\mathcal B_I=\{\chi_{\mu}\}_{\mu\in I}$ associated to a set of
+indices $I\subseteq\{1,\ldots,N_b\}$ and $|I|=M$, where $|\cdot|$ denotes the 
+cardinal of the set $I$, that minimises the error of the \textit{best
+approximation} of the density $n_0^{\mathcal B}$ over the space of $\mathcal
+B_I$-representable one-electron densities. The optimal subset
+of $\mathcal B$ can be found by solving the following optimisation problem for
+obtaining the corresponding index set $I_*$, 
+\begin{equation}
+    \label{eq:optimisation_problem}
+    I_* := \arg\min_{\substack{I\subseteq\{1,\ldots,N_b\} \\ |I|=M}}\,
+    \min_{m^{\mathcal B_I}\,\|n_0^{\mathcal B} - m\|,
+\end{equation}
+where $\|\cdot\|$ is any given norm defined for functions over $\mathcal R^3$. 
+In the present work, we consider the Coulomb norm, defined as
+$\|\cdot\|=\langle\cdot,\cdot\rangle$ with
+$\langle n,m\rangle:=\iint_{\mathbb R^3\times\mathbb R^}\frac{n(r)m(r')}{|r -
+r'|}\,\dd{r}\dd{r'}$ associated to the space Sobolev etc (see ref). Let us note
+that \cref{eq:optimisation_problem} requires knowledge of the density
+$n_0^{\mathcal B}$ used as a reference, which is assumed to be obtained by 
+performing precomputation on a classical computer. 
+
+Let us describe our main approach for solving the problem of \cref{eq:optimisation_problem}. 
+Our main goal is to discard GTO indices using a greedy procedure for eliminating 
+linear dependencies in the basis spanning the one-electron density, i.e. 
+\[
+    n_0^{\mathcal B} \in \Span(\chi_{\mu}\chi_{\nu})_{1\leq \mu\leq \nu\leq
+    N_b}.
+\]
+The idea of selecting AO products has been initially proposed in ref in the context
+of constructing auxiliary basis sets used in density fitting, in the aim of
+accelerating the computation of bielectronic integrals. In the present
+work, we propose a new scheme based on the linear dependence elimination for 
+solving problem of \cref{eq:optimisation_problem}, named Molecule-Adapted Basis
+Set (MABS) generation procedure. Let us assume that the density given as a reference 
+writes as
+\[
+    n_0^{\mathcal B} =
+    \sum_{\mu=1}^{N_b}\sum_{\nu=1}^{N_b}D_{\mu}D_{\nu}\chi_{\mu}\chi_{\nu},
+\]
+where $D=CC^\top$ denotes the density matrix and $C$ are the coefficients in the
+linear combination of atomic orbitals, obtained by a converged energy minimisation 
+procedure. Our scheme is formulated in terms of matrices, as follows. We first
+define the four-index tensor $T$ with entries the AO products weighted by the
+density matrix, i.e. $T_{\mu\nu\kappa\lambda} =
+D_{\mu}D_{\nu}\langle\chi_{\mu}\chi_{\nu},\chi_{\lambda}\chi_{\kappa}\rangle$.
+The Gram matrix of the weighted AO products is then formed as follows. It is
+known in the literature that the set of AO products suffers from linear
+dependencies. The Pivoted Cholesky Decomposition (PCD) (ref Susi) is a known tool for
+tackling this problem and removing linear dependencies using an iterative
+procedure, that may be interpreted as a modified Gram-Schmidt
+orthonormalisation that discards functions that do not contribute to the full
+span of the space up to a tolerance threshold value. Before selecting indices,
+we perform a pre-processing step of the matrix by blocks, that is necessary in order 
+to respect the orbital type of the desired elements in $\mathcal B$. Due to orbital 
+symmetry, all orbital components belonging to the same type will be contracted. This
+yields the contraction matrix $M$. Additionally,
+we eliminate orbital products not centered on atoms, using a restriction matrix. Then we apply PCD to this
+matrix using the machine epsilon as a target tolerance value. This gives a set
+of indices sorted in pivot-descensing order. The AO product
+selected index set is then defined as $I_M:=\{(\mu,\nu)\colon\}$ the $M$-first
+indices of PCD. Finally, we recover the AO 
+index set as $I_0=\{\mu\colon \exists\nu, (\mu,\nu)\in I_M \text{ or }(\nu,\mu)\in I_M\}$.
+A final post-processing step is applied in order to assure the element-wise
+consistency, according to which all elements of the same type are assigned the
+same AO basis set. The AO basis set associated to any element is then the union
+of indices that belong to the set $I_0$. This yields the solution $I_*$ to the
+problem. The MABS basis, solution to this problem, is defined as $\mathcal
+B_{I_*}$. Note that our MABS generation scheme essentially controls the size $M$
+of the selected products. The actual size of the AO basis set, equal to $|I_*|$
+is only implicitely controled during this procedure. As we will see in practice,
+the difference between $|I_*|$ and $M$ typically does not vary more than 10.
+
 \subsection{Results}
 
 The first experiment allows to compare the results obtained from a DFT/B3LYP
