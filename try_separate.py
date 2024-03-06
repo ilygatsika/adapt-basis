@@ -57,7 +57,7 @@ After Hartree-Fock: discard orbitals
 27 x2-y2
 '''
 M_target = 9
-
+print("Target is %i with starting basis %s" %(M_target,ao_nw))
 input_basis = utils.create_nw_basis(coord, ao_nw)
 mol = gto.M(atom=coord, basis=input_basis)
 nelec = np.sum(mol.nelec)
@@ -78,7 +78,7 @@ A = G; mask = False
 L,piv,k = LA.PCD(A)
 pivk = piv[:M_target]
 idx = basis.orbitals_in_products(mol, pivk, mask=mask)
-print(idx)
+print("full component :", idx)
 
 # Now select among separate components
 G = basis.get_4c_overlap(mol, metric)
@@ -98,7 +98,7 @@ for ip in pivk:
     idx_i.append(i)
     idx_j.append(j)
 idx = set(idx_i + idx_j)
-print(idx)
+print("individual component:",idx)
 print(mol.nao)
 print(mol.nbas)
 
