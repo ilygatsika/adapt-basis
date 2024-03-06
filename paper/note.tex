@@ -11,6 +11,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
+\usepackage{physics}
 \usepackage[capitalise]{cleveref}
 \usepackage{bm}
 
@@ -318,14 +319,14 @@ B_I$-representable one-electron densities. The optimal subset
 of $\mathcal B$ can be found by solving the following optimisation problem for
 obtaining the corresponding index set $I_*$, 
 \begin{equation}
-    \label{eq:optimisation_problem}
+    %\label{eq:optimisation_problem}
     I_* := \arg\min_{\substack{I\subseteq\{1,\ldots,N_b\} \\ |I|=M}}\,
-    \min_{m^{\mathcal B_I}\,\|n_0^{\mathcal B} - m\|,
+    \min_{m^{\mathcal B_I}}\,\|n_0^{\mathcal B} - m\|,
 \end{equation}
 where $\|\cdot\|$ is any given norm defined for functions over $\mathcal R^3$. 
 In the present work, we consider the Coulomb norm, defined as
 $\|\cdot\|=\langle\cdot,\cdot\rangle$ with
-$\langle n,m\rangle:=\iint_{\mathbb R^3\times\mathbb R^}\frac{n(r)m(r')}{|r -
+$\langle n,m\rangle:=\iint_{\mathbb R^3\times\mathbb R^3}\frac{n(r)m(r')}{|r -
 r'|}\,\dd{r}\dd{r'}$ associated to the space Sobolev etc (see ref). Let us note
 that \cref{eq:optimisation_problem} requires knowledge of the density
 $n_0^{\mathcal B}$ used as a reference, which is assumed to be obtained by 
@@ -364,11 +365,16 @@ orthonormalisation that discards functions that do not contribute to the full
 span of the space up to a tolerance threshold value. Before selecting indices,
 we perform a pre-processing step of the matrix by blocks, that is necessary in order 
 to respect the orbital type of the desired elements in $\mathcal B$. Due to orbital 
-symmetry, all orbital components belonging to the same type will be contracted. This
-yields the contraction matrix $M$. Additionally,
-we eliminate orbital products not centered on atoms, using a restriction matrix. Then we apply PCD to this
-matrix using the machine epsilon as a target tolerance value. This gives a set
-of indices sorted in pivot-descensing order. The AO product
+symmetry, all orbital components belonging to the same type will be contracted,
+i.e. 
+\[
+    \widehat T_{\mu\nu\kappa\lambda} = \sum_{\alpha\beta\gamma\delta}
+    P_{\alpha\mu}P_{\beta\nu}T_{\mu\nu\kappa\lambda}..
+\]
+where $P$ is defined as (..). This yields the contraction matrix $M$. Additionally,
+we eliminate orbital products not centered on atoms, using a restriction matrix. Then we 
+apply PCD to this matrix using the machine epsilon as a target tolerance value. This 
+gives a set of indices sorted in pivot-descensing order. The AO product
 selected index set is then defined as $I_M:=\{(\mu,\nu)\colon\}$ the $M$-first
 indices of PCD. Finally, we recover the AO 
 index set as $I_0=\{\mu\colon \exists\nu, (\mu,\nu)\in I_M \text{ or }(\nu,\mu)\in I_M\}$.

@@ -1,0 +1,7 @@
+rank_ao_shell 0
+rank_ao_normalization 0
+ao_cartesian_isSet 0 
+ao_num_isSet 1 
+ao_num 6 
+ao_shell
+ao_normalization
