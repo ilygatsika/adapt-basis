@@ -18,6 +18,7 @@ Note you will see warning message on the screen:
 from pyscf import gto, scf, ao2mo
 from pyscf.tools import fcidump
 import numpy as np
+from src import utils
 import trexio
 
 def select_components(coord, basis, idx, outfile):
@@ -95,9 +96,10 @@ def select_components(coord, basis, idx, outfile):
         trexio.write_mo_1e_int_core_hamiltonian(f, hcore_mo)        
         # mo_2e_int group
         trexio.write_rdm_1e(f, mf_custom.make_rdm1())
+        trexio.write_rdm_1e_up(f, mf_custom.make_rdm1())
+        trexio.write_rdm_1e_dn(f, mf_custom.make_rdm1())
         vals = mf_custom.make_rdm2().flatten()
         trexio.write_rdm_2e(f, 0, buffsize, buff_index.flatten(), vals)
-        print(vals)
 
     print('Result print to %s folder\n' %outfile)
 
@@ -147,21 +149,31 @@ H    P
          }
 
 # H2 molecule, planar on the z-axis
-h2 = 'H 0 0 0; H 0 0 0.8'
+h2 = 'system/h2.xyz'
 # H2O molecule, planar on the yz axis
-h2o = '''
-O   0.000000    0.000000   0.1173000;
-H   0.000000   -0.757200 -0.4692000; 
-H   0.000000    0.757200  -0.4692000'''
+h2o = 'system/h2o.xyz'
 
 # selected indices
 h2_idx = [0,1,4,5,6,9]
 h2o_idx = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23]
+ao_nw = 'dat/gto/cc-pvdz.nw'
 
+# H2 first test
 outfile = 'dat/h2'
-select_components(h2, basis, h2_idx, outfile)
+input_basis = utils.create_nw_basis(h2, ao_nw)
+select_components(h2, input_basis, h2_idx, outfile)
+
+# H2O first test
 outfile = 'dat/h2o'
-select_components(h2o, basis, h2o_idx, outfile)
+input_basis = utils.create_nw_basis(h2o, ao_nw)
+select_components(h2o, input_basis, h2o_idx, outfile)
+
+# H2O second test
+h2o_idx_bis = [0, 1, 2, 5, 14, 15, 16, 19]
+ao_nw = 'dat/gto/cc-pvtz.nw'
+outfile = 'dat/h2o_bis'
+input_basis = utils.create_nw_basis(h2o, ao_nw)
+select_components(h2o, input_basis, h2o_idx_bis, outfile)
 
 '''
 cc-pvdz basis for Hydrogen
