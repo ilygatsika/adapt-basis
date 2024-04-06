@@ -1,55 +1,214 @@
+
+Reading coord from system/lih.xyz file.
+Number of atomic orbitals (M must be smaller)		9 MOs 19
+Running Hartree-Fock to get density:
+converged SCF energy = -7.98372926520328
+Number of electrons (should be 4) = 4.000000
+Target =   4, energy = -7.9753997166, True=		  4 MOs   6	 saved out/lih/cc-pvdz-4_g1_hf.bas
+Target =   5, energy = -7.9753997166, True=		  4 MOs   6	 saved out/lih/cc-pvdz-5_g1_hf.bas
+Target =   6, energy = -7.9801702690, True=		  5 MOs   9	 saved out/lih/cc-pvdz-6_g1_hf.bas
+Target =   7, energy = -7.9801702690, True=		  5 MOs   9	 saved out/lih/cc-pvdz-7_g1_hf.bas
+Target =   8, energy = -7.9801793660, True=		  6 MOs  10	 saved out/lih/cc-pvdz-8_g1_hf.bas
+Target =   9, energy = -7.9814734706, True=		  7 MOs  13	 saved out/lih/cc-pvdz-9_g1_hf.bas
+Target =  10, energy = -7.9823283945, True=		  8 MOs  14	 saved out/lih/cc-pvdz-10_g1_hf.bas
+Target =  11, energy = -7.9823283945, True=		  8 MOs  14	 saved out/lih/cc-pvdz-11_g1_hf.bas
+Target =  12, energy = -7.9837292652, True=		  9 MOs  19	 saved out/lih/cc-pvdz-12_g1_hf.bas
+
+Reading coord from system/lih.xyz file.
+Number of atomic orbitals (M must be smaller)		16 MOs 44
+Running Hartree-Fock to get density:
+converged SCF energy = -7.98664684382592
+Number of electrons (should be 4) = 4.000000
+Target =   4, energy = -7.9759677014, True=		  4 MOs   6	 saved out/lih/cc-pvtz-4_g1_hf.bas
+Target =   5, energy = -7.9759677014, True=		  4 MOs   6	 saved out/lih/cc-pvtz-5_g1_hf.bas
+Target =   6, energy = -7.9802882379, True=		  5 MOs   9	 saved out/lih/cc-pvtz-6_g1_hf.bas
+Target =   7, energy = -7.9802882379, True=		  5 MOs   9	 saved out/lih/cc-pvtz-7_g1_hf.bas
+Target =   8, energy = -7.9802882379, True=		  5 MOs   9	 saved out/lih/cc-pvtz-8_g1_hf.bas
+Target =   9, energy = -7.9834016720, True=		  6 MOs  12	 saved out/lih/cc-pvtz-9_g1_hf.bas
+Target =  10, energy = -7.9844723369, True=		  7 MOs  13	 saved out/lih/cc-pvtz-10_g1_hf.bas
+Target =  11, energy = -7.9850916995, True=		  8 MOs  18	 saved out/lih/cc-pvtz-11_g1_hf.bas
+Target =  12, energy = -7.9859276909, True=		  9 MOs  21	 saved out/lih/cc-pvtz-12_g1_hf.bas
+Target =  13, energy = -7.9860612974, True=		 10 MOs  22	 saved out/lih/cc-pvtz-13_g1_hf.bas
+Target =  14, energy = -7.9860612974, True=		 10 MOs  22	 saved out/lih/cc-pvtz-14_g1_hf.bas
+Target =  15, energy = -7.9860612974, True=		 10 MOs  22	 saved out/lih/cc-pvtz-15_g1_hf.bas
+Target =  16, energy = -7.9862777062, True=		 11 MOs  27	 saved out/lih/cc-pvtz-16_g1_hf.bas
+Target =  17, energy = -7.9864300456, True=		 12 MOs  34	 saved out/lih/cc-pvtz-17_g1_hf.bas
+Target =  18, energy = -7.9864300456, True=		 12 MOs  34	 saved out/lih/cc-pvtz-18_g1_hf.bas
+Target =  19, energy = -7.9864752592, True=		 13 MOs  39	 saved out/lih/cc-pvtz-19_g1_hf.bas
+Target =  20, energy = -7.9865258856, True=		 14 MOs  42	 saved out/lih/cc-pvtz-20_g1_hf.bas
+Target =  21, energy = -7.9865258856, True=		 14 MOs  42	 saved out/lih/cc-pvtz-21_g1_hf.bas
+Target =  22, energy = -7.9865258856, True=		 14 MOs  42	 saved out/lih/cc-pvtz-22_g1_hf.bas
+Target =  23, energy = -7.9865258856, True=		 14 MOs  42	 saved out/lih/cc-pvtz-23_g1_hf.bas
+Target =  24, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-24_g1_hf.bas
+Target =  25, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-25_g1_hf.bas
+Target =  26, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-26_g1_hf.bas
+Target =  27, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-27_g1_hf.bas
+Target =  28, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-28_g1_hf.bas
+Target =  29, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-29_g1_hf.bas
+Target =  30, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-30_g1_hf.bas
+Target =  31, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-31_g1_hf.bas
+Target =  32, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-32_g1_hf.bas
+Target =  33, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-33_g1_hf.bas
+Target =  34, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-34_g1_hf.bas
+Target =  35, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-35_g1_hf.bas
+Target =  36, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-36_g1_hf.bas
+Target =  37, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-37_g1_hf.bas
+Target =  38, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-38_g1_hf.bas
+Target =  39, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-39_g1_hf.bas
+Target =  40, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-40_g1_hf.bas
+Target =  41, energy = -7.9866104155, True=		 15 MOs  43	 saved out/lih/cc-pvtz-41_g1_hf.bas
+Target =  42, energy = -7.9866468438, True=		 16 MOs  44	 saved out/lih/cc-pvtz-42_g1_hf.bas
+
+Reading coord from system/lih.xyz file.
+Number of atomic orbitals (M must be smaller)		25 MOs 85
+Running Hartree-Fock to get density:
+converged SCF energy = -7.987176639875
+Number of electrons (should be 4) = 4.000000
+Target =   4, energy = -7.9760339258, True=		  4 MOs   6	 saved out/lih/cc-pvqz-4_g1_hf.bas
+Target =   5, energy = -7.9760339258, True=		  4 MOs   6	 saved out/lih/cc-pvqz-5_g1_hf.bas
+Target =   6, energy = -7.9798543191, True=		  5 MOs   9	 saved out/lih/cc-pvqz-6_g1_hf.bas
+Target =   7, energy = -7.9798543191, True=		  5 MOs   9	 saved out/lih/cc-pvqz-7_g1_hf.bas
+Target =   8, energy = -7.9830412357, True=		  6 MOs  12	 saved out/lih/cc-pvqz-8_g1_hf.bas
+Target =   9, energy = -7.9830412357, True=		  6 MOs  12	 saved out/lih/cc-pvqz-9_g1_hf.bas
+Target =  10, energy = -7.9830465280, True=		  7 MOs  13	 saved out/lih/cc-pvqz-10_g1_hf.bas
+Target =  11, energy = -7.9830465280, True=		  7 MOs  13	 saved out/lih/cc-pvqz-11_g1_hf.bas
+Target =  12, energy = -7.9840494253, True=		  8 MOs  16	 saved out/lih/cc-pvqz-12_g1_hf.bas
+Target =  13, energy = -7.9846925792, True=		  9 MOs  17	 saved out/lih/cc-pvqz-13_g1_hf.bas
+Target =  14, energy = -7.9846925792, True=		  9 MOs  17	 saved out/lih/cc-pvqz-14_g1_hf.bas
+Target =  15, energy = -7.9856186064, True=		 10 MOs  22	 saved out/lih/cc-pvqz-15_g1_hf.bas
+Target =  16, energy = -7.9857534847, True=		 11 MOs  23	 saved out/lih/cc-pvqz-16_g1_hf.bas
+Target =  17, energy = -7.9865100445, True=		 12 MOs  26	 saved out/lih/cc-pvqz-17_g1_hf.bas
+Target =  18, energy = -7.9865952906, True=		 13 MOs  31	 saved out/lih/cc-pvqz-18_g1_hf.bas
+Target =  19, energy = -7.9866175613, True=		 14 MOs  36	 saved out/lih/cc-pvqz-19_g1_hf.bas
+Target =  20, energy = -7.9866175613, True=		 14 MOs  36	 saved out/lih/cc-pvqz-20_g1_hf.bas
+Target =  21, energy = -7.9866175613, True=		 14 MOs  36	 saved out/lih/cc-pvqz-21_g1_hf.bas
+Target =  22, energy = -7.9869620340, True=		 15 MOs  37	 saved out/lih/cc-pvqz-22_g1_hf.bas
+Target =  23, energy = -7.9870508204, True=		 16 MOs  40	 saved out/lih/cc-pvqz-23_g1_hf.bas
+Target =  24, energy = -7.9871270490, True=		 17 MOs  45	 saved out/lih/cc-pvqz-24_g1_hf.bas
+Target =  25, energy = -7.9871270490, True=		 17 MOs  45	 saved out/lih/cc-pvqz-25_g1_hf.bas
+Target =  26, energy = -7.9871455074, True=		 18 MOs  52	 saved out/lih/cc-pvqz-26_g1_hf.bas
+Target =  27, energy = -7.9871455074, True=		 18 MOs  52	 saved out/lih/cc-pvqz-27_g1_hf.bas
+Target =  28, energy = -7.9871455074, True=		 18 MOs  52	 saved out/lih/cc-pvqz-28_g1_hf.bas
+Target =  29, energy = -7.9871486858, True=		 19 MOs  59	 saved out/lih/cc-pvqz-29_g1_hf.bas
+Target =  30, energy = -7.9871486858, True=		 19 MOs  59	 saved out/lih/cc-pvqz-30_g1_hf.bas
+Target =  31, energy = -7.9871510807, True=		 20 MOs  62	 saved out/lih/cc-pvqz-31_g1_hf.bas
+Target =  32, energy = -7.9871585331, True=		 21 MOs  63	 saved out/lih/cc-pvqz-32_g1_hf.bas
+Target =  33, energy = -7.9871647766, True=		 22 MOs  64	 saved out/lih/cc-pvqz-33_g1_hf.bas
+Target =  34, energy = -7.9871718660, True=		 23 MOs  73	 saved out/lih/cc-pvqz-34_g1_hf.bas
+Target =  35, energy = -7.9871746775, True=		 24 MOs  80	 saved out/lih/cc-pvqz-35_g1_hf.bas
+Target =  36, energy = -7.9871746775, True=		 24 MOs  80	 saved out/lih/cc-pvqz-36_g1_hf.bas
+Target =  37, energy = -7.9871746775, True=		 24 MOs  80	 saved out/lih/cc-pvqz-37_g1_hf.bas
+Target =  38, energy = -7.9871746775, True=		 24 MOs  80	 saved out/lih/cc-pvqz-38_g1_hf.bas
+Target =  39, energy = -7.9871766399, True=		 25 MOs  85	 saved out/lih/cc-pvqz-39_g1_hf.bas
+
+Reading coord from system/lih.xyz file.
+Number of atomic orbitals (M must be smaller)		36 MOs 146
+Running Hartree-Fock to get density:
+converged SCF energy = -7.98732485521238
+Number of electrons (should be 4) = 4.000000
+Target =   4, energy = -7.9760497462, True=		  4 MOs   6	 saved out/lih/cc-pv5z-4_g1_hf.bas
+Target =   5, energy = -7.9760497462, True=		  4 MOs   6	 saved out/lih/cc-pv5z-5_g1_hf.bas
+Target =   6, energy = -7.9760497462, True=		  4 MOs   6	 saved out/lih/cc-pv5z-6_g1_hf.bas
+Target =   7, energy = -7.9819855215, True=		  5 MOs   9	 saved out/lih/cc-pv5z-7_g1_hf.bas
+Target =   8, energy = -7.9819855215, True=		  5 MOs   9	 saved out/lih/cc-pv5z-8_g1_hf.bas
+Target =   9, energy = -7.9823822394, True=		  6 MOs  12	 saved out/lih/cc-pv5z-9_g1_hf.bas
+Target =  10, energy = -7.9832695634, True=		  7 MOs  15	 saved out/lih/cc-pv5z-10_g1_hf.bas
+Target =  11, energy = -7.9839132155, True=		  8 MOs  16	 saved out/lih/cc-pv5z-11_g1_hf.bas
+Target =  12, energy = -7.9839132155, True=		  8 MOs  16	 saved out/lih/cc-pv5z-12_g1_hf.bas
+Target =  13, energy = -7.9842046853, True=		  9 MOs  17	 saved out/lih/cc-pv5z-13_g1_hf.bas
+Target =  14, energy = -7.9854300530, True=		 10 MOs  20	 saved out/lih/cc-pv5z-14_g1_hf.bas
+Target =  15, energy = -7.9863044499, True=		 11 MOs  21	 saved out/lih/cc-pv5z-15_g1_hf.bas
+Target =  16, energy = -7.9865196090, True=		 12 MOs  22	 saved out/lih/cc-pv5z-16_g1_hf.bas
+Target =  17, energy = -7.9865791607, True=		 13 MOs  23	 saved out/lih/cc-pv5z-17_g1_hf.bas
+Target =  18, energy = -7.9867321334, True=		 14 MOs  28	 saved out/lih/cc-pv5z-18_g1_hf.bas
+Target =  19, energy = -7.9867321334, True=		 14 MOs  28	 saved out/lih/cc-pv5z-19_g1_hf.bas
+Target =  20, energy = -7.9867322196, True=		 15 MOs  33	 saved out/lih/cc-pv5z-20_g1_hf.bas
+Target =  21, energy = -7.9868315488, True=		 16 MOs  36	 saved out/lih/cc-pv5z-21_g1_hf.bas
+Target =  22, energy = -7.9868315488, True=		 16 MOs  36	 saved out/lih/cc-pv5z-22_g1_hf.bas
+Target =  23, energy = -7.9871454610, True=		 17 MOs  39	 saved out/lih/cc-pv5z-23_g1_hf.bas
+Target =  24, energy = -7.9872412611, True=		 18 MOs  40	 saved out/lih/cc-pv5z-24_g1_hf.bas
+Target =  25, energy = -7.9872412611, True=		 18 MOs  40	 saved out/lih/cc-pv5z-25_g1_hf.bas
+Target =  26, energy = -7.9872459128, True=		 19 MOs  45	 saved out/lih/cc-pv5z-26_g1_hf.bas
+Target =  27, energy = -7.9872871446, True=		 20 MOs  50	 saved out/lih/cc-pv5z-27_g1_hf.bas
+Target =  28, energy = -7.9872871446, True=		 20 MOs  50	 saved out/lih/cc-pv5z-28_g1_hf.bas
+Target =  29, energy = -7.9872871446, True=		 20 MOs  50	 saved out/lih/cc-pv5z-29_g1_hf.bas
+Target =  30, energy = -7.9872871774, True=		 21 MOs  57	 saved out/lih/cc-pv5z-30_g1_hf.bas
+Target =  31, energy = -7.9872871774, True=		 21 MOs  57	 saved out/lih/cc-pv5z-31_g1_hf.bas
+Target =  32, energy = -7.9872938518, True=		 22 MOs  58	 saved out/lih/cc-pv5z-32_g1_hf.bas
+Target =  33, energy = -7.9872998868, True=		 23 MOs  61	 saved out/lih/cc-pv5z-33_g1_hf.bas
+Target =  34, energy = -7.9873057648, True=		 24 MOs  68	 saved out/lih/cc-pv5z-34_g1_hf.bas
+Target =  35, energy = -7.9873202483, True=		 25 MOs  69	 saved out/lih/cc-pv5z-35_g1_hf.bas
+Target =  36, energy = -7.9873202483, True=		 25 MOs  69	 saved out/lih/cc-pv5z-36_g1_hf.bas
+Target =  37, energy = -7.9873208426, True=		 26 MOs  76	 saved out/lih/cc-pv5z-37_g1_hf.bas
+Target =  38, energy = -7.9873208426, True=		 26 MOs  76	 saved out/lih/cc-pv5z-38_g1_hf.bas
+Target =  39, energy = -7.9873208426, True=		 26 MOs  76	 saved out/lih/cc-pv5z-39_g1_hf.bas
+Target =  40, energy = -7.9873214432, True=		 27 MOs  79	 saved out/lih/cc-pv5z-40_g1_hf.bas
+Target =  41, energy = -7.9873214980, True=		 28 MOs  84	 saved out/lih/cc-pv5z-41_g1_hf.bas
+Target =  42, energy = -7.9873225938, True=		 29 MOs  91	 saved out/lih/cc-pv5z-42_g1_hf.bas
+Target =  43, energy = -7.9873225938, True=		 29 MOs  91	 saved out/lih/cc-pv5z-43_g1_hf.bas
+Target =  44, energy = -7.9873225938, True=		 29 MOs  91	 saved out/lih/cc-pv5z-44_g1_hf.bas
+Target =  45, energy = -7.9873225938, True=		 29 MOs  91	 saved out/lih/cc-pv5z-45_g1_hf.bas
+Target =  46, energy = -7.9873225938, True=		 29 MOs  91	 saved out/lih/cc-pv5z-46_g1_hf.bas
+Target =  47, energy = -7.9873228848, True=		 30 MOs 100	 saved out/lih/cc-pv5z-47_g1_hf.bas
+Target =  48, energy = -7.9873228848, True=		 30 MOs 100	 saved out/lih/cc-pv5z-48_g1_hf.bas
+Target =  49, energy = -7.9873228848, True=		 30 MOs 100	 saved out/lih/cc-pv5z-49_g1_hf.bas
+Target =  50, energy = -7.9873228848, True=		 30 MOs 100	 saved out/lih/cc-pv5z-50_g1_hf.bas
+Target =  51, energy = -7.9873228848, True=		 30 MOs 100	 saved out/lih/cc-pv5z-51_g1_hf.bas
+Target =  52, energy = -7.9873229951, True=		 31 MOs 107	 saved out/lih/cc-pv5z-52_g1_hf.bas
+Target =  53, energy = -7.9873234091, True=		 32 MOs 116	 saved out/lih/cc-pv5z-53_g1_hf.bas
+Target =  54, energy = -7.9873234091, True=		 32 MOs 116	 saved out/lih/cc-pv5z-54_g1_hf.bas
+Target =  55, energy = -7.9873234091, True=		 32 MOs 116	 saved out/lih/cc-pv5z-55_g1_hf.bas
+Target =  56, energy = -7.9873235257, True=		 33 MOs 121	 saved out/lih/cc-pv5z-56_g1_hf.bas
+Target =  57, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-57_g1_hf.bas
+Target =  58, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-58_g1_hf.bas
+Target =  59, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-59_g1_hf.bas
+Target =  60, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-60_g1_hf.bas
+Target =  61, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-61_g1_hf.bas
+Target =  62, energy = -7.9873236227, True=		 34 MOs 130	 saved out/lih/cc-pv5z-62_g1_hf.bas
+Target =  63, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-63_g1_hf.bas
+Target =  64, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-64_g1_hf.bas
+Target =  65, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-65_g1_hf.bas
+Target =  66, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-66_g1_hf.bas
+Target =  67, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-67_g1_hf.bas
+Target =  68, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-68_g1_hf.bas
+Target =  69, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-69_g1_hf.bas
+Target =  70, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-70_g1_hf.bas
+Target =  71, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-71_g1_hf.bas
+Target =  72, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-72_g1_hf.bas
+Target =  73, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-73_g1_hf.bas
+Target =  74, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-74_g1_hf.bas
+Target =  75, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-75_g1_hf.bas
+Target =  76, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-76_g1_hf.bas
+Target =  77, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-77_g1_hf.bas
+Target =  78, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-78_g1_hf.bas
+Target =  79, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-79_g1_hf.bas
+Target =  80, energy = -7.9873237486, True=		 35 MOs 141	 saved out/lih/cc-pv5z-80_g1_hf.bas
+Target =  81, energy = -7.9873248552, True=		 36 MOs 146	 saved out/lih/cc-pv5z-81_g1_hf.bas
+
+Reading coord from system/lih.xyz file.
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
-    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
-    elements = what_elements(geom, option=option)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
-    word_full = elem_map[word]
-                ~~~~~~~~^^^^^^
-KeyError: 'Li'
+  File "/users/home/lygatsika/code/env/lib/python3.11/site-packages/pyscf/gto/basis/__init__.py", line 503, in load
+    b = parse_nwchem.load(filename_or_basisname, symb, optimize)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/lib/python3.11/site-packages/pyscf/gto/basis/parse_nwchem.py", line 101, in load
+    return _parse(raw_basis, optimize)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/lib/python3.11/site-packages/pyscf/gto/basis/parse_nwchem.py", line 140, in _parse
+    raise BasisNotFoundError(f'Basis data not found in "{raw_basis}"')
+pyscf.lib.exceptions.BasisNotFoundError: Basis data not found in "[]"
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
-    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
-    elements = what_elements(geom, option=option)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
-    word_full = elem_map[word]
-                ~~~~~~~~^^^^^^
-KeyError: 'Li'
-Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
-    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
-    elements = what_elements(geom, option=option)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
-    word_full = elem_map[word]
-                ~~~~~~~~^^^^^^
-KeyError: 'Li'
-Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
-    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
-    elements = what_elements(geom, option=option)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
-    word_full = elem_map[word]
-                ~~~~~~~~^^^^^^
-KeyError: 'Li'
-Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
-    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
-    elements = what_elements(geom, option=option)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
-    word_full = elem_map[word]
-                ~~~~~~~~^^^^^^
-KeyError: 'Li'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 95, in <module>
+    input_basis = utils.create_nw_basis(coord, ao_nw)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 72, in create_nw_basis
+    ao_basis[elem] = gto.basis.load(file_nw, elem)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/lib/python3.11/site-packages/pyscf/gto/basis/__init__.py", line 506, in load
+    b =  parse_nwchem.parse(fin.read(), symb)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/lib/python3.11/site-packages/pyscf/gto/basis/parse_nwchem.py", line 89, in parse
+    raise BasisNotFoundError('Basis not found for %s' % symb)
+pyscf.lib.exceptions.BasisNotFoundError: Basis not found for Li
