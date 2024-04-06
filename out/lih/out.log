@@ -1,30 +1,55 @@
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 1, in <module>
-    import src.basis as basis
-  File "/users/home/lygatsika/code/env/adapt/src/basis.py", line 1, in <module>
-    from pyscf import gto, lib
-ModuleNotFoundError: No module named 'pyscf'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
+    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
+    elements = what_elements(geom, option=option)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
+    word_full = elem_map[word]
+                ~~~~~~~~^^^^^^
+KeyError: 'Li'
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 1, in <module>
-    import src.basis as basis
-  File "/users/home/lygatsika/code/env/adapt/src/basis.py", line 1, in <module>
-    from pyscf import gto, lib
-ModuleNotFoundError: No module named 'pyscf'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
+    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
+    elements = what_elements(geom, option=option)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
+    word_full = elem_map[word]
+                ~~~~~~~~^^^^^^
+KeyError: 'Li'
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 1, in <module>
-    import src.basis as basis
-  File "/users/home/lygatsika/code/env/adapt/src/basis.py", line 1, in <module>
-    from pyscf import gto, lib
-ModuleNotFoundError: No module named 'pyscf'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
+    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
+    elements = what_elements(geom, option=option)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
+    word_full = elem_map[word]
+                ~~~~~~~~^^^^^^
+KeyError: 'Li'
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 1, in <module>
-    import src.basis as basis
-  File "/users/home/lygatsika/code/env/adapt/src/basis.py", line 1, in <module>
-    from pyscf import gto, lib
-ModuleNotFoundError: No module named 'pyscf'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
+    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
+    elements = what_elements(geom, option=option)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
+    word_full = elem_map[word]
+                ~~~~~~~~^^^^^^
+KeyError: 'Li'
 Traceback (most recent call last):
-  File "/users/home/lygatsika/code/env/adapt/main.py", line 1, in <module>
-    import src.basis as basis
-  File "/users/home/lygatsika/code/env/adapt/src/basis.py", line 1, in <module>
-    from pyscf import gto, lib
-ModuleNotFoundError: No module named 'pyscf'
+  File "/users/home/lygatsika/code/env/adapt/main.py", line 89, in <module>
+    res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 107, in read_orbitals
+    elements = what_elements(geom, option=option)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/users/home/lygatsika/code/env/adapt/src/utils.py", line 57, in what_elements
+    word_full = elem_map[word]
+                ~~~~~~~~^^^^^^
+KeyError: 'Li'
