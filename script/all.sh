@@ -18,6 +18,11 @@ AOS='cc-pvdz cc-pvtz cc-pvqz cc-pv5z cc-pv6z'
 
 for AO in $AOS;
 do
-    python3 main.py --coord $COORD --dm $DM --out $OUT_DIR --AO $AO --M_target $M_TARGET
+    python3 main.py --coord $COORD --dm $DM --out $OUT_DIR --AO $AO
 done
+
+git add out/$system
+git commit -m 'ljll server results $system'
+git push
+
 

@@ -85,6 +85,9 @@ if (dm_in not in ['HF','CISD']):
 # Input basis files
 ao_nw = 'dat/gto/%s.nw' %ao_basis # NWChem
 ao_bas = 'dat/gto/%s.bas' %ao_basis # GAMESS US
+# Load basis on different formats
+res_gamess = utils.read_orbitals(coord, ao_bas, option='gamess')
+res_nwchem = utils.read_orbitals(coord, ao_nw, option='nwchem')
 
 print("\nReading coord from %s file." %coord)
 
@@ -149,23 +152,20 @@ else:
 # Select products
 L,piv,k = LA.PCD(A)
 
-# Define range of target sizes
 if (M_target == 0):
+    # Target size is minimal one
     minimal_mol = gto.M(atom=coord, basis='sto-3g')
-    minimal_size = minimal_mol.nbas
-    M_target_vec = np.arange(minimal_size, mol.nbas + 1)
-else:
-    if (mol.nbas < M_target):
-        raise ValueError("target size is too large")
-    M_target_vec = np.array([M_target])
+    M_target = minimal_mol.nbas
+    do_once = False
+else: 
+    do_once = True
 
-nb_target = np.size(M_target_vec)
+if (mol.nbas < M_target):
+    raise ValueError("target size is too large")
 
 # Loop over target sizes
-for i in range(nb_target):
-
-    M_target = M_target_vec[i]
-    print("Starting reduction with target %i and %i constraint ..." %(M_target, option)) 
+adapt_size = 0
+while (adapt_size < mol.nbas):
 
     # Output basis files
     key = (ao_basis, M_target, gram_atom, dm_in.lower())
@@ -183,23 +183,25 @@ for i in range(nb_target):
     idx = basis.orbitals_in_products(mol, pivk, mask=mask)
     '''
     
-    # Prepare to write to out_file in GAMESS
-    res = utils.read_orbitals(coord, ao_bas, option='gamess')
-    utils.extract_orbitals(coord, res, idx, out_file, option='gamess')
-
-    print("Results written in %s." %out_file)
-
-    # Read basis in NWChem format
-    res = utils.read_orbitals(coord, ao_nw, option='nwchem')
-    utils.extract_orbitals(coord, res, idx, out_file_nw, option='nwchem')
-    input_basis = utils.create_nw_basis(coord, out_file_nw)
+    # Write to out_file in GAMESS
+    utils.extract_orbitals(coord, res_gamess, idx, out_file, option='gamess')
 
     # Compute Hartree-Fock energy with PySCF (needs NWChem)
-    mol = gto.M(atom=coord, basis=input_basis, unit='A')
-    mf = mol.RHF()
-    print("Number of adapted atomic orbitals\t\t\t%i MOs %i" %(mol.nbas, mol.nao))
-    mf.kernel()
+    utils.extract_orbitals(coord, res_nwchem, idx, out_file_nw, option='nwchem')
+    input_basis = utils.create_nw_basis(coord, out_file_nw)
+    mol_adapt = gto.M(atom=coord, basis=input_basis, unit='A', verbose=0)
+    mf_adapt = mol_adapt.RHF()
+    adapt_size = mol_adapt.nbas # this is the true size (=/= target)
+    adapt_energy = mf_adapt.kernel()
+    
+    # Print result
+    print("Target = %3.i, energy = %.10f, True=\t\t%3.i MOs %3.i\t saved %s" \
+            %(M_target, adapt_energy, adapt_size, mol_adapt.nao, out_file))
+    
+    # Increment target size
+    M_target += 1
 
+    if (do_once): break
 
 # Below is the orbital type constraint, not useful for the moment
 """
