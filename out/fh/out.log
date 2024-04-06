@@ -1,0 +1,309 @@
+
+Reading coord from system/fh.xyz file.
+Number of atomic orbitals (M must be smaller)		9 MOs 19
+Running Hartree-Fock to get density:
+converged SCF energy = -100.019411269174
+Number of electrons (should be 10) = 10.000000
+Target =   4, energy = -99.9314146440, True=		  4 MOs   6	 saved out/fh/cc-pvdz-4_g1_hf.bas
+Target =   5, energy = -99.9397405073, True=		  5 MOs   7	 saved out/fh/cc-pvdz-5_g1_hf.bas
+Target =   6, energy = -99.9808227368, True=		  6 MOs   8	 saved out/fh/cc-pvdz-6_g1_hf.bas
+Target =   7, energy = -99.9885261657, True=		  7 MOs  11	 saved out/fh/cc-pvdz-7_g1_hf.bas
+Target =   8, energy = -100.0136389736, True=		  8 MOs  14	 saved out/fh/cc-pvdz-8_g1_hf.bas
+Target =   9, energy = -100.0136389736, True=		  8 MOs  14	 saved out/fh/cc-pvdz-9_g1_hf.bas
+Target =  10, energy = -100.0136389736, True=		  8 MOs  14	 saved out/fh/cc-pvdz-10_g1_hf.bas
+Target =  11, energy = -100.0136389736, True=		  8 MOs  14	 saved out/fh/cc-pvdz-11_g1_hf.bas
+Target =  12, energy = -100.0194112692, True=		  9 MOs  19	 saved out/fh/cc-pvdz-12_g1_hf.bas
+
+Reading coord from system/fh.xyz file.
+Number of atomic orbitals (M must be smaller)		16 MOs 44
+Running Hartree-Fock to get density:
+converged SCF energy = -100.058011431192
+Number of electrons (should be 10) = 10.000000
+Target =   4, energy = -99.9592081006, True=		  4 MOs   6	 saved out/fh/cc-pvtz-4_g1_hf.bas
+Target =   5, energy = -99.9592081006, True=		  4 MOs   6	 saved out/fh/cc-pvtz-5_g1_hf.bas
+Target =   6, energy = -100.0047717971, True=		  5 MOs   7	 saved out/fh/cc-pvtz-6_g1_hf.bas
+Target =   7, energy = -100.0151835816, True=		  6 MOs  10	 saved out/fh/cc-pvtz-7_g1_hf.bas
+Target =   8, energy = -100.0208154015, True=		  7 MOs  11	 saved out/fh/cc-pvtz-8_g1_hf.bas
+Target =   9, energy = -100.0389045718, True=		  8 MOs  14	 saved out/fh/cc-pvtz-9_g1_hf.bas
+Target =  10, energy = -100.0445793198, True=		  9 MOs  15	 saved out/fh/cc-pvtz-10_g1_hf.bas
+Target =  11, energy = -100.0490117225, True=		 10 MOs  18	 saved out/fh/cc-pvtz-11_g1_hf.bas
+Target =  12, energy = -100.0553000974, True=		 11 MOs  23	 saved out/fh/cc-pvtz-12_g1_hf.bas
+Target =  13, energy = -100.0560999739, True=		 12 MOs  30	 saved out/fh/cc-pvtz-13_g1_hf.bas
+Target =  14, energy = -100.0560999739, True=		 12 MOs  30	 saved out/fh/cc-pvtz-14_g1_hf.bas
+Target =  15, energy = -100.0560999739, True=		 12 MOs  30	 saved out/fh/cc-pvtz-15_g1_hf.bas
+Target =  16, energy = -100.0573486487, True=		 13 MOs  35	 saved out/fh/cc-pvtz-16_g1_hf.bas
+Target =  17, energy = -100.0578901392, True=		 14 MOs  40	 saved out/fh/cc-pvtz-17_g1_hf.bas
+Target =  18, energy = -100.0578901392, True=		 14 MOs  40	 saved out/fh/cc-pvtz-18_g1_hf.bas
+Target =  19, energy = -100.0579599510, True=		 15 MOs  41	 saved out/fh/cc-pvtz-19_g1_hf.bas
+Target =  20, energy = -100.0579599510, True=		 15 MOs  41	 saved out/fh/cc-pvtz-20_g1_hf.bas
+Target =  21, energy = -100.0580114312, True=		 16 MOs  44	 saved out/fh/cc-pvtz-21_g1_hf.bas
+
+Reading coord from system/fh.xyz file.
+Number of atomic orbitals (M must be smaller)		25 MOs 85
+Running Hartree-Fock to get density:
+converged SCF energy = -100.067685248168
+Number of electrons (should be 10) = 10.000000
+Target =   4, energy = -99.9666332833, True=		  4 MOs   6	 saved out/fh/cc-pvqz-4_g1_hf.bas
+Target =   5, energy = -99.9666332833, True=		  4 MOs   6	 saved out/fh/cc-pvqz-5_g1_hf.bas
+Target =   6, energy = -100.0095077283, True=		  5 MOs   7	 saved out/fh/cc-pvqz-6_g1_hf.bas
+Target =   7, energy = -100.0210459597, True=		  6 MOs  10	 saved out/fh/cc-pvqz-7_g1_hf.bas
+Target =   8, energy = -100.0358150240, True=		  7 MOs  11	 saved out/fh/cc-pvqz-8_g1_hf.bas
+Target =   9, energy = -100.0388247685, True=		  8 MOs  12	 saved out/fh/cc-pvqz-9_g1_hf.bas
+Target =  10, energy = -100.0555989495, True=		  9 MOs  15	 saved out/fh/cc-pvqz-10_g1_hf.bas
+Target =  11, energy = -100.0609635035, True=		 10 MOs  20	 saved out/fh/cc-pvqz-11_g1_hf.bas
+Target =  12, energy = -100.0621242164, True=		 11 MOs  23	 saved out/fh/cc-pvqz-12_g1_hf.bas
+Target =  13, energy = -100.0650700936, True=		 12 MOs  28	 saved out/fh/cc-pvqz-13_g1_hf.bas
+Target =  14, energy = -100.0658766721, True=		 13 MOs  33	 saved out/fh/cc-pvqz-14_g1_hf.bas
+Target =  15, energy = -100.0658766721, True=		 13 MOs  33	 saved out/fh/cc-pvqz-15_g1_hf.bas
+Target =  16, energy = -100.0661711725, True=		 14 MOs  40	 saved out/fh/cc-pvqz-16_g1_hf.bas
+Target =  17, energy = -100.0664385516, True=		 15 MOs  45	 saved out/fh/cc-pvqz-17_g1_hf.bas
+Target =  18, energy = -100.0666650462, True=		 16 MOs  52	 saved out/fh/cc-pvqz-18_g1_hf.bas
+Target =  19, energy = -100.0666650462, True=		 16 MOs  52	 saved out/fh/cc-pvqz-19_g1_hf.bas
+Target =  20, energy = -100.0666650462, True=		 16 MOs  52	 saved out/fh/cc-pvqz-20_g1_hf.bas
+Target =  21, energy = -100.0666650462, True=		 16 MOs  52	 saved out/fh/cc-pvqz-21_g1_hf.bas
+Target =  22, energy = -100.0666650462, True=		 16 MOs  52	 saved out/fh/cc-pvqz-22_g1_hf.bas
+Target =  23, energy = -100.0667117919, True=		 17 MOs  59	 saved out/fh/cc-pvqz-23_g1_hf.bas
+Target =  24, energy = -100.0667117919, True=		 17 MOs  59	 saved out/fh/cc-pvqz-24_g1_hf.bas
+Target =  25, energy = -100.0673724440, True=		 18 MOs  62	 saved out/fh/cc-pvqz-25_g1_hf.bas
+Target =  26, energy = -100.0674118516, True=		 19 MOs  65	 saved out/fh/cc-pvqz-26_g1_hf.bas
+Target =  27, energy = -100.0674403225, True=		 20 MOs  66	 saved out/fh/cc-pvqz-27_g1_hf.bas
+Target =  28, energy = -100.0674403225, True=		 20 MOs  66	 saved out/fh/cc-pvqz-28_g1_hf.bas
+Target =  29, energy = -100.0674403225, True=		 20 MOs  66	 saved out/fh/cc-pvqz-29_g1_hf.bas
+Target =  30, energy = -100.0674403225, True=		 20 MOs  66	 saved out/fh/cc-pvqz-30_g1_hf.bas
+Target =  31, energy = -100.0674403225, True=		 20 MOs  66	 saved out/fh/cc-pvqz-31_g1_hf.bas
+Target =  32, energy = -100.0674590807, True=		 21 MOs  67	 saved out/fh/cc-pvqz-32_g1_hf.bas
+Target =  33, energy = -100.0674721053, True=		 22 MOs  76	 saved out/fh/cc-pvqz-33_g1_hf.bas
+Target =  34, energy = -100.0674721053, True=		 22 MOs  76	 saved out/fh/cc-pvqz-34_g1_hf.bas
+Target =  35, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-35_g1_hf.bas
+Target =  36, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-36_g1_hf.bas
+Target =  37, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-37_g1_hf.bas
+Target =  38, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-38_g1_hf.bas
+Target =  39, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-39_g1_hf.bas
+Target =  40, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-40_g1_hf.bas
+Target =  41, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-41_g1_hf.bas
+Target =  42, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-42_g1_hf.bas
+Target =  43, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-43_g1_hf.bas
+Target =  44, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-44_g1_hf.bas
+Target =  45, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-45_g1_hf.bas
+Target =  46, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-46_g1_hf.bas
+Target =  47, energy = -100.0676096206, True=		 23 MOs  81	 saved out/fh/cc-pvqz-47_g1_hf.bas
+Target =  48, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-48_g1_hf.bas
+Target =  49, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-49_g1_hf.bas
+Target =  50, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-50_g1_hf.bas
+Target =  51, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-51_g1_hf.bas
+Target =  52, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-52_g1_hf.bas
+Target =  53, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-53_g1_hf.bas
+Target =  54, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-54_g1_hf.bas
+Target =  55, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-55_g1_hf.bas
+Target =  56, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-56_g1_hf.bas
+Target =  57, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-57_g1_hf.bas
+Target =  58, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-58_g1_hf.bas
+Target =  59, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-59_g1_hf.bas
+Target =  60, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-60_g1_hf.bas
+Target =  61, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-61_g1_hf.bas
+Target =  62, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-62_g1_hf.bas
+Target =  63, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-63_g1_hf.bas
+Target =  64, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-64_g1_hf.bas
+Target =  65, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-65_g1_hf.bas
+Target =  66, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-66_g1_hf.bas
+Target =  67, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-67_g1_hf.bas
+Target =  68, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-68_g1_hf.bas
+Target =  69, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-69_g1_hf.bas
+Target =  70, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-70_g1_hf.bas
+Target =  71, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-71_g1_hf.bas
+Target =  72, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-72_g1_hf.bas
+Target =  73, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-73_g1_hf.bas
+Target =  74, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-74_g1_hf.bas
+Target =  75, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-75_g1_hf.bas
+Target =  76, energy = -100.0676819456, True=		 24 MOs  82	 saved out/fh/cc-pvqz-76_g1_hf.bas
+Target =  77, energy = -100.0676852482, True=		 25 MOs  85	 saved out/fh/cc-pvqz-77_g1_hf.bas
+
+Reading coord from system/fh.xyz file.
+Number of atomic orbitals (M must be smaller)		36 MOs 146
+Running Hartree-Fock to get density:
+converged SCF energy = -100.070430354494
+Number of electrons (should be 10) = 10.000000
+Target =   4, energy = -99.9685865671, True=		  4 MOs   6	 saved out/fh/cc-pv5z-4_g1_hf.bas
+Target =   5, energy = -99.9685865671, True=		  4 MOs   6	 saved out/fh/cc-pv5z-5_g1_hf.bas
+Target =   6, energy = -100.0227686407, True=		  5 MOs   7	 saved out/fh/cc-pv5z-6_g1_hf.bas
+Target =   7, energy = -100.0338754581, True=		  6 MOs  10	 saved out/fh/cc-pv5z-7_g1_hf.bas
+Target =   8, energy = -100.0357563124, True=		  7 MOs  11	 saved out/fh/cc-pv5z-8_g1_hf.bas
+Target =   9, energy = -100.0392477969, True=		  8 MOs  12	 saved out/fh/cc-pv5z-9_g1_hf.bas
+Target =  10, energy = -100.0527059515, True=		  9 MOs  15	 saved out/fh/cc-pv5z-10_g1_hf.bas
+Target =  11, energy = -100.0621886219, True=		 10 MOs  20	 saved out/fh/cc-pv5z-11_g1_hf.bas
+Target =  12, energy = -100.0636209088, True=		 11 MOs  21	 saved out/fh/cc-pv5z-12_g1_hf.bas
+Target =  13, energy = -100.0639593335, True=		 12 MOs  24	 saved out/fh/cc-pv5z-13_g1_hf.bas
+Target =  14, energy = -100.0669208258, True=		 13 MOs  27	 saved out/fh/cc-pv5z-14_g1_hf.bas
+Target =  15, energy = -100.0669208258, True=		 13 MOs  27	 saved out/fh/cc-pv5z-15_g1_hf.bas
+Target =  16, energy = -100.0673005446, True=		 14 MOs  30	 saved out/fh/cc-pv5z-16_g1_hf.bas
+Target =  17, energy = -100.0673501318, True=		 15 MOs  33	 saved out/fh/cc-pv5z-17_g1_hf.bas
+Target =  18, energy = -100.0678010716, True=		 16 MOs  38	 saved out/fh/cc-pv5z-18_g1_hf.bas
+Target =  19, energy = -100.0683347420, True=		 17 MOs  43	 saved out/fh/cc-pv5z-19_g1_hf.bas
+Target =  20, energy = -100.0688013498, True=		 18 MOs  50	 saved out/fh/cc-pv5z-20_g1_hf.bas
+Target =  21, energy = -100.0691396711, True=		 19 MOs  55	 saved out/fh/cc-pv5z-21_g1_hf.bas
+Target =  22, energy = -100.0693359523, True=		 20 MOs  58	 saved out/fh/cc-pv5z-22_g1_hf.bas
+Target =  23, energy = -100.0693359523, True=		 20 MOs  58	 saved out/fh/cc-pv5z-23_g1_hf.bas
+Target =  24, energy = -100.0697668501, True=		 21 MOs  63	 saved out/fh/cc-pv5z-24_g1_hf.bas
+Target =  25, energy = -100.0697959141, True=		 22 MOs  68	 saved out/fh/cc-pv5z-25_g1_hf.bas
+Target =  26, energy = -100.0702434930, True=		 23 MOs  71	 saved out/fh/cc-pv5z-26_g1_hf.bas
+Target =  27, energy = -100.0702434930, True=		 23 MOs  71	 saved out/fh/cc-pv5z-27_g1_hf.bas
+Target =  28, energy = -100.0702609846, True=		 24 MOs  78	 saved out/fh/cc-pv5z-28_g1_hf.bas
+Target =  29, energy = -100.0702609846, True=		 24 MOs  78	 saved out/fh/cc-pv5z-29_g1_hf.bas
+Target =  30, energy = -100.0702609846, True=		 24 MOs  78	 saved out/fh/cc-pv5z-30_g1_hf.bas
+Target =  31, energy = -100.0702609846, True=		 24 MOs  78	 saved out/fh/cc-pv5z-31_g1_hf.bas
+Target =  32, energy = -100.0703030141, True=		 25 MOs  85	 saved out/fh/cc-pv5z-32_g1_hf.bas
+Target =  33, energy = -100.0703212471, True=		 26 MOs  92	 saved out/fh/cc-pv5z-33_g1_hf.bas
+Target =  34, energy = -100.0703212471, True=		 26 MOs  92	 saved out/fh/cc-pv5z-34_g1_hf.bas
+Target =  35, energy = -100.0703212471, True=		 26 MOs  92	 saved out/fh/cc-pv5z-35_g1_hf.bas
+Target =  36, energy = -100.0703652566, True=		 27 MOs  93	 saved out/fh/cc-pv5z-36_g1_hf.bas
+Target =  37, energy = -100.0703988374, True=		 28 MOs  98	 saved out/fh/cc-pv5z-37_g1_hf.bas
+Target =  38, energy = -100.0703988374, True=		 28 MOs  98	 saved out/fh/cc-pv5z-38_g1_hf.bas
+Target =  39, energy = -100.0704058787, True=		 29 MOs 105	 saved out/fh/cc-pv5z-39_g1_hf.bas
+Target =  40, energy = -100.0704058787, True=		 29 MOs 105	 saved out/fh/cc-pv5z-40_g1_hf.bas
+Target =  41, energy = -100.0704058787, True=		 29 MOs 105	 saved out/fh/cc-pv5z-41_g1_hf.bas
+Target =  42, energy = -100.0704062032, True=		 30 MOs 116	 saved out/fh/cc-pv5z-42_g1_hf.bas
+Target =  43, energy = -100.0704181554, True=		 31 MOs 125	 saved out/fh/cc-pv5z-43_g1_hf.bas
+Target =  44, energy = -100.0704181554, True=		 31 MOs 125	 saved out/fh/cc-pv5z-44_g1_hf.bas
+Target =  45, energy = -100.0704209101, True=		 32 MOs 134	 saved out/fh/cc-pv5z-45_g1_hf.bas
+Target =  46, energy = -100.0704209101, True=		 32 MOs 134	 saved out/fh/cc-pv5z-46_g1_hf.bas
+Target =  47, energy = -100.0704209101, True=		 32 MOs 134	 saved out/fh/cc-pv5z-47_g1_hf.bas
+Target =  48, energy = -100.0704209101, True=		 32 MOs 134	 saved out/fh/cc-pv5z-48_g1_hf.bas
+Target =  49, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-49_g1_hf.bas
+Target =  50, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-50_g1_hf.bas
+Target =  51, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-51_g1_hf.bas
+Target =  52, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-52_g1_hf.bas
+Target =  53, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-53_g1_hf.bas
+Target =  54, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-54_g1_hf.bas
+Target =  55, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-55_g1_hf.bas
+Target =  56, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-56_g1_hf.bas
+Target =  57, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-57_g1_hf.bas
+Target =  58, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-58_g1_hf.bas
+Target =  59, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-59_g1_hf.bas
+Target =  60, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-60_g1_hf.bas
+Target =  61, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-61_g1_hf.bas
+Target =  62, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-62_g1_hf.bas
+Target =  63, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-63_g1_hf.bas
+Target =  64, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-64_g1_hf.bas
+Target =  65, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-65_g1_hf.bas
+Target =  66, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-66_g1_hf.bas
+Target =  67, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-67_g1_hf.bas
+Target =  68, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-68_g1_hf.bas
+Target =  69, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-69_g1_hf.bas
+Target =  70, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-70_g1_hf.bas
+Target =  71, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-71_g1_hf.bas
+Target =  72, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-72_g1_hf.bas
+Target =  73, energy = -100.0704230481, True=		 33 MOs 143	 saved out/fh/cc-pv5z-73_g1_hf.bas
+Target =  74, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-74_g1_hf.bas
+Target =  75, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-75_g1_hf.bas
+Target =  76, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-76_g1_hf.bas
+Target =  77, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-77_g1_hf.bas
+Target =  78, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-78_g1_hf.bas
+Target =  79, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-79_g1_hf.bas
+Target =  80, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-80_g1_hf.bas
+Target =  81, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-81_g1_hf.bas
+Target =  82, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-82_g1_hf.bas
+Target =  83, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-83_g1_hf.bas
+Target =  84, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-84_g1_hf.bas
+Target =  85, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-85_g1_hf.bas
+Target =  86, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-86_g1_hf.bas
+Target =  87, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-87_g1_hf.bas
+Target =  88, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-88_g1_hf.bas
+Target =  89, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-89_g1_hf.bas
+Target =  90, energy = -100.0704259732, True=		 34 MOs 144	 saved out/fh/cc-pv5z-90_g1_hf.bas
+Target =  91, energy = -100.0704261260, True=		 35 MOs 145	 saved out/fh/cc-pv5z-91_g1_hf.bas
+Target =  92, energy = -100.0704261260, True=		 35 MOs 145	 saved out/fh/cc-pv5z-92_g1_hf.bas
+Target =  93, energy = -100.0704261260, True=		 35 MOs 145	 saved out/fh/cc-pv5z-93_g1_hf.bas
+Target =  94, energy = -100.0704261260, True=		 35 MOs 145	 saved out/fh/cc-pv5z-94_g1_hf.bas
+Target =  95, energy = -100.0704261260, True=		 35 MOs 145	 saved out/fh/cc-pv5z-95_g1_hf.bas
+Target =  96, energy = -100.0704303545, True=		 36 MOs 146	 saved out/fh/cc-pv5z-96_g1_hf.bas
+
+Reading coord from system/fh.xyz file.
+Number of atomic orbitals (M must be smaller)		49 MOs 231
+Running Hartree-Fock to get density:
+converged SCF energy = -100.070738329821
+Number of electrons (should be 10) = 10.000000
+Target =   4, energy = -99.9687263939, True=		  4 MOs   6	 saved out/fh/cc-pv6z-4_g1_hf.bas
+Target =   5, energy = -99.9687263939, True=		  4 MOs   6	 saved out/fh/cc-pv6z-5_g1_hf.bas
+Target =   6, energy = -100.0246213159, True=		  5 MOs   7	 saved out/fh/cc-pv6z-6_g1_hf.bas
+Target =   7, energy = -100.0293136428, True=		  6 MOs   8	 saved out/fh/cc-pv6z-7_g1_hf.bas
+Target =   8, energy = -100.0473518068, True=		  7 MOs  11	 saved out/fh/cc-pv6z-8_g1_hf.bas
+Target =   9, energy = -100.0545194307, True=		  8 MOs  14	 saved out/fh/cc-pv6z-9_g1_hf.bas
+Target =  10, energy = -100.0548301341, True=		  9 MOs  15	 saved out/fh/cc-pv6z-10_g1_hf.bas
+Target =  11, energy = -100.0555478988, True=		 10 MOs  18	 saved out/fh/cc-pv6z-11_g1_hf.bas
+Target =  12, energy = -100.0597448033, True=		 11 MOs  21	 saved out/fh/cc-pv6z-12_g1_hf.bas
+Target =  13, energy = -100.0655532616, True=		 12 MOs  26	 saved out/fh/cc-pv6z-13_g1_hf.bas
+Target =  14, energy = -100.0656238508, True=		 13 MOs  27	 saved out/fh/cc-pv6z-14_g1_hf.bas
+Target =  15, energy = -100.0669334905, True=		 14 MOs  28	 saved out/fh/cc-pv6z-15_g1_hf.bas
+Target =  16, energy = -100.0681482221, True=		 15 MOs  33	 saved out/fh/cc-pv6z-16_g1_hf.bas
+Target =  17, energy = -100.0690391228, True=		 16 MOs  38	 saved out/fh/cc-pv6z-17_g1_hf.bas
+Target =  18, energy = -100.0691818684, True=		 17 MOs  41	 saved out/fh/cc-pv6z-18_g1_hf.bas
+Target =  19, energy = -100.0691818684, True=		 17 MOs  41	 saved out/fh/cc-pv6z-19_g1_hf.bas
+Target =  20, energy = -100.0692027929, True=		 18 MOs  44	 saved out/fh/cc-pv6z-20_g1_hf.bas
+Target =  21, energy = -100.0692257728, True=		 19 MOs  45	 saved out/fh/cc-pv6z-21_g1_hf.bas
+Target =  22, energy = -100.0694309685, True=		 20 MOs  48	 saved out/fh/cc-pv6z-22_g1_hf.bas
+Target =  23, energy = -100.0696444418, True=		 21 MOs  53	 saved out/fh/cc-pv6z-23_g1_hf.bas
+Target =  24, energy = -100.0697872881, True=		 22 MOs  58	 saved out/fh/cc-pv6z-24_g1_hf.bas
+Target =  25, energy = -100.0700550688, True=		 23 MOs  65	 saved out/fh/cc-pv6z-25_g1_hf.bas
+Target =  26, energy = -100.0703461655, True=		 24 MOs  70	 saved out/fh/cc-pv6z-26_g1_hf.bas
+Target =  27, energy = -100.0704135763, True=		 25 MOs  77	 saved out/fh/cc-pv6z-27_g1_hf.bas
+Target =  28, energy = -100.0704537009, True=		 26 MOs  84	 saved out/fh/cc-pv6z-28_g1_hf.bas
+Target =  29, energy = -100.0704537009, True=		 26 MOs  84	 saved out/fh/cc-pv6z-29_g1_hf.bas
+Target =  30, energy = -100.0706060925, True=		 27 MOs  87	 saved out/fh/cc-pv6z-30_g1_hf.bas
+Target =  31, energy = -100.0706185478, True=		 28 MOs  88	 saved out/fh/cc-pv6z-31_g1_hf.bas
+Target =  32, energy = -100.0706333798, True=		 29 MOs  93	 saved out/fh/cc-pv6z-32_g1_hf.bas
+Target =  33, energy = -100.0706597022, True=		 30 MOs  96	 saved out/fh/cc-pv6z-33_g1_hf.bas
+Target =  34, energy = -100.0706597022, True=		 30 MOs  96	 saved out/fh/cc-pv6z-34_g1_hf.bas
+Target =  35, energy = -100.0706758632, True=		 31 MOs 103	 saved out/fh/cc-pv6z-35_g1_hf.bas
+Target =  36, energy = -100.0706758632, True=		 31 MOs 103	 saved out/fh/cc-pv6z-36_g1_hf.bas
+Target =  37, energy = -100.0706769877, True=		 32 MOs 110	 saved out/fh/cc-pv6z-37_g1_hf.bas
+Target =  38, energy = -100.0706916402, True=		 33 MOs 111	 saved out/fh/cc-pv6z-38_g1_hf.bas
+Target =  39, energy = -100.0706916402, True=		 33 MOs 111	 saved out/fh/cc-pv6z-39_g1_hf.bas
+Target =  40, energy = -100.0706925730, True=		 34 MOs 116	 saved out/fh/cc-pv6z-40_g1_hf.bas
+Target =  41, energy = -100.0706925730, True=		 34 MOs 116	 saved out/fh/cc-pv6z-41_g1_hf.bas
+Target =  42, energy = -100.0706953110, True=		 35 MOs 117	 saved out/fh/cc-pv6z-42_g1_hf.bas
+Target =  43, energy = -100.0707047055, True=		 36 MOs 126	 saved out/fh/cc-pv6z-43_g1_hf.bas
+Target =  44, energy = -100.0707096599, True=		 37 MOs 137	 saved out/fh/cc-pv6z-44_g1_hf.bas
+Target =  45, energy = -100.0707096599, True=		 37 MOs 137	 saved out/fh/cc-pv6z-45_g1_hf.bas
+Target =  46, energy = -100.0707148381, True=		 38 MOs 146	 saved out/fh/cc-pv6z-46_g1_hf.bas
+Target =  47, energy = -100.0707148381, True=		 38 MOs 146	 saved out/fh/cc-pv6z-47_g1_hf.bas
+Target =  48, energy = -100.0707170107, True=		 39 MOs 155	 saved out/fh/cc-pv6z-48_g1_hf.bas
+Target =  49, energy = -100.0707170107, True=		 39 MOs 155	 saved out/fh/cc-pv6z-49_g1_hf.bas
+Target =  50, energy = -100.0707196819, True=		 40 MOs 164	 saved out/fh/cc-pv6z-50_g1_hf.bas
+Target =  51, energy = -100.0707196819, True=		 40 MOs 164	 saved out/fh/cc-pv6z-51_g1_hf.bas
+Target =  52, energy = -100.0707196819, True=		 40 MOs 164	 saved out/fh/cc-pv6z-52_g1_hf.bas
+Target =  53, energy = -100.0707196819, True=		 40 MOs 164	 saved out/fh/cc-pv6z-53_g1_hf.bas
+Target =  54, energy = -100.0707208049, True=		 41 MOs 175	 saved out/fh/cc-pv6z-54_g1_hf.bas
+Target =  55, energy = -100.0707287654, True=		 42 MOs 178	 saved out/fh/cc-pv6z-55_g1_hf.bas
+Target =  56, energy = -100.0707287654, True=		 42 MOs 178	 saved out/fh/cc-pv6z-56_g1_hf.bas
+Target =  57, energy = -100.0707302430, True=		 43 MOs 185	 saved out/fh/cc-pv6z-57_g1_hf.bas
+Target =  58, energy = -100.0707323487, True=		 44 MOs 192	 saved out/fh/cc-pv6z-58_g1_hf.bas
+Target =  59, energy = -100.0707328417, True=		 45 MOs 205	 saved out/fh/cc-pv6z-59_g1_hf.bas
+Target =  60, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-60_g1_hf.bas
+Target =  61, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-61_g1_hf.bas
+Target =  62, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-62_g1_hf.bas
+Target =  63, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-63_g1_hf.bas
+Target =  64, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-64_g1_hf.bas
+Target =  65, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-65_g1_hf.bas
+Target =  66, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-66_g1_hf.bas
+Target =  67, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-67_g1_hf.bas
+Target =  68, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-68_g1_hf.bas
+Target =  69, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-69_g1_hf.bas
+Target =  70, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-70_g1_hf.bas
+Target =  71, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-71_g1_hf.bas
+Target =  72, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-72_g1_hf.bas
+Target =  73, energy = -100.0707381868, True=		 46 MOs 210	 saved out/fh/cc-pv6z-73_g1_hf.bas
+Target =  74, energy = -100.0707382549, True=		 47 MOs 211	 saved out/fh/cc-pv6z-74_g1_hf.bas
+Target =  75, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-75_g1_hf.bas
+Target =  76, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-76_g1_hf.bas
+Target =  77, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-77_g1_hf.bas
+Target =  78, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-78_g1_hf.bas
+Target =  79, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-79_g1_hf.bas
+Target =  80, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-80_g1_hf.bas
+Target =  81, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-81_g1_hf.bas
+Target =  82, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-82_g1_hf.bas
+Target =  83, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-83_g1_hf.bas
+Target =  84, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-84_g1_hf.bas
+Target =  85, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-85_g1_hf.bas
+Target =  86, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-86_g1_hf.bas
+Target =  87, energy = -100.0707383139, True=		 48 MOs 222	 saved out/fh/cc-pv6z-87_g1_hf.bas
+Target =  88, energy = -100.0707383298, True=		 49 MOs 231	 saved out/fh/cc-pv6z-88_g1_hf.bas
