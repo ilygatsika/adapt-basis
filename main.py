@@ -50,11 +50,13 @@ parser.add_argument("--AO",
                             (NWChem) and dat/<AO>.bas (GAMESS US)", 
                     type=str)
 parser.add_argument("--M_target", 
-                    help="target number of selected atomic orbitals",
-                    type=int)
-parser.add_argument("--gram_atom", 
-                    help="use of atomic (1) or full (0) Gram matrix",
+                    help="target number of selected atomic orbitals, \
+                            default is each value from minimal to nao",
                     type=int, default=0)
+parser.add_argument("--gram_atom", 
+                    help="use of atomic (1) or full (0) Gram matrix, \
+                            default is 1",
+                    type=int, default=1)
 parser.add_argument("--option", 
                     help="orbital type constraint for ABS-<option> method, \
                             default is 0",
@@ -83,10 +85,6 @@ if (dm_in not in ['HF','CISD']):
 # Input basis files
 ao_nw = 'dat/gto/%s.nw' %ao_basis # NWChem
 ao_bas = 'dat/gto/%s.bas' %ao_basis # GAMESS US
-# Output basis files
-key = (ao_basis, M_target, gram_atom, dm_in.lower())
-out_file_nw = out_dir+'/%s-%i_g%i_%s.nw' %key # NWChem
-out_file    = out_dir+'/%s-%i_g%i_%s.bas' %key # GAMESS US
 
 print("\nReading coord from %s file." %coord)
 
@@ -98,9 +96,6 @@ nelec = np.sum(mol.nelec)
 # AO basis on fixed geometry
 print("Number of atomic orbitals (M must be smaller)\t\t%i MOs %i" \
         %(mol.nbas, mol.nao))
-
-if (mol.nbas < M_target):
-    raise ValueError("target size is too large")
 
 # Get density matrix
 if (dm_file is not None):
@@ -141,8 +136,6 @@ elif (dm_in == 'CISD'):
     nelec_val = np.trace(mol.intor("int1e_ovlp") @ dm) 
     print("Number of electrons (should be %i) = %f" %(nelec, nelec_val))
 
-print("Starting reduction with target %i and %i constraint ..." %(M_target, option)) 
-
 # Assembly Gram matrix of products
 metric = "j"
 G = basis.get_4c_gram(mol, dm, metric)
@@ -155,33 +148,57 @@ else:
 
 # Select products
 L,piv,k = LA.PCD(A)
-pivk = piv[:M_target]
-idx = basis.orbitals_in_products(mol, pivk, mask=mask)
 
-# Here we try the multiple pivot strategy
-'''
-print('DEBUG')
-A = G; mask = False
-pivk = basis.PCD_2pivot(mol, A, M_target)
-idx = basis.orbitals_in_products(mol, pivk, mask=mask)
-'''
+# Define range of target sizes
+if (M_target == 0):
+    minimal_mol = gto.M(atom=coord, basis='sto-3g')
+    minimal_size = minimal_mol.nbas
+    M_target_vec = np.arange(minimal_size, mol.nbas + 1)
+else:
+    if (mol.nbas < M_target):
+        raise ValueError("target size is too large")
+    M_target_vec = np.array([M_target])
 
-# Prepare to write to out_file in GAMESS
-res = utils.read_orbitals(coord, ao_bas, option='gamess')
-utils.extract_orbitals(coord, res, idx, out_file, option='gamess')
+nb_target = np.size(M_target_vec)
 
-print("Results written in %s." %out_file)
+# Loop over target sizes
+for i in range(nb_target):
 
-# Read basis in NWChem format
-res = utils.read_orbitals(coord, ao_nw, option='nwchem')
-utils.extract_orbitals(coord, res, idx, out_file_nw, option='nwchem')
-input_basis = utils.create_nw_basis(coord, out_file_nw)
+    M_target = M_target_vec[i]
+    print("Starting reduction with target %i and %i constraint ..." %(M_target, option)) 
 
-# Compute Hartree-Fock energy with PySCF (needs NWChem)
-mol = gto.M(atom=coord, basis=input_basis, unit='A')
-mf = mol.RHF()
-print("Number of adapted atomic orbitals\t\t\t%i MOs %i" %(mol.nbas, mol.nao))
-mf.kernel()
+    # Output basis files
+    key = (ao_basis, M_target, gram_atom, dm_in.lower())
+    out_file_nw = out_dir+'/%s-%i_g%i_%s.nw' %key # NWChem
+    out_file    = out_dir+'/%s-%i_g%i_%s.bas' %key # GAMESS US
+
+    pivk = piv[:M_target]
+    idx = basis.orbitals_in_products(mol, pivk, mask=mask)
+
+    # Here we try the multiple pivot strategy
+    '''
+    print('DEBUG')
+    A = G; mask = False
+    pivk = basis.PCD_2pivot(mol, A, M_target)
+    idx = basis.orbitals_in_products(mol, pivk, mask=mask)
+    '''
+    
+    # Prepare to write to out_file in GAMESS
+    res = utils.read_orbitals(coord, ao_bas, option='gamess')
+    utils.extract_orbitals(coord, res, idx, out_file, option='gamess')
+
+    print("Results written in %s." %out_file)
+
+    # Read basis in NWChem format
+    res = utils.read_orbitals(coord, ao_nw, option='nwchem')
+    utils.extract_orbitals(coord, res, idx, out_file_nw, option='nwchem')
+    input_basis = utils.create_nw_basis(coord, out_file_nw)
+
+    # Compute Hartree-Fock energy with PySCF (needs NWChem)
+    mol = gto.M(atom=coord, basis=input_basis, unit='A')
+    mf = mol.RHF()
+    print("Number of adapted atomic orbitals\t\t\t%i MOs %i" %(mol.nbas, mol.nao))
+    mf.kernel()
 
 
 # Below is the orbital type constraint, not useful for the moment
