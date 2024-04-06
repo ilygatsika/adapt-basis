@@ -22,7 +22,7 @@ do
 done
 
 git add out/$system
-git commit -m 'ljll server results $system'
+git commit -m "ljll server results ${system}"
 git push
 
 
