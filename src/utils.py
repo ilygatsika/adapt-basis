@@ -14,6 +14,7 @@ import re
 
 # Map first letter to elements
 elem_map = {'H': 'HYDROGEN', 
+            'Li': 'LITHIUM',
             'O': 'OXYGEN',
             'F': 'FLUORINE'
             }
