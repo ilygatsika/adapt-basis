@@ -1,0 +1,15 @@
+Reading coord from system/h2o.xyz file.
+Number of atomic orbitals (M must be smaller)		 9
+Number of orbital components				 13
+
+Running Hartree-Fock to get density
+converged SCF energy = -75.7947972887303
+Number of electrons (should be 10) = 10.000000
+
+Starting reduction with target 8 and 0 constraint
+First index
+{0, 2, 3, 4, 5, 7, 8}
+Second index
+{0, 3, 4, 5, 7, 8}
+Final choice
+{0, 2, 3, 4, 5, 7, 8}

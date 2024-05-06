@@ -16,7 +16,8 @@ import re
 elem_map = {'H': 'HYDROGEN', 
             'Li': 'LITHIUM',
             'O': 'OXYGEN',
-            'F': 'FLUORINE'
+            'F': 'FLUORINE',
+            'N': 'NITROGEN'
             }
 
 def read_matrix_from_file(filename):

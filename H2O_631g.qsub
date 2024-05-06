@@ -1,0 +1,44 @@
+#!/bin/bash
+#set -x
+#PBS -l nodes=1:ppn=24
+##PBS -l cput=455628:00:00
+##PBS -l vmem=1000gb
+#Request output and error output to be merged in one file 
+#Request environment variables to be exported to jobs
+#PBS -V
+#Request name of job to be demo_gaussian
+#PBS -N H2O_631g_gener
+
+hostname
+SCRATCHDIR=/scratch/dtraore/${PBS_JOBID}    # scratch directory
+export SCRATCHDIR                       # export SCRATCHDIR for job
+echo $SCRATCHDIR
+mkdir $SCRATCHDIR
+echo "#################"
+cat $PBS_NODEFILE                       # Name of the node
+cp $PBS_O_WORKDIR/* $SCRATCHDIR
+cd   $SCRATCHDIR
+echo $SCRATCHDIR
+
+ulimit -s unlimited
+export SCRATCHDIR=/scratch/$USER/$PBS_JOBID
+#
+cd $PBS_O_WORKDIR
+
+
+############################################################################
+####### YOU PUT THE PATH TO YOUR
+
+QP_ROOT=/home/dtraore/programs/qp2 
+source ${QP_ROOT}/quantum_package.rc
+
+MAIN_ROOT=/home/dtraore/programs/orbital_optim_Ioanna/adapt-basis
+MAIN=${MAIN_ROOT}/main.py
+
+system=h2o
+
+multiplicity=1
+
+python --version | tee python_version.out
+
+python3 ${MAIN} --coord h2o --out out/test_3 --AO 6-31g --M_target 8 | tee main.out 

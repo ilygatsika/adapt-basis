@@ -1,0 +1,36 @@
+#!/bin/bash
+#set -x
+#PBS -l nodes=1:ppn=1
+##PBS -l cput=455628:00:00
+#PBS -l mem=100gb
+#Request output and error output to be merged in one file 
+#Request environment variables to be exported to jobs
+#PBS -V
+#Request name of job to be demo_gaussian
+#PBS -N h2o_gener_av5z
+
+hostname
+SCRATCHDIR=/scratch/dtraore/${PBS_JOBID}    # scratch directory
+export SCRATCHDIR                       # export SCRATCHDIR for job
+echo $SCRATCHDIR
+mkdir $SCRATCHDIR
+echo "#################"
+cat $PBS_NODEFILE                       # Name of the node
+cp $PBS_O_WORKDIR/* $SCRATCHDIR
+cd   $SCRATCHDIR
+echo $SCRATCHDIR
+
+ulimit -s unlimited
+export SCRATCHDIR=/scratch/$USER/$PBS_JOBID
+#
+cd $PBS_O_WORKDIR
+
+
+############################################################################
+####### YOU PUT THE PATH TO YOUR
+
+#module load python/3.9.12 
+QP_ROOT=/home/dtraore/programs/qp2   # <----------- ADRESSE DE TON QP2
+source ${QP_ROOT}/quantum_package.rc
+
+./script/all.sh h2o
