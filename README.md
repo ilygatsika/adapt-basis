@@ -1,7 +1,6 @@
 # adapt-basis
 
-Python code for the automatic generation of atomic orbital Gaussian basis sets using pivoted Cholesky decomposition. This code is used in our paper cited as: Traore, D., Adjoua, O., Feniou, C. et al. _Shortcut to chemically accurate quantum computing via density-based basis-set correction_ . Commun Chem 7, 269 (2024). https://doi.org/10.1038/s42004-024-01348-3
-
+Python code for the automatic generation of atomic orbital Gaussian basis sets using pivoted Cholesky decomposition. This code is used in our paper cited as: Traore, D., Adjoua, O., Feniou, C., Lygatsika, I.-M., Maday, Y., Posenitskiy, E., Hammernik, K., Peruzzo, A., Toulouse, J., Giner, E., & Piquemal, J.-P. (2024). _Shortcut to chemically accurate quantum computing via density-based basis-set correction._ **Communications Chemistry, 7**, Article 269. https://doi.org/10.1038/s42004-024-01348-3
 
 # Setup
 
